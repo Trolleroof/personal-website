@@ -5,6 +5,7 @@ import ProfileCard from '@/components/ProfileCard';
 import NowPlaying from '@/components/NowPlaying';
 import MoodStats from '@/components/MoodStats';
 import Skills from '@/components/Skills';
+import Interests from '@/components/Interests';
 import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import Guestbook from '@/components/Guestbook';
@@ -24,8 +25,9 @@ export default function Home() {
           <MoodStats />
         </div>
         <div className="col-right">
-          <Skills />
+          <Interests />
           <Projects />
+          <Skills />
           <Experience />
           <Guestbook />
           <Contact />

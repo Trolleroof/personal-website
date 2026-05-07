@@ -31,6 +31,8 @@ export interface InfoField { label: string; value: string; }
 
 export interface ContactLink { icon: string; label: string; href: string; }
 
+export interface Interest { label: string; value: string; }
+
 export interface ProfileData {
   name: string;
   handle: string;
@@ -38,7 +40,7 @@ export interface ProfileData {
   status: string;
   sidebar: InfoField[];
   bio: string[];
-  github: string;
+  interests: Interest[];
   skills: SkillCat[];
   projects: Project[];
   experience: Experience[];
@@ -50,29 +52,31 @@ export interface ProfileData {
 }
 
 export const PROFILE: ProfileData = {
-  name: "Alex Chen",
-  handle: "x0_alex",
+  name: "Nikhi Prabhu",
+  handle: "nprabhu",
   school: "CS @ UCSD '26",
   status: "grinding leetcode at 2am and questioning my life choices",
   sidebar: [
-    { label: "Member Since", value: "September 17, 2024" },
+    { label: "Member Since", value: "September 2022" },
     { label: "Age", value: "21" },
     { label: "Major", value: "Computer Science" },
     { label: "School", value: "UCSD '26" },
     { label: "Location", value: "San Diego, CA" },
-    { label: "Status", value: "Single & Shipping" },
+    { label: "Here For", value: "Building cool things" },
     { label: "Track", value: "ML / Systems" },
-    { label: "Astrological Sign", value: "Libra" },
+    { label: "Zodiac Sign", value: "Libra ♎" },
   ],
   bio: [
-    "MY NAME IS ALEX, IM ON DIS JOINT CHILLEN, BUILDIN THINGS THAT SHOULDNT EXIST YET. SO IF U WANNA COLLAB OR JUS BE FRIENDS HIT ME UP.",
-    "MY GITHUB: @GITHUB@",
-    "YEA DATS ME GRINDIN LEETCODE AT 2AM AND QUESTIONIN MY LIFE CHOICES AT DA BOTTOM.",
-    "AND U SEE DA HOODIE, UCSD CS BABY, GET AT UR BOY.",
-    "IM 5'11\n170\nCS / ML TRACK\nSYSTEMS ENJOYER\nVERY CAFFEINATED\nAND LOOKIN 4 COOL PROJECTS TO SHIP",
-    "O YEA, ALL DA HATERS THANX 4 DOIN NOTHIN AND LETTIN ME COOK.",
+    "👋 Hi, I'm Nikhi! CS student at UCSD building things that probably shouldn't exist yet. I've been fortunate to work on ML inference, distributed systems, and the occasional 36-hour hackathon project.",
+    "I have (more or less) three goals in all my work: 📌 make it fast, 📌 make it correct, and 📌 ship it before I change my mind about the architecture.",
+    "You can view my resume here! Always down to collab on something interesting — hit me up.",
   ],
-  github: "github.com/x0_alex",
+  interests: [
+    { label: "General", value: "ML systems, distributed infra, compilers, and anything that runs fast on weird hardware." },
+    { label: "Music", value: "Radiohead, Four Tet, Aphex Twin, 100 gecs, Arca" },
+    { label: "Movies", value: "Blade Runner 2049, Her, Everything Everywhere All at Once" },
+    { label: "Television", value: "Mr. Robot, Silicon Valley, Severance" },
+  ],
   skills: [
     { label: "languages", items: [
       { name: "Python", hot: true }, { name: "C++", hot: true },
@@ -100,7 +104,7 @@ export const PROFILE: ProfileData = {
     },
     {
       name: "SpeculativeDecoder",
-      desc: "Research impl of speculative decoding for LLM inference. 2.4× speedup on Llama-3 with a draft model. Paper in progress. Advisored by Prof. Liu @ UCSD.",
+      desc: "Research impl of speculative decoding for LLM inference. 2.4× speedup on Llama-3 with a draft model. Paper in progress. Advised by Prof. Liu @ UCSD.",
       tags: ["Python", "ML", "CUDA", "Research"],
       links: [{ label: "Paper", href: "#" }, { label: "Code", href: "#" }],
     },
@@ -145,7 +149,7 @@ export const PROFILE: ProfileData = {
   contact: [
     { icon: "⌥", label: "GitHub", href: "#" },
     { icon: "◈", label: "LinkedIn", href: "#" },
-    { icon: "✉", label: "Email", href: "#" },
+    { icon: "✉", label: "Email", href: "mailto:nprabhu@ucsd.edu" },
   ],
   mood: [
     { label: "caffeine", value: 90 },
@@ -156,5 +160,5 @@ export const PROFILE: ProfileData = {
     { label: "touching grass", value: 10 },
   ],
   visitorCount: "042137",
-  nowPlaying: { track: "Daft Punk — Harder Better Faster Stronger", current: "01:47", total: "03:45" },
+  nowPlaying: { track: "Radiohead — Everything in Its Right Place", current: "01:47", total: "04:11" },
 };

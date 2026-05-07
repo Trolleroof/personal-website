@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { PROFILE, GuestbookMsg } from '@/lib/data';
 
-const BANNED = ['fuck','shit','bitch','asshole','dick','pussy','cunt','nigg','fag','retard','slut','whore','bastard','damn','crap','spam','viagra','porn','xxx'];
+const BANNED = ['fuck','shit','bitch','asshole','dick','pussy','cunt','nigg','fag','retard','slut','whore','bastard','crap','spam','viagra','porn','xxx'];
 
 const containsBadWord = (s: string) => {
   const lower = s.toLowerCase().replace(/[^a-z0-9 ]/g, '');
@@ -32,7 +32,7 @@ const Guestbook: React.FC = () => {
 
   return (
     <div className="panel">
-      <div className="panel-header"><span className="ph-icon">✎</span> GUESTBOOK</div>
+      <div className="panel-header"><span className="ph-icon">✎</span> Nikhi Prabhu's Friend Comments</div>
       <div className="gb-messages">
         {msgs.map((m, i) => (
           <div className="gb-msg" key={i}>
@@ -45,10 +45,10 @@ const Guestbook: React.FC = () => {
         ))}
       </div>
       <div className="gb-form">
-        <input className="gb-input" placeholder="your handle..." value={name} onChange={(e) => setName(e.target.value)} maxLength={30} />
-        <textarea className="gb-textarea" placeholder="leave a message... (no profanity, no links)" value={text} onChange={(e) => setText(e.target.value)} maxLength={280}></textarea>
-        {error && <div style={{ color: 'var(--red)', fontSize: 11, fontFamily: 'var(--mono)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>! {error}</div>}
-        <button className="btn btn-red" style={{ alignSelf: "flex-end", width: 140 }} onClick={post}>POST COMMENT ►</button>
+        <input className="gb-input" placeholder="your name..." value={name} onChange={(e) => setName(e.target.value)} maxLength={30} />
+        <textarea className="gb-textarea" placeholder="leave a comment... (no profanity, no links)" value={text} onChange={(e) => setText(e.target.value)} maxLength={280}></textarea>
+        {error && <div style={{ color: 'var(--pink)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.06em' }}>! {error}</div>}
+        <button className="btn btn-pink" style={{ alignSelf: "flex-end", width: 150 }} onClick={post}>Post Comment ►</button>
       </div>
     </div>
   );

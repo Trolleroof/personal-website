@@ -4,10 +4,14 @@ const TopBar: React.FC = () => (
       <span className="topbar-dot"></span>
       <span className="topbar-dot"></span>
       <span className="topbar-dot"></span>
-      <span style={{ marginLeft: 8 }}>x0_profile.exe</span>
+      <span style={{ marginLeft: 6 }}>nikhi_prabhu ✨</span>
     </div>
-    <span className="topbar-status">● ONLINE</span>
-    <span style={{ fontSize: 13, color: "#888" }}>[ last login: today ]</span>
+    <nav className="topbar-nav">
+      <a href="#projects">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a href="#" style={{ color: '#fff', fontWeight: 600 }}>Resume ↗</a>
+    </nav>
   </div>
 );
 

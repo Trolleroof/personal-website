@@ -1,7 +1,7 @@
 const Marquee: React.FC = () => (
   <div className="marquee-strip">
     <span className="marquee-inner">
-      &nbsp;&nbsp;★ WELCOME TO MY PROFILE ★ &nbsp;&nbsp;|&nbsp;&nbsp; CS STUDENT &amp; BUILDER &nbsp;&nbsp;|&nbsp;&nbsp; CURRENT MOOD: DEBUGGING &nbsp;&nbsp;|&nbsp;&nbsp; 404: SLEEP NOT FOUND &nbsp;&nbsp;|&nbsp;&nbsp; ★ ADD ME AS A FRIEND ★ &nbsp;&nbsp;|&nbsp;&nbsp; ALWAYS BE SHIPPING &nbsp;&nbsp;|&nbsp;&nbsp;
+      &nbsp;&nbsp;★ welcome to my profile ★ &nbsp;&nbsp;|&nbsp;&nbsp; cs student &amp; builder 💻 &nbsp;&nbsp;|&nbsp;&nbsp; current status: shipping &nbsp;&nbsp;|&nbsp;&nbsp; 404: sleep not found &nbsp;&nbsp;|&nbsp;&nbsp; ★ add me as a friend ★ &nbsp;&nbsp;|&nbsp;&nbsp; ucsd '26 &nbsp;&nbsp;|&nbsp;&nbsp; ml + systems 🧠 &nbsp;&nbsp;|&nbsp;&nbsp;
     </span>
   </div>
 );
