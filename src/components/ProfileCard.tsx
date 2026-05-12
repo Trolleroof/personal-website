@@ -18,10 +18,9 @@ const ProfileCard: React.FC = () => {
       </div>
       <div className="profile-actions">
         <button className="btn btn-pink" onClick={() => setOpen((o) => !o)}>
-          {open ? "− Socials" : "+ Add"}
+          {open ? "− Socials" : "+ Contact"}
         </button>
-        <button className="btn">Message</button>
-        <button className="btn">Fave</button>
+   
       </div>
       <div className={"socials-reveal" + (open ? " open" : "")}>
         <div className="socials-list">

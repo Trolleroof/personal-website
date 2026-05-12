@@ -2,7 +2,7 @@ import TopBar from '@/components/TopBar';
 import Marquee from '@/components/Marquee';
 import Hero from '@/components/Hero';
 import ProfileCard from '@/components/ProfileCard';
-import NowPlaying from '@/components/NowPlaying';
+import CurrentFocus from '@/components/CurrentFocus';
 import MoodStats from '@/components/MoodStats';
 import Skills from '@/components/Skills';
 import Interests from '@/components/Interests';
@@ -21,7 +21,7 @@ export default function Home() {
       <div className="page-wrap">
         <div className="col-left">
           <ProfileCard />
-          <NowPlaying />
+          <CurrentFocus />
           <MoodStats />
         </div>
         <div className="col-right">

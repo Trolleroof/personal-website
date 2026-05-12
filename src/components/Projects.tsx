@@ -2,7 +2,7 @@ import { PROFILE } from '@/lib/data';
 
 const Projects: React.FC = () => (
   <div className="panel" id="projects">
-    <div className="panel-header"><span className="ph-icon">◆</span> Nikhil Prabhu's Latest Work <a href="#" style={{ color: '#ffd0ee', fontSize: 10, marginLeft: 8, fontWeight: 400 }}>(view more)</a></div>
+    <div className="panel-header"><span className="ph-icon">◆</span> My Latest Work <a href="#" style={{ color: '#ffd0ee', fontSize: 10, marginLeft: 8, fontWeight: 400 }}>(view more)</a></div>
     {PROFILE.projects.map((p) => (
       <div className="project-item" key={p.name}>
         <div>

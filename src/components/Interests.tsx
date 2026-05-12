@@ -2,7 +2,7 @@ import { PROFILE } from '@/lib/data';
 
 const Interests: React.FC = () => (
   <div className="panel">
-    <div className="panel-header"><span className="ph-icon">✦</span> Nikhil Prabhu's Interests</div>
+    <div className="panel-header"><span className="ph-icon">✦</span> My Interests</div>
     <div className="interests-grid">
       {PROFILE.interests.map((item) => (
         <div className="interest-cat" key={item.label}>

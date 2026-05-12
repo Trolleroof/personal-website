@@ -48,7 +48,13 @@ export interface ProfileData {
   contact: ContactLink[];
   mood: MoodStat[];
   visitorCount: string;
-  nowPlaying: { track: string; current: string; total: string };
+  currentFocus: {
+    headline: string;
+    detail: string;
+    progressPct: number;
+    footLeft: string;
+    footRight: string;
+  };
 }
 
 export const PROFILE: ProfileData = {
@@ -68,10 +74,10 @@ export const PROFILE: ProfileData = {
     "You can view my resume here! Always down to collab on something interesting — hit me up.",
   ],
   interests: [
-    { label: "General", value: "ML systems, distributed infra, compilers, and anything that runs fast on weird hardware." },
-    { label: "Music", value: "Radiohead, Four Tet, Aphex Twin, 100 gecs, Arca" },
-    { label: "Movies", value: "Blade Runner 2049, Her, Everything Everywhere All at Once" },
-    { label: "Television", value: "Mr. Robot, Silicon Valley, Severance" },
+    { label: "General", value: "I'm into ML systems, distributed infra, compilers, and anything that runs fast on weird hardware." },
+    { label: "Music", value: "I listen to Radiohead, Four Tet, Aphex Twin, 100 gecs, Arca." },
+    { label: "Movies", value: "I love Blade Runner 2049, Her, Everything Everywhere All at Once." },
+    { label: "Television", value: "Some of my favorite shows: Mr. Robot, Silicon Valley, Severance." },
   ],
   skills: [
     { label: "languages", items: [
@@ -94,25 +100,25 @@ export const PROFILE: ProfileData = {
   projects: [
     {
       name: "FluxKV",
-      desc: "A key-value store written in Rust with a custom LSM-tree engine. Handles 200k+ ops/sec on commodity hardware. My magnum opus and the reason I now understand why databases are hard.",
+      desc: "I built a key-value store in Rust with a custom LSM-tree engine. It handles 200k+ ops/sec on commodity hardware. My magnum opus and the reason I now understand why databases are hard.",
       tags: ["Rust", "Systems", "Storage"],
       links: [{ label: "GitHub", href: "#" }, { label: "Demo", href: "#" }],
     },
     {
       name: "SpeculativeDecoder",
-      desc: "Research impl of speculative decoding for LLM inference. 2.4× speedup on Llama-3 with a draft model. Paper in progress. Advised by Prof. Liu @ UCSD.",
+      desc: "My research implementation of speculative decoding for LLM inference: 2.4× speedup on Llama-3 with a draft model. Paper in progress. I work with Prof. Liu @ UCSD.",
       tags: ["Python", "ML", "CUDA", "Research"],
       links: [{ label: "Paper", href: "#" }, { label: "Code", href: "#" }],
     },
     {
       name: "TermCast",
-      desc: "Real-time collaborative terminal sessions over WebSockets. Lets teams pair-program in the terminal. Built in 36 hrs at HackUCSD — won Best Dev Tool.",
+      desc: "Real-time collaborative terminal sessions over WebSockets—I built it so teams can pair-program in the terminal. Shipped in 36 hrs at HackUCSD and won Best Dev Tool.",
       tags: ["Node.js", "xterm.js", "WebSockets"],
       links: [{ label: "GitHub", href: "#" }],
     },
     {
       name: "ByteDB",
-      desc: "A toy SQL database from scratch in C++. Supports B-tree indexes, basic query planning, and joins. A love letter to my DB systems class.",
+      desc: "I built a toy SQL database from scratch in C++. It supports B-tree indexes, basic query planning, and joins—a love letter to my DB systems class.",
       tags: ["C++", "Databases", "Systems"],
       links: [{ label: "GitHub", href: "#" }],
     },
@@ -122,19 +128,19 @@ export const PROFILE: ProfileData = {
       role: "Software Engineering Intern",
       place: "Cloudflare",
       date: "Summer 2025",
-      desc: "Worked on the Workers runtime team optimizing cold-start latency. Shipped a 15% improvement to isolate initialization using snapshot-based techniques.",
+      desc: "I worked on the Workers runtime team optimizing cold-start latency. Shipped a 15% improvement to isolate initialization using snapshot-based techniques.",
     },
     {
       role: "Undergraduate Researcher",
       place: "UCSD Systems & ML Lab",
       date: "Jan 2025 – Present",
-      desc: "Research on efficient LLM inference with speculative decoding and model compression. Collaborating with PhD students on a paper submission to ICML 2026.",
+      desc: "I research efficient LLM inference with speculative decoding and model compression. I'm collaborating with PhD students on a paper submission to ICML 2026.",
     },
     {
       role: "Teaching Assistant — CSE 101",
       place: "UCSD CSE Dept.",
       date: "Fall 2024",
-      desc: "TA for Design & Analysis of Algorithms. Ran weekly discussion sections of 30 students, held office hours, and wrote exam problems.",
+      desc: "I was TA for Design & Analysis of Algorithms. I ran weekly discussion sections of 30 students, held office hours, and wrote exam problems.",
     },
   ],
   guestbook: [
@@ -143,9 +149,9 @@ export const PROFILE: ProfileData = {
     { from: "hackUCSD_org", date: "Mar 15", text: "congrats on winning Best Dev Tool!! see you next year" },
   ],
   contact: [
-    { icon: "$", label: "GitHub", href: "#" },
-    { icon: "~", label: "LinkedIn", href: "#" },
-    { icon: "@", label: "Email", href: "mailto:nprabhu@ucsd.edu" },
+    { icon: "◆", label: "GitHub", href: "#" },
+    { icon: "◇", label: "LinkedIn", href: "#" },
+    { icon: "✉", label: "Email", href: "mailto:nprabhu@ucsd.edu" },
   ],
   mood: [
     { label: "caffeine", value: 90 },
@@ -156,5 +162,12 @@ export const PROFILE: ProfileData = {
     { label: "touching grass", value: 10 },
   ],
   visitorCount: "042137",
-  nowPlaying: { track: "Radiohead — Everything in Its Right Place", current: "01:47", total: "04:11" },
+  currentFocus: {
+    headline: "FluxKV — compaction & crash recovery",
+    detail:
+      "I'm chasing down merge-iterator edge cases and hammering crash recovery until I'm not afraid of kill -9 anymore.",
+    progressPct: 68,
+    footLeft: "side project",
+    footRight: "nights & weekends",
+  },
 };

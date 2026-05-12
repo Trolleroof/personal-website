@@ -4,14 +4,10 @@ import React from 'react';
 const Hero: React.FC = () => (
   <div className="hero-myspace">
     <div className="extended-network-bar">
-      Nikhil Prabhu is in your extended network
+      I&apos;m in your extended network
     </div>
     <div className="hms-inner">
       <div className="hms-sidebar">
-        <div className="hms-side-actions">
-          <a href="#" className="hms-side-link">View My: <strong>Projects</strong></a>
-          <a href="#" className="hms-side-link">View My: <strong>Resume</strong></a>
-        </div>
         <div className="hms-side-title">Personal Info</div>
         {PROFILE.sidebar.map((f) => (
           <div className="hms-side-field" key={f.label}>
