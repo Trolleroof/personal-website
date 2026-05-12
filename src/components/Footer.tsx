@@ -1,6 +1,6 @@
 const Footer: React.FC = () => (
   <div className="site-footer">
-    <span>nikhi_prabhu</span> // made with <span>♥</span> &amp; <span>too much caffeine</span> // © 2026 // <span className="blink">★</span>
+    <span>nikhil_prabhu</span> // made with <span>♥</span> &amp; <span>too much caffeine</span> // © 2026 // <span className="blink">★</span>
   </div>
 );
 

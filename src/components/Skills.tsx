@@ -2,10 +2,10 @@ import { PROFILE } from '@/lib/data';
 
 const Skills: React.FC = () => (
   <div className="panel">
-    <div className="panel-header"><span className="ph-icon">★</span> Nikhi Prabhu's Friend Space</div>
+    <div className="panel-header"><span className="ph-icon">★</span> Nikhil Prabhu's Friend Space</div>
     <div className="panel-body">
       <p style={{ fontSize: 12, color: '#666', marginBottom: 10 }}>
-        Nikhi Prabhu has <strong>{PROFILE.skills.reduce((a, c) => a + c.items.length, 0)} Friends</strong> in their tech stack.
+        Nikhil Prabhu has <strong>{PROFILE.skills.reduce((a, c) => a + c.items.length, 0)} Friends</strong> in their tech stack.
       </p>
       <div className="skills-grid">
         {PROFILE.skills.map((cat) => (

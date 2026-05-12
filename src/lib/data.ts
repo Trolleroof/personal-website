@@ -52,7 +52,7 @@ export interface ProfileData {
 }
 
 export const PROFILE: ProfileData = {
-  name: "Nikhi Prabhu",
+  name: "Nikhil Prabhu",
   handle: "nprabhu",
   school: "CS @ UC San Diego '28",
   status: "stacking reps to start something in the problem space I can't quit.",
@@ -64,7 +64,7 @@ export const PROFILE: ProfileData = {
   ],
   bio: [
     "hey I'm Nikhil! CS student at UCSD building things that probably shouldn't exist yet. I've been fortunate to work on ML inference, distributed systems, and the occasional 36-hour hackathon project.",
-    "I have (more or less) three goals in all my work: 📌 make it fast, 📌 make it correct, and 📌 ship it before I change my mind about the architecture.",
+    "I have (more or less) three goals in all my work: make it fast, make it correct, and ship it before I change my mind about the architecture.",
     "You can view my resume here! Always down to collab on something interesting — hit me up.",
   ],
   interests: [
@@ -140,12 +140,12 @@ export const PROFILE: ProfileData = {
   guestbook: [
     { from: "gr4phQL_god", date: "Apr 29", text: "dude your LSM tree code is actually insane. how is read ampl so low??" },
     { from: "prof_liu", date: "Apr 22", text: "great work on the speculative decoding results. let's sync before the submission deadline." },
-    { from: "hackUCSD_org", date: "Mar 15", text: "congrats on winning Best Dev Tool!! see you next year 🏆" },
+    { from: "hackUCSD_org", date: "Mar 15", text: "congrats on winning Best Dev Tool!! see you next year" },
   ],
   contact: [
-    { icon: "⌥", label: "GitHub", href: "#" },
-    { icon: "◈", label: "LinkedIn", href: "#" },
-    { icon: "✉", label: "Email", href: "mailto:nprabhu@ucsd.edu" },
+    { icon: "$", label: "GitHub", href: "#" },
+    { icon: "~", label: "LinkedIn", href: "#" },
+    { icon: "@", label: "Email", href: "mailto:nprabhu@ucsd.edu" },
   ],
   mood: [
     { label: "caffeine", value: 90 },

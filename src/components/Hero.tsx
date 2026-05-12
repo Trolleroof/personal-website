@@ -4,7 +4,7 @@ import React from 'react';
 const Hero: React.FC = () => (
   <div className="hero-myspace">
     <div className="extended-network-bar">
-      Nikhi Prabhu is in your extended network
+      Nikhil Prabhu is in your extended network
     </div>
     <div className="hms-inner">
       <div className="hms-sidebar">

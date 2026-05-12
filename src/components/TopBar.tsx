@@ -4,7 +4,7 @@ const TopBar: React.FC = () => (
       <span className="topbar-dot"></span>
       <span className="topbar-dot"></span>
       <span className="topbar-dot"></span>
-      <span style={{ marginLeft: 6 }}>nikhi_prabhu</span>
+      <span style={{ marginLeft: 6 }}>nikhil_prabhu</span>
     </div>
     <nav className="topbar-nav">
       <a href="#projects">Work</a>

@@ -22,7 +22,7 @@ const Guestbook: React.FC = () => {
     if (!n || !t) { setError("fill in both fields"); return; }
     if (n.length > 30) { setError("handle too long (30 max)"); return; }
     if (t.length > 280) { setError("message too long (280 max)"); return; }
-    if (containsBadWord(n) || containsBadWord(t)) { setError("watch the language ✋"); return; }
+    if (containsBadWord(n) || containsBadWord(t)) { setError("watch the language"); return; }
     if (/(https?:\/\/|www\.|\.[a-z]{2,}(\/|\b))/i.test(t)) { setError("no links allowed"); return; }
     if (/(.)\1{6,}/.test(t)) { setError("chill on the spam"); return; }
     const now = new Date();
@@ -32,7 +32,7 @@ const Guestbook: React.FC = () => {
 
   return (
     <div className="panel">
-      <div className="panel-header"><span className="ph-icon">✎</span> Nikhi Prabhu's Friend Comments</div>
+      <div className="panel-header">Nikhil Prabhu's Friend Comments</div>
       <div className="gb-messages">
         {msgs.map((m, i) => (
           <div className="gb-msg" key={i}>
@@ -48,7 +48,7 @@ const Guestbook: React.FC = () => {
         <input className="gb-input" placeholder="your name..." value={name} onChange={(e) => setName(e.target.value)} maxLength={30} />
         <textarea className="gb-textarea" placeholder="leave a comment... (no profanity, no links)" value={text} onChange={(e) => setText(e.target.value)} maxLength={280}></textarea>
         {error && <div style={{ color: 'var(--pink)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.06em' }}>! {error}</div>}
-        <button className="btn btn-pink" style={{ alignSelf: "flex-end", width: 150 }} onClick={post}>Post Comment ►</button>
+        <button className="btn btn-pink" style={{ alignSelf: "flex-end", width: 150 }} onClick={post}>Post Comment</button>
       </div>
     </div>
   );
