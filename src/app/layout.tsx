@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nikhi Prabhu ✨",
+  title: "Nikhil Prabhu ",
   description: "CS student @ UCSD — ML systems, distributed infra, and shipping things.",
 };
 

@@ -4,7 +4,7 @@ import React from 'react';
 const Hero: React.FC = () => (
   <div className="hero-myspace">
     <div className="extended-network-bar">
-      Nikhi Prabhu is in your extended network 🌐
+      Nikhi Prabhu is in your extended network
     </div>
     <div className="hms-inner">
       <div className="hms-sidebar">
@@ -26,10 +26,10 @@ const Hero: React.FC = () => (
             <p key={i}>{line}</p>
           ))}
           <div className="hms-nav">
-            <a href="#projects" className="hms-btn">► Projects</a>
+            <a href="#projects" className="hms-btn">Projects</a>
             <a href="#experience" className="hms-btn">Experience</a>
             <a href="#contact" className="hms-btn">Contact</a>
-            <a href="#" className="hms-btn hms-btn-pink">Resume ↗</a>
+            <a href="#" className="hms-btn hms-btn-pink">Resume</a>
           </div>
         </div>
       </div>

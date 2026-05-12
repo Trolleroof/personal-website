@@ -8,8 +8,6 @@ const ProfileCard: React.FC = () => {
   return (
     <div className="panel">
       <div className="profile-avatar">
-        <span>🧑🏽‍💻</span>
-        <span className="profile-avatar-label">View Pics</span>
       </div>
       <div className="profile-name cursor">{PROFILE.name}</div>
       <div className="profile-handle">{PROFILE.handle} · <span style={{ color: "var(--pink)" }}>{PROFILE.school}</span></div>
@@ -22,8 +20,8 @@ const ProfileCard: React.FC = () => {
         <button className="btn btn-pink" onClick={() => setOpen((o) => !o)}>
           {open ? "− Socials" : "+ Add"}
         </button>
-        <button className="btn">✉ Message</button>
-        <button className="btn">⭐ Fave</button>
+        <button className="btn">Message</button>
+        <button className="btn">Fave</button>
       </div>
       <div className={"socials-reveal" + (open ? " open" : "")}>
         <div className="socials-list">
