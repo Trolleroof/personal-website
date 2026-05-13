@@ -1,7 +1,13 @@
 const Footer: React.FC = () => (
-  <div className="site-footer">
-    <span>nikhil_prabhu</span> // made with <span>♥</span> &amp; <span>too much caffeine</span> // © 2026 // <span className="blink">★</span>
-  </div>
+  <footer className="site-footer">
+    <p className="site-footer-inner">
+      <span className="site-footer-name">Nikhil Prabhu</span>
+      <span className="site-footer-sep" aria-hidden="true">
+        ·
+      </span>
+      <span className="site-footer-meta">{new Date().getFullYear()}</span>
+    </p>
+  </footer>
 );
 
 export default Footer;

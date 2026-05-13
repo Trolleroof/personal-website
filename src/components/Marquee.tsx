@@ -16,7 +16,7 @@ const Marquee: React.FC = () => (
         </nav>
       </div>
       <div className="marquee-text">
-        ★ welcome to my profile ★ &nbsp;&nbsp;|&nbsp;&nbsp; i&apos;m a cs student &amp; builder &nbsp;&nbsp;|&nbsp;&nbsp; my status: shipping &nbsp;&nbsp;|&nbsp;&nbsp; 404: sleep not found &nbsp;&nbsp;|&nbsp;&nbsp; ★ add me as a friend ★ &nbsp;&nbsp;|&nbsp;&nbsp; ucsd &apos;28 &nbsp;&nbsp;|&nbsp;&nbsp; ml + systems
+        cs @ ucsd &apos;28 &nbsp;&nbsp;|&nbsp;&nbsp; ml systems + distributed infra &nbsp;&nbsp;|&nbsp;&nbsp; sf bay area &nbsp;&nbsp;|&nbsp;&nbsp; currently: research &amp; building
       </div>
     </div>
   </div>

@@ -66,7 +66,7 @@ export const PROFILE: ProfileData = {
     { label: "Major", value: "CS" },
     { label: "School", value: "UC San Diego, graduating in 2028" },
     { label: "Location", value: "San Francisco Bay Area" },
-    { label: "Here For", value: "Building cool things" },
+    { label: "Values", value: "" },
   ],
   bio: [
     "hey I'm Nikhil! CS student at UCSD building things that probably shouldn't exist yet. I've been fortunate to work on ML inference, distributed systems, and the occasional 36-hour hackathon project.",
