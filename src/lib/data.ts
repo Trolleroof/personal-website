@@ -29,11 +29,15 @@ export interface MoodStat { label: string; value: number; }
 
 export interface InfoField { label: string; value: string; }
 
-export interface ContactLink { icon: string; label: string; href: string; }
+export type ContactIcon = "github" | "linkedin" | "email";
+
+export interface ContactLink { icon: ContactIcon; label: string; href?: string; copyText?: string; }
 
 export interface Interest { label: string; value: string; }
 
 export interface ProfileData {
+  /** PDF or external resume URL; opens in a new tab from Resume links. Put the file at `public/resume.pdf` when using the default path. */
+  resumeUrl: string;
   name: string;
   handle: string;
   school: string;
@@ -58,15 +62,16 @@ export interface ProfileData {
 }
 
 export const PROFILE: ProfileData = {
+  resumeUrl: "/resume.pdf",
   name: "Nikhil Prabhu",
   handle: "nprabhu",
   school: "CS @ UC San Diego '28",
-  status: "stacking reps to start something in the problem space I can't quit.",
+  status: "getting reps in a problem space im passionate about.",
   sidebar: [
     { label: "Major", value: "CS" },
     { label: "School", value: "UC San Diego, graduating in 2028" },
     { label: "Location", value: "San Francisco Bay Area" },
-    { label: "Values", value: "" },
+    { label: "Values", value: "Family, Faith, Hard Work" },
   ],
   bio: [
     "hey I'm Nikhil! CS student at UCSD building things that probably shouldn't exist yet. I've been fortunate to work on ML inference, distributed systems, and the occasional 36-hour hackathon project.",
@@ -149,9 +154,9 @@ export const PROFILE: ProfileData = {
     { from: "hackUCSD_org", date: "Mar 15", text: "congrats on winning Best Dev Tool!! see you next year" },
   ],
   contact: [
-    { icon: "◆", label: "GitHub", href: "#" },
-    { icon: "◇", label: "LinkedIn", href: "#" },
-    { icon: "✉", label: "Email", href: "mailto:nprabhu@ucsd.edu" },
+    { icon: "github", label: "GitHub", href: "https://github.com/Trolleroof" },
+    { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/nikprabhu1/" },
+    { icon: "email", label: "Email", copyText: "nikhilprabhu06@gmail.com" },
   ],
   mood: [
     { label: "caffeine", value: 90 },

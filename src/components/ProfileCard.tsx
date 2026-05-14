@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { PROFILE } from '@/lib/data';
+import ContactLinkItem from './ContactLinkItem';
 
 const ProfileCard: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -13,7 +14,7 @@ const ProfileCard: React.FC = () => {
       <div className="profile-handle">{PROFILE.handle} · <span style={{ color: "var(--pink)" }}>{PROFILE.school}</span></div>
       <div className="deco-line" style={{ margin: "0 12px" }}></div>
       <div className="profile-status">
-        <span className="status-label">// current status</span>
+        <span className="status-label">{'// current status'}</span>
         {PROFILE.status}
       </div>
       <div className="profile-actions">
@@ -25,11 +26,15 @@ const ProfileCard: React.FC = () => {
       <div className={"socials-reveal" + (open ? " open" : "")}>
         <div className="socials-list">
           {PROFILE.contact.map((c, i) => (
-            <a key={c.label} href={c.href} className="social-row" style={{ animationDelay: `${i * 60}ms` }}>
-              <span className="sr-icon">{c.icon}</span>
-              <span className="sr-label">{c.label}</span>
-              <span className="sr-arrow">►</span>
-            </a>
+            <ContactLinkItem
+              key={c.label}
+              contact={c}
+              className="social-row"
+              iconClassName="sr-icon"
+              labelClassName="sr-label"
+              arrowClassName="sr-arrow"
+              style={{ animationDelay: `${i * 60}ms` }}
+            />
           ))}
         </div>
       </div>

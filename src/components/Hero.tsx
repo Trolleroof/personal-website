@@ -25,7 +25,14 @@ const Hero: React.FC = () => (
             <a href="#projects" className="hms-btn">Projects</a>
             <a href="#experience" className="hms-btn">Experience</a>
             <a href="#contact" className="hms-btn">Contact</a>
-            <a href="#" className="hms-btn hms-btn-pink">Resume</a>
+            <a
+              href={PROFILE.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hms-btn hms-btn-pink"
+            >
+              Resume
+            </a>
           </div>
         </div>
       </div>

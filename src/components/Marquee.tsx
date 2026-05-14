@@ -1,3 +1,5 @@
+import { PROFILE } from '@/lib/data';
+
 const Marquee: React.FC = () => (
   <div className="marquee-strip">
     <div className="marquee-header">
@@ -12,11 +14,18 @@ const Marquee: React.FC = () => (
           <a href="#projects">Work</a>
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
-          <a href="#" style={{ color: '#fff', fontWeight: 600 }}>Resume</a>
+          <a
+            href={PROFILE.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#fff', fontWeight: 600 }}
+          >
+            Resume
+          </a>
         </nav>
       </div>
       <div className="marquee-text">
-        cs @ ucsd &apos;28 &nbsp;&nbsp;|&nbsp;&nbsp; ml systems + distributed infra &nbsp;&nbsp;|&nbsp;&nbsp; sf bay area &nbsp;&nbsp;|&nbsp;&nbsp; currently: research &amp; building
+        fullstack + robotics + rl
       </div>
     </div>
   </div>

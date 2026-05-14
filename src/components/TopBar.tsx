@@ -1,3 +1,5 @@
+import { PROFILE } from '@/lib/data';
+
 const TopBar: React.FC = () => (
   <div className="topbar">
     <div className="topbar-left">
@@ -10,7 +12,14 @@ const TopBar: React.FC = () => (
       <a href="#projects">Work</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
-      <a href="#" style={{ color: '#fff', fontWeight: 600 }}>Resume ↗</a>
+      <a
+        href={PROFILE.resumeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: '#fff', fontWeight: 600 }}
+      >
+        Resume ↗
+      </a>
     </nav>
   </div>
 );

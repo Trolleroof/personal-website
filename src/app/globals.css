@@ -2,6 +2,7 @@
 
 :root {
   --pink: #c0392b;
+  --red-outline: #b83224;
   --pink-mid: #e05a4a;
   --pink-light: #fde8e6;
   --pink-pale: #fff8f7;
@@ -229,11 +230,13 @@ a:hover { color: var(--pink); }
   align-items: center; gap: 8px;
   padding: 5px 8px; background: var(--white);
   border: 1px solid var(--pink-mid); color: var(--blue);
+  width: 100%; font-family: inherit; text-align: left; cursor: pointer;
   font-size: 12px; text-decoration: none;
   transition: all 0.1s;
 }
 .social-row:hover { background: var(--pink); color: #fff; text-decoration: none; border-color: var(--pink); }
-.social-row .sr-icon { color: var(--pink); font-size: 16px; text-align: center; }
+.social-row .sr-icon { color: var(--red-outline); display: grid; place-items: center; }
+.social-row .sr-icon svg { width: 16px; height: 16px; display: block; }
 .social-row:hover .sr-icon { color: #fff; }
 .social-row .sr-arrow { color: var(--pink); font-size: 11px; }
 .social-row:hover .sr-arrow { color: #fff; }
@@ -313,9 +316,11 @@ a:hover { color: var(--pink); }
 
 /* LINKS */
 .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px; }
-.link-item { border: 1px solid #d8b8b0; padding: 10px; text-decoration: none; color: var(--blue); display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.1s; }
+.link-item { border: 1px solid #d8b8b0; padding: 10px; text-decoration: none; color: var(--blue); background: var(--white); display: flex; align-items: center; gap: 8px; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.1s; cursor: pointer; }
 .link-item:hover { background: var(--pink); color: #fff; border-color: var(--pink); text-decoration: none; }
-.link-icon { font-size: 18px; }
+.link-icon { color: var(--red-outline); display: grid; place-items: center; flex: 0 0 20px; }
+.link-icon svg { width: 20px; height: 20px; display: block; }
+.link-item:hover .link-icon { color: #fff; }
 
 /* FOOTER */
 .site-footer {
