@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { PROFILE } from '@/lib/data';
 import ContactLinkItem from './ContactLinkItem';
@@ -9,9 +10,17 @@ const ProfileCard: React.FC = () => {
   return (
     <div className="panel">
       <div className="profile-avatar">
+        <Image
+          src={PROFILE.avatarUrl}
+          alt={`${PROFILE.name} — profile photo`}
+          fill
+          sizes="(max-width: 480px) 100vw, 230px"
+          className="profile-avatar-img"
+          priority
+        />
       </div>
       <div className="profile-name cursor">{PROFILE.name}</div>
-      <div className="profile-handle">{PROFILE.handle} · <span style={{ color: "var(--pink)" }}>{PROFILE.school}</span></div>
+      <div className="profile-handle">{PROFILE.handle}</div>
       <div className="deco-line" style={{ margin: "0 12px" }}></div>
       <div className="profile-status">
         <span className="status-label">{'// current status'}</span>

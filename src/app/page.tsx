@@ -3,9 +3,8 @@ import Marquee from '@/components/Marquee';
 import Hero from '@/components/Hero';
 import ProfileCard from '@/components/ProfileCard';
 import CurrentFocus from '@/components/CurrentFocus';
-import MoodStats from '@/components/MoodStats';
+import ProfileQuote from '@/components/ProfileQuote';
 import Skills from '@/components/Skills';
-import Interests from '@/components/Interests';
 import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import Guestbook from '@/components/Guestbook';
@@ -22,13 +21,12 @@ export default function Home() {
         <div className="col-left">
           <ProfileCard />
           <CurrentFocus />
-          <MoodStats />
+          <ProfileQuote />
         </div>
         <div className="col-right">
-          <Interests />
           <Projects />
-          <Skills />
           <Experience />
+          <Skills />
           <Guestbook />
           <Contact />
         </div>

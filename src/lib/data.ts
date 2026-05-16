@@ -22,110 +22,188 @@ export interface GuestbookMsg {
 
 export interface SkillCat {
   label: string;
-  items: { name: string; hot?: boolean }[];
+  items: { name: string }[];
 }
 
-export interface MoodStat { label: string; value: number; }
+export interface SidebarQuoteData {
+  text: string;
+  /** Optional attribution (e.g. author name). */
+  attribution?: string;
+}
 
-export interface InfoField { label: string; value: string; }
+export interface InfoField {
+  label: string;
+  /** Plain text block (use when not using bullets). */
+  value?: string;
+  /** When set, shown as a bullet list instead of value. */
+  bullets?: string[];
+}
 
 export type ContactIcon = "github" | "linkedin" | "email";
 
-export interface ContactLink { icon: ContactIcon; label: string; href?: string; copyText?: string; }
+export interface ContactLink {
+  icon: ContactIcon;
+  label: string;
+  href?: string;
+  copyText?: string;
+}
 
-export interface Interest { label: string; value: string; }
+export type InterestIcon = "basketball" | "gamepad" | "camera" | "business" | "code";
+
+export interface Obsession { label: string; icon: InterestIcon; }
+
+export interface Interest { label: string; value: string; icon: InterestIcon; }
 
 export interface ProfileData {
-  /** PDF or external resume URL; opens in a new tab from Resume links. Put the file at `public/resume.pdf` when using the default path. */
+  /** PDF served from /public for downloads and print. */
   resumeUrl: string;
+  /** Long screenshot of the resume for the modal viewer. */
+  resumePreviewUrl: string;
+  /** Square headshot in /public (e.g. profile-avatar.png). */
+  avatarUrl: string;
   name: string;
   handle: string;
-  school: string;
+  /** Short line under the handle (focus areas — not necessarily school). */
+  byline: string;
   status: string;
   sidebar: InfoField[];
-  bio: string[];
+  bioIntro: string;
+  obsessions: Obsession[];
+  bioOutro: string;
   interests: Interest[];
   skills: SkillCat[];
   projects: Project[];
   experience: Experience[];
   guestbook: GuestbookMsg[];
   contact: ContactLink[];
-  mood: MoodStat[];
+  sidebarQuote: SidebarQuoteData;
   visitorCount: string;
   currentFocus: {
     headline: string;
     detail: string;
     progressPct: number;
     footLeft: string;
-    footRight: string;
+    footRight?: string;
   };
 }
 
 export const PROFILE: ProfileData = {
   resumeUrl: "/resume.pdf",
+  resumePreviewUrl: "/resume-preview.png",
+  avatarUrl: "/profile-avatar.png",
   name: "Nikhil Prabhu",
-  handle: "nprabhu",
-  school: "CS @ UC San Diego '28",
+  handle: "Trolleroof",
+  byline: "agents · robotics UIs · systems that ship",
   status: "getting reps in a problem space im passionate about.",
   sidebar: [
-    { label: "Major", value: "CS" },
-    { label: "School", value: "UC San Diego, graduating in 2028" },
+    {
+      label: "Focus",
+      bullets: [
+        "Desktop assistants",
+        "RL at scale",
+        "Spatial / robotics interfaces",
+      ],
+    },
+    { label: "Recently", value: "RL Circuit Design Researcher @ UCSD Jacobs School of Engineering" },
     { label: "Location", value: "San Francisco Bay Area" },
     { label: "Values", value: "Family, Faith, Hard Work" },
   ],
-  bio: [
-    "hey I'm Nikhil! CS student at UCSD building things that probably shouldn't exist yet. I've been fortunate to work on ML inference, distributed systems, and the occasional 36-hour hackathon project.",
-    "I have (more or less) three goals in all my work: make it fast, make it correct, and ship it before I change my mind about the architecture.",
-    "You can view my resume here! Always down to collab on something interesting — hit me up.",
+  bioIntro: "hey I'm Nikhil. I've always learned by getting obsessed with a problem and staying with it long enough to build real taste.",
+  obsessions: [
+    { label: "basketball", icon: "basketball" },
+    { label: "video games", icon: "gamepad" },
+    { label: "content creation", icon: "camera" },
+    { label: "running a business", icon: "business" },
+    { label: "building software", icon: "code" },
   ],
+  bioOutro: "the goal in life is to conquer high peaks that reward iteration, fullfillment, and relentless improvement without brute-forcing in the wrong direction.",
   interests: [
-    { label: "General", value: "I'm into ML systems, distributed infra, compilers, and anything that runs fast on weird hardware." },
-    { label: "Music", value: "I listen to Radiohead, Four Tet, Aphex Twin, 100 gecs, Arca." },
-    { label: "Movies", value: "I love Blade Runner 2049, Her, Everything Everywhere All at Once." },
-    { label: "Television", value: "Some of my favorite shows: Mr. Robot, Silicon Valley, Severance." },
+    { label: "Basketball", icon: "basketball", value: "Dub Nation first. I love the pace, spacing, and constant reps that make basketball feel like live problem solving." },
+    { label: "Video games", icon: "gamepad", value: "I grew up on games that reward mechanics, systems thinking, and getting better one run at a time." },
+    { label: "Content creation", icon: "camera", value: "I like turning ideas into something people can actually watch, use, or share." },
+    { label: "Business", icon: "business", value: "I care about building useful things, getting feedback quickly, and understanding what people will pay attention to." },
+    { label: "Software", icon: "code", value: "Right now I'm obsessed with agents, ML systems, spatial computing, and software that feels fast and alive." },
   ],
   skills: [
-    { label: "languages", items: [
-      { name: "Python", hot: true }, { name: "C++", hot: true },
-      { name: "C" }, { name: "Rust" }, { name: "TypeScript" }, { name: "Java" },
-    ]},
-    { label: "ML / AI", items: [
-      { name: "PyTorch", hot: true }, { name: "HuggingFace", hot: true },
-      { name: "CUDA" }, { name: "scikit-learn" }, { name: "NumPy" },
-    ]},
-    { label: "web / infra", items: [
-      { name: "React" }, { name: "Node.js" }, { name: "Docker", hot: true },
-      { name: "Linux" }, { name: "PostgreSQL" },
-    ]},
-    { label: "tools", items: [
-      { name: "Git", hot: true }, { name: "Vim" }, { name: "GDB" },
-      { name: "Bash" }, { name: "Figma" },
-    ]},
+    {
+      label: "web & realtime",
+      items: [
+        { name: "Next.js" },
+        { name: "React" },
+        { name: "TypeScript" },
+        { name: "Three.js" },
+        { name: "WebSockets" },
+      ],
+    },
+    {
+      label: "backend & data",
+      items: [
+        { name: "Python" },
+        { name: "FastAPI" },
+        { name: "Node.js" },
+        { name: "Supabase" },
+        { name: "SQLite" },
+      ],
+    },
+    {
+      label: "in-browser tooling",
+      items: [{ name: "Monaco" }, { name: "Pyodide" }, { name: "xterm.js" }],
+    },
+    {
+      label: "ML, CV & RL",
+      items: [
+        { name: "Gemini AI" },
+        { name: "YOLOv8" },
+        { name: "OpenCV" },
+        { name: "PPO" },
+        { name: "Reinforcement Learning" },
+      ],
+    },
+    {
+      label: "robotics & spatial",
+      items: [{ name: "ROS 2" }, { name: "C++" }, { name: "SLAM" }],
+    },
+    {
+      label: "shipping & infra",
+      items: [
+        { name: "Docker" },
+        { name: "Git & GitHub" },
+        { name: "ESLint" },
+        { name: "Prettier" },
+        { name: "Agile / hackathons" },
+      ],
+    },
   ],
   projects: [
     {
-      name: "FluxKV",
-      desc: "I built a key-value store in Rust with a custom LSM-tree engine. It handles 200k+ ops/sec on commodity hardware. My magnum opus and the reason I now understand why databases are hard.",
-      tags: ["Rust", "Systems", "Storage"],
-      links: [{ label: "GitHub", href: "#" }, { label: "Demo", href: "#" }],
+      name: "NIGEL",
+      desc: "Mission-control interface for emergency response (Future Interfaces hackathon). Multi-unit dispatcher dashboard with live 3D SLAM point clouds from helmet rigs, radio panels, and real-time tactical mapping—like air traffic control for firefighters.",
+      tags: ["Next.js", "Three.js", "ROS 2", "WebSockets", "C++"],
+      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/NIGEL-hackathon" }],
     },
     {
-      name: "SpeculativeDecoder",
-      desc: "My research implementation of speculative decoding for LLM inference: 2.4× speedup on Llama-3 with a draft model. Paper in progress. I work with Prof. Liu @ UCSD.",
-      tags: ["Python", "ML", "CUDA", "Research"],
-      links: [{ label: "Paper", href: "#" }, { label: "Code", href: "#" }],
+      name: "Apollo Labs",
+      desc: "RL training orchestrator for a 2D Roomba sim environment. FastAPI backend runs PPO training + eval, generates rollout GIFs, and ships structured run reports via AgentMail + Nia integration. Next.js dashboard tracks runs and metrics.",
+      tags: ["FastAPI", "Next.js", "PPO", "Python", "RL"],
+      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/openclaw-hackathon" }],
     },
     {
-      name: "TermCast",
-      desc: "Real-time collaborative terminal sessions over WebSockets—I built it so teams can pair-program in the terminal. Shipped in 36 hrs at HackUCSD and won Best Dev Tool.",
-      tags: ["Node.js", "xterm.js", "WebSockets"],
-      links: [{ label: "GitHub", href: "#" }],
+      name: "Recall",
+      desc: "Spatial memory assistant using computer vision + 3D mapping. Walk around with a camera to build a 3D map, detect objects with YOLOv8, then ask voice queries to find them. Next.js + React Three Fiber frontend, ROS 2 + OpenCV backend.",
+      tags: ["Next.js", "React Three Fiber", "ROS 2", "YOLOv8", "OpenCV"],
+      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/sandhacks" }],
     },
     {
-      name: "ByteDB",
-      desc: "I built a toy SQL database from scratch in C++. It supports B-tree indexes, basic query planning, and joins—a love letter to my DB systems class.",
-      tags: ["C++", "Databases", "Systems"],
-      links: [{ label: "GitHub", href: "#" }],
+      name: "AnyGPU",
+      desc: "Local GPU workload orchestrator & multi-cloud deployment platform. Register models, profile requirements, benchmark placements, then serve OpenAI-compatible endpoints across local Docker, Kubernetes, Vultr, and Vast. SQLite state + Crucible Compute layer.",
+      tags: ["Python", "Docker", "Kubernetes", "CLI", "Cloud"],
+      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/nozomio-hackathon" }],
+    },
+    {
+      name: "CodeCraft IDE",
+      desc: "AI-powered online code editor with Gemini AI assistance. Monaco editor for coding, xterm for terminal access, and Pyodide for running Python directly in-browser. Full-stack Next.js + Node.js backend with Supabase auth.",
+      tags: ["Next.js", "Monaco", "Gemini AI", "Python", "TypeScript"],
+      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/cafecode" }],
     },
   ],
   experience: [
@@ -148,31 +226,22 @@ export const PROFILE: ProfileData = {
       desc: "I was TA for Design & Analysis of Algorithms. I ran weekly discussion sections of 30 students, held office hours, and wrote exam problems.",
     },
   ],
-  guestbook: [
-    { from: "gr4phQL_god", date: "Apr 29", text: "dude your LSM tree code is actually insane. how is read ampl so low??" },
-    { from: "prof_liu", date: "Apr 22", text: "great work on the speculative decoding results. let's sync before the submission deadline." },
-    { from: "hackUCSD_org", date: "Mar 15", text: "congrats on winning Best Dev Tool!! see you next year" },
-  ],
+  guestbook: [],
   contact: [
     { icon: "github", label: "GitHub", href: "https://github.com/Trolleroof" },
     { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/nikprabhu1/" },
     { icon: "email", label: "Email", copyText: "nikhilprabhu06@gmail.com" },
   ],
-  mood: [
-    { label: "caffeine", value: 90 },
-    { label: "sleep", value: 20 },
-    { label: "motivation", value: 65 },
-    { label: "git commits", value: 80 },
-    { label: "debugging", value: 95 },
-    { label: "touching grass", value: 10 },
-  ],
+  sidebarQuote: {
+    text: "Hard work beats talent when talent fails to work hard.",
+    attribution: "Kevin Durant",
+  },
   visitorCount: "042137",
   currentFocus: {
-    headline: "FluxKV — compaction & crash recovery",
+    headline: "Clue2 - desktop web assistant",
     detail:
-      "I'm chasing down merge-iterator edge cases and hammering crash recovery until I'm not afraid of kill -9 anymore.",
-    progressPct: 68,
+      "I'm trying to build an agentic version of Cluely that can do tasks for you.",
+    progressPct: 78,
     footLeft: "side project",
-    footRight: "nights & weekends",
   },
 };

@@ -115,7 +115,7 @@ const Guestbook: React.FC = () => {
   };
 
   return (
-    <div className="panel">
+    <div className="panel" id="guestbook">
       <div className="panel-header">My Friend Comments</div>
       <div className="gb-messages">
         {msgs.map((m, i) => {

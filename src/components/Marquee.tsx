@@ -1,6 +1,11 @@
-import { PROFILE } from '@/lib/data';
+'use client';
 
-const Marquee: React.FC = () => (
+import { useResumeModal } from '@/context/ResumeModalContext';
+
+const Marquee: React.FC = () => {
+  const { openResume } = useResumeModal();
+
+  return (
   <div className="marquee-strip">
     <div className="marquee-header">
       <div className="marquee-topbar">
@@ -10,25 +15,18 @@ const Marquee: React.FC = () => (
           <span className="topbar-dot"></span>
           <span style={{ marginLeft: 6 }}>nikhil_prabhu</span>
         </div>
-        <nav className="marquee-topbar-nav">
-          <a href="#projects">Work</a>
+        <nav className="marquee-topbar-nav" aria-label="Site sections">
+          <a href="#projects">Projects</a>
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
-          <a
-            href={PROFILE.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: '#fff', fontWeight: 600 }}
-          >
+          <button type="button" onClick={openResume}>
             Resume
-          </a>
+          </button>
         </nav>
-      </div>
-      <div className="marquee-text">
-        fullstack + robotics + rl
       </div>
     </div>
   </div>
-);
+  );
+};
 
 export default Marquee;

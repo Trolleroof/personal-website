@@ -6,7 +6,7 @@ const CurrentFocus: React.FC = () => {
   return (
     <div className="panel current-focus">
       <div className="panel-header">
-        <span className="ph-icon">◈</span> MY CURRENT FOCUS
+        <span className="ph-icon">◈</span> Working on Currently
       </div>
       <div className="panel-body">
         <div className="cf-info">
@@ -18,7 +18,7 @@ const CurrentFocus: React.FC = () => {
         </div>
         <div className="cf-foot">
           <span>{footLeft}</span>
-          <span>{footRight}</span>
+          {footRight ? <span>{footRight}</span> : null}
         </div>
       </div>
     </div>

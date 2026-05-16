@@ -1,7 +1,7 @@
 import { PROFILE } from '@/lib/data';
 
 const Skills: React.FC = () => (
-  <div className="panel">
+  <div className="panel" id="skills">
     <div className="panel-header"><span className="ph-icon">★</span> Skills</div>
     <div className="panel-body">
       <div className="skills-grid">
@@ -9,7 +9,7 @@ const Skills: React.FC = () => (
           <div key={cat.label}>
             <div className="skill-cat-label">{cat.label}</div>
             {cat.items.map((s) => (
-              <span key={s.name} className={"skill-tag" + (s.hot ? " hot" : "")}>{s.name}</span>
+              <span key={s.name} className="skill-tag">{s.name}</span>
             ))}
           </div>
         ))}
