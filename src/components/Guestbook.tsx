@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PROFILE, GuestbookMsg } from '@/lib/data';
 
 const BANNED = [
@@ -95,23 +95,56 @@ const moderateMessage = (name: string, text: string): string => {
   return '';
 };
 
+function randomCaptchaSum() {
+  return {
+    a: Math.floor(Math.random() * 9) + 1,
+    b: Math.floor(Math.random() * 9) + 1,
+  };
+}
+
 const Guestbook: React.FC = () => {
   const [msgs, setMsgs] = useState<GuestbookMsg[]>(PROFILE.guestbook);
   const [name, setName] = useState("");
   const [text, setText] = useState("");
   const [error, setError] = useState("");
+  const [honeypot, setHoneypot] = useState('');
+  const [captchaSum, setCaptchaSum] = useState({ a: 3, b: 8 });
+  const [captchaInput, setCaptchaInput] = useState('');
+
+  useEffect(() => {
+    setCaptchaSum(randomCaptchaSum());
+  }, []);
+
+  const refreshCaptcha = () => {
+    setCaptchaSum(randomCaptchaSum());
+    setCaptchaInput('');
+  };
 
   const post = () => {
-    setError("");
+    setError('');
     const n = name.trim(), t = text.trim();
-    if (!n || !t) { setError("fill in both fields"); return; }
-    if (n.length > 30) { setError("handle too long (30 max)"); return; }
-    if (t.length > 280) { setError("message too long (280 max)"); return; }
+    if (honeypot.trim()) return;
+    if (!n || !t) { setError('fill in both fields'); return; }
+    if (n.length > 30) { setError('handle too long (30 max)'); return; }
+    if (t.length > 280) { setError('message too long (280 max)'); return; }
+    const cap = captchaInput.trim();
+    const expected = captchaSum.a + captchaSum.b;
+    if (cap === '') {
+      setError('captcha is blank idiot try again');
+      refreshCaptcha();
+      return;
+    }
+    const parsed = Number.parseInt(cap, 10);
+    if (!Number.isFinite(parsed) || parsed !== expected) {
+      setError('why cant you add try again');
+      refreshCaptcha();
+      return;
+    }
     const moderationError = moderateMessage(n, t);
-    if (moderationError) { setError(moderationError); return; }
+    if (moderationError) { setError(moderationError); refreshCaptcha(); return; }
     const now = new Date();
     setMsgs((prev) => [{ from: n, text: t, date: `${now.getMonth() + 1}/${now.getDate()}` }, ...prev]);
-    setName(""); setText("");
+    setName(''); setText(''); refreshCaptcha();
   };
 
   return (
@@ -134,8 +167,38 @@ const Guestbook: React.FC = () => {
       <div className="gb-form">
         <input className="gb-input" placeholder="your name..." value={name} onChange={(e) => setName(e.target.value)} maxLength={30} />
         <textarea className="gb-textarea" placeholder="leave a comment... (no profanity, no links)" value={text} onChange={(e) => setText(e.target.value)} maxLength={280}></textarea>
-        {error && <div style={{ color: 'var(--pink)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.06em' }}>! {error}</div>}
-        <button className="btn btn-pink" style={{ alignSelf: "flex-end", width: 150 }} onClick={post}>Post Comment</button>
+        <div className="gb-captcha-row">
+          <span id="guestbook-captcha-label" className="gb-captcha-label">
+           what is {captchaSum.a} + {captchaSum.b}?
+          </span>
+          <input
+            id="guestbook-captcha"
+            type="text"
+            inputMode="numeric"
+            className="gb-captcha-input"
+            autoComplete="off"
+            aria-labelledby="guestbook-captcha-label"
+            placeholder="?"
+            maxLength={3}
+            value={captchaInput}
+            onChange={(e) => setCaptchaInput(e.target.value.replace(/\D/g, ''))}
+          />
+          <button type="button" className="gb-captcha-refresh" onClick={refreshCaptcha}>
+            New question
+          </button>
+        </div>
+        <div className="gb-honey" aria-hidden="true">
+          <label htmlFor="gb-company-url">Company website</label>
+          <input
+            id="gb-company-url"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+          />
+        </div>
+        {error && <div style={{ color: 'var(--pink)', fontSize: 11, letterSpacing: '0.06em' }}>! {error}</div>}
+        <button type="button" className="btn btn-pink" style={{ alignSelf: 'flex-end', width: 150 }} onClick={post}>Post Comment</button>
       </div>
     </div>
   );
