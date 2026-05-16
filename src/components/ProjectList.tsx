@@ -24,6 +24,7 @@ function ProjectRow({
       role={expandable ? 'button' : undefined}
       tabIndex={expandable ? 0 : undefined}
       aria-haspopup={expandable ? 'dialog' : undefined}
+      aria-label={expandable ? `${project.name}: view project details` : undefined}
       onClick={(event) => openFrom(event.currentTarget)}
       onKeyDown={(event) => {
         if (!expandable) return;
@@ -44,7 +45,11 @@ function ProjectRow({
                 </span>
               ) : null}
             </div>
-            {expandable ? <span className="project-open-badge">Click to view details</span> : null}
+            {expandable ? (
+              <span className="project-row-hint" aria-hidden>
+                Click to learn more
+              </span>
+            ) : null}
           </div>
           <div className="project-desc">{project.desc}</div>
           <div className="project-tags">
@@ -56,19 +61,6 @@ function ProjectRow({
           </div>
         </div>
         <div className="project-links">
-          {expandable ? (
-            <button
-              type="button"
-              className="project-link project-detail-button"
-              onClick={(event) => {
-                event.stopPropagation();
-                onOpen(project, event.currentTarget);
-              }}
-              aria-haspopup="dialog"
-            >
-              Open details
-            </button>
-          ) : null}
           {project.links.map((l) => (
             <a
               className="project-link"

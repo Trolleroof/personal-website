@@ -65,10 +65,22 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
 
   useEffect(() => {
     if (!project) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const html = document.documentElement;
+    const body = document.body;
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+    const prevPaddingRight = html.style.paddingRight;
+    /** Reserve space so layout doesn’t shift when the scrollbar disappears. */
+    const gap = window.innerWidth - html.clientWidth;
+    html.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
+    if (gap > 0) {
+      html.style.paddingRight = `${gap}px`;
+    }
     return () => {
-      document.body.style.overflow = prev;
+      html.style.overflow = prevHtmlOverflow;
+      body.style.overflow = prevBodyOverflow;
+      html.style.paddingRight = prevPaddingRight;
     };
   }, [project]);
 
@@ -110,13 +122,7 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
   const descriptionId = `${titleId}-description`;
 
   return (
-    <div
-      className="proj-modal-overlay"
-      role="presentation"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
-      }}
-    >
+    <div className="proj-modal-overlay" role="presentation">
       <div
         ref={dialogRef}
         role="dialog"
