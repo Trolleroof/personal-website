@@ -1,10 +1,30 @@
 // Profile data — TypeScript types & content
 
+export interface ProjectGalleryImage {
+  src: string;
+  alt: string;
+}
+
+/** Rich copy + media shown in the project popup. */
+export interface ProjectDetail {
+  /** One-line lead above the overview. */
+  hook?: string;
+  /** Deeper story: problem, what you built, outcome. */
+  overview: string;
+  /** Optional iframe `src`: YouTube `/embed/...`, Vimeo player, etc. */
+  videoEmbedUrl?: string;
+  /** Carousel below the video in the popup. */
+  galleryImages?: ProjectGalleryImage[];
+  /** Notable bullets — architecture, challenges, outcomes. */
+  highlights: string[];
+}
+
 export interface Project {
   name: string;
   desc: string;
   tags: string[];
   links: { label: string; href: string }[];
+  detail?: ProjectDetail;
 }
 
 export interface Experience {
@@ -104,7 +124,7 @@ export const PROFILE: ProfileData = {
         "Spatial / robotics interfaces",
       ],
     },
-    { label: "Recently", value: "RL Circuit Design Researcher @ UCSD Jacobs School of Engineering" },
+    { label: "Recently", value: "Founder / Desktop Agent Developer @ Clue2" },
     { label: "Location", value: "San Francisco Bay Area" },
     { label: "Values", value: "Family, Faith, Hard Work" },
   ],
@@ -177,53 +197,165 @@ export const PROFILE: ProfileData = {
   projects: [
     {
       name: "NIGEL",
-      desc: "Mission-control interface for emergency response (Future Interfaces hackathon). Multi-unit dispatcher dashboard with live 3D SLAM point clouds from helmet rigs, radio panels, and real-time tactical mapping—like air traffic control for firefighters.",
+      desc: "Navigation, Incident Guidance, and Emergency Localization & Control: a mission-control interface for firefighters. The Next.js dispatcher dashboard combines helmet-rig VSLAM point clouds, multi-unit video, radio transcripts, blueprint search, and WebSocket-fed tactical mapping.",
       tags: ["Next.js", "Three.js", "ROS 2", "WebSockets", "C++"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/NIGEL-hackathon" }],
+      detail: {
+        hook: "Treating a distributed rescue team like a fleet you can see and coordinate in one room.",
+        overview:
+          "Built for a Future Interfaces hackathon: a dispatcher-facing web console that turns helmet VSLAM, unit video, and radio-style audio into a shared tactical picture. The repo pairs a Next.js frontend with ROS 2 packages for Odin hardware, SLAM cloud accumulation, launch files, and WebSocket APIs.",
+        highlights: [
+          "Frontend routes cover dispatcher and firefighter modes, with multi-unit viewports, a central Three.js point-cloud map, blueprint search, and transcript UX.",
+          "ROS 2 workspace includes the Odin driver and a SLAM cloud accumulator that streams live mapping data into the web stack.",
+          "WebSocket contracts keep camera, SLAM, and UI state flowing through a narrow interface while the operator stays in incident mode.",
+        ],
+        /** Replace with your demo reel embed (share → Embed → paste `src` only). */
+        videoEmbedUrl: "https://www.youtube.com/embed/jNQXAC9IVRw",
+        galleryImages: [
+          {
+            src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop",
+            alt: "Dashboard analytics mock — swap for your NIGEL screenshots",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1200&q=80&auto=format&fit=crop",
+            alt: "Command center workstation — representative project imagery",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop",
+            alt: "Operational map visualization — representative project imagery",
+          },
+        ],
+      },
     },
     {
       name: "Apollo Labs",
-      desc: "RL training orchestrator for a 2D Roomba sim environment. FastAPI backend runs PPO training + eval, generates rollout GIFs, and ships structured run reports via AgentMail + Nia integration. Next.js dashboard tracks runs and metrics.",
-      tags: ["FastAPI", "Next.js", "PPO", "Python", "RL"],
+      desc: "RL run orchestrator for a 2D Roomba cleaning sim. FastAPI trains PPO, evaluates against a random baseline, generates rollout GIFs, stores canonical RunReports, emails them through AgentMail, logs Nia lessons through Slack, and exposes a Next.js dashboard plus MCP tools.",
+      tags: ["FastAPI", "Next.js", "PPO", "AgentMail", "MCP"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/openclaw-hackathon" }],
+      detail: {
+        hook: "Make RL runs feel observable: less “black box,” more “flight recorder.”",
+        overview:
+          "End-to-end lab for a 2D navigation sim: FastAPI allocates runs, queries Nia for prior lessons, trains PPO, compares it to a random baseline, writes metrics and artifacts, builds a canonical RunReport, and sends the same report through AgentMail. The Next.js surface reads that report for run history, metrics, GIFs, inbox messages, and memory lessons.",
+        highlights: [
+          "Run lifecycle writes metadata, config snapshots, model checkpoints, eval metrics, combined PPO-vs-baseline metrics, rollout GIFs, logs, and report JSON under each run.",
+          "AgentMail, Slack, and Nia are first-class outputs, so experiments produce human-readable reports and reusable lessons instead of dashboard-only state.",
+          "MCP tools expose listing, training, evaluation, GIF generation, reward-hacking summaries, and run comparisons to external agents.",
+        ],
+        galleryImages: [
+          {
+            src: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80&auto=format&fit=crop",
+            alt: "ML / robotics workspace — representative imagery",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&q=80&auto=format&fit=crop",
+            alt: "Code on screen — representative imagery",
+          },
+        ],
+      },
     },
     {
       name: "Recall",
-      desc: "Spatial memory assistant using computer vision + 3D mapping. Walk around with a camera to build a 3D map, detect objects with YOLOv8, then ask voice queries to find them. Next.js + React Three Fiber frontend, ROS 2 + OpenCV backend.",
-      tags: ["Next.js", "React Three Fiber", "ROS 2", "YOLOv8", "OpenCV"],
+      desc: "Spatial memory assistant for finding objects in your environment. A camera builds a 3D map, YOLOv8 remembers object locations, Cerebras handles language queries, ElevenLabs gives voice guidance, and the Next.js / React Three Fiber UI connects to a ROS 2 + OpenCV backend.",
+      tags: ["Next.js", "React Three Fiber", "ROS 2", "YOLOv8", "Cerebras"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/sandhacks" }],
+      detail: {
+        hook: "“Where did I leave it?” as a spatial query over a live world model.",
+        overview:
+          "A walking capture loop builds a navigable 3D map while YOLOv8 tags objects; voice questions resolve to places in that map instead of flat photo search. The frontend is a Next.js / React Three Fiber app, while ROS 2 packages handle the cloud web bridge, depth mapping, and Luxonis camera path.",
+        highlights: [
+          "Paired dense mapping with lightweight object memory so queries feel grounded in layout, not filenames.",
+          "Cerebras powers the language layer and ElevenLabs handles text-to-speech for the voice-guided object-finding loop.",
+          "Split heavy CV/robotics from the web client through a ROS bridge contract between map updates, detected objects, and UI state.",
+        ],
+        galleryImages: [
+          {
+            src: "https://images.unsplash.com/photo-1523961134660-4bf8bf4ae539?w=1200&q=80&auto=format&fit=crop",
+            alt: "Hands with phone camera — spatial capture vibe",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1639762681488-cec0fb26f210?w=1200&q=80&auto=format&fit=crop",
+            alt: "Abstract 3D geography — representative map UI mood",
+          },
+        ],
+      },
     },
     {
       name: "AnyGPU",
-      desc: "Local GPU workload orchestrator & multi-cloud deployment platform. Register models, profile requirements, benchmark placements, then serve OpenAI-compatible endpoints across local Docker, Kubernetes, Vultr, and Vast. SQLite state + Crucible Compute layer.",
-      tags: ["Python", "Docker", "Kubernetes", "CLI", "Cloud"],
+      desc: "Local-first GPU workload control plane and Crucible Compute agent layer. Register models, verify Docker/Kubernetes/provider inventory, refresh broker prices, benchmark placements, schedule compatible routes, launch local llama.cpp or Docker/vLLM runtimes, and expose OpenAI-compatible endpoints through a gateway.",
+      tags: ["Python", "Docker", "Kubernetes", "llama.cpp", "MCP"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/nozomio-hackathon" }],
+      detail: {
+        hook: "Pick where the GPU lives like you pick a region — but with receipts.",
+        overview:
+          "A control plane for messy reality: connect managed or BYOC compute, normalize hardware inventory, register and profile models, benchmark candidate placements, create policies, and route OpenAI-compatible inference across local Docker, Kubernetes manifests, Vultr, Vast, and a real local llama.cpp path. Crucible adds signup/session persistence, natural-language deployment planning, explicit spend approvals, public MCP credit gates, and simulated deployment records for personal-agent workflows.",
+        highlights: [
+          "Provider broker covers seeded NVIDIA, AMD, TPU, Intel Gaudi, and Apple Silicon capacity, with live Vast and Vultr price/capacity refresh adapters.",
+          "Verified benchmark records feed route selection, cost estimates, deployment explanations, and OpenAI-compatible gateway headers.",
+          "Crucible Compute keeps paid GPU launch paths behind explicit approval and exposes the same backend through CLI and MCP-style tools.",
+        ],
+        galleryImages: [
+          {
+            src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80&auto=format&fit=crop",
+            alt: "Globe tech network — infra / clouds vibe",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format&fit=crop",
+            alt: "Server room — GPU / workload vibe",
+          },
+        ],
+      },
     },
     {
       name: "CodeCraft IDE",
-      desc: "AI-powered online code editor with Gemini AI assistance. Monaco editor for coding, xterm for terminal access, and Pyodide for running Python directly in-browser. Full-stack Next.js + Node.js backend with Supabase auth.",
-      tags: ["Next.js", "Monaco", "Gemini AI", "Python", "TypeScript"],
+      desc: "Cafecode: an AI coding tutor and browser-native project builder. Next.js, Monaco, WebContainer, Supabase, WebSockets, Gemini, Stripe, and an Express/Fly.io backend give learners a full coding workspace while keeping them in control of what they build.",
+      tags: ["Next.js", "Monaco", "WebContainer", "Gemini AI", "Supabase"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/cafecode" }],
+      detail: {
+        hook: "Browser-native dev box: edit, run Python, ask the model, without leaving the tab.",
+        overview:
+          "Cafecode is a full-stack AI coding tutor for building real projects while understanding the code. The frontend uses Next.js, TypeScript, Tailwind, shadcn/ui, Monaco, and WebContainer for a VS Code-like editor, terminal, npm installs, file operations, and browser-native execution. The Express backend coordinates AI orchestration, workspace management, Stripe payments, file sync, and Supabase-backed auth.",
+        highlights: [
+          "WebContainer moved the terminal and file system into the browser, reducing server load while preserving live terminals, package installs, and workspace operations.",
+          "Gemini assistance stays project-aware: guided project creation, context-aware hints, code fixes, and step discussion beside the editor.",
+          "Supabase row-level security, WebSocket sync, Helmet/CORS/rate limits, and Dockerized Fly.io services make the workspace model feel closer to a real product than a static demo.",
+        ],
+        galleryImages: [
+          {
+            src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&q=80&auto=format&fit=crop",
+            alt: "Code IDE aesthetic — representative project imagery",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80&auto=format&fit=crop",
+            alt: "Laptop workstation — IDE / maker vibe",
+          },
+        ],
+      },
     },
   ],
   experience: [
     {
-      role: "Software Engineering Intern",
-      place: "Cloudflare",
-      date: "Summer 2025",
-      desc: "I worked on the Workers runtime team optimizing cold-start latency. Shipped a 15% improvement to isolate initialization using snapshot-based techniques.",
+      role: "Desktop Agent Developer - Founder",
+      place: "UCSD Agent Development (Clue2)",
+      date: "Jan 2025 - Present",
+      desc: "Architected a cross-platform Electron + TypeScript desktop agent that processes live meetings and executes tasks across user apps. Built real-time transcription, natural-language workflow automation across Gmail, Calendar, Docs, Sheets, Slack, and Notion, and scaled the beta to 40+ users with early startup adoption.",
     },
     {
-      role: "Undergraduate Researcher",
-      place: "UCSD Systems & ML Lab",
-      date: "Jan 2025 – Present",
-      desc: "I research efficient LLM inference with speculative decoding and model compression. I'm collaborating with PhD students on a paper submission to ICML 2026.",
+      role: "Research Assistant",
+      place: "AI for Circuit Invention",
+      date: "Mar 2026 - Present",
+      desc: "Developing an LLM-based pipeline for automated generation and verification of novel analog circuit topologies. Integrating LLM APIs with Cadence simulation tools and exploring reinforcement learning strategies for circuit design space search.",
     },
     {
-      role: "Teaching Assistant — CSE 101",
-      place: "UCSD CSE Dept.",
-      date: "Fall 2024",
-      desc: "I was TA for Design & Analysis of Algorithms. I ran weekly discussion sections of 30 students, held office hours, and wrote exam problems.",
+      role: "Lead Researcher - IEEE ICHCI Presenter",
+      place: "Foot Drop Ankle-Foot Orthosis Research",
+      date: "May 2024 - Nov 2024",
+      desc: "Conducted research at Georgia Tech's mmWave Antennas Laboratory on a 3D-printed ankle-foot orthosis controlled through electromyography signals. Built a custom motor actuator system, improved gait response precision by 23%, and presented the work at IEEE ICHCI 2024.",
+    },
+    {
+      role: "Lead Researcher",
+      place: "Brain-Computer Interface Device Research",
+      date: "Oct 2023 - Dec 2024",
+      desc: "Led BCI device research at Stanford's Lee-Messer Lab to help motor-impaired students communicate through neural signals. Benchmarked P300 EEG models and built a React Native assistive-learning frontend piloted with 12 patient users.",
     },
   ],
   guestbook: [],

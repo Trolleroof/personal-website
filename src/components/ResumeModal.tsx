@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { PROFILE } from '@/lib/data';
 import { useResumeModal } from '@/context/ResumeModalContext';
 
@@ -8,6 +9,15 @@ const resumeFileName =
 
 const ResumeModal: React.FC = () => {
   const { isOpen, closeResume } = useResumeModal();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsLoading(true);
+      const timer = setTimeout(() => setIsLoading(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -37,13 +47,19 @@ const ResumeModal: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className="resume-preview-scroll">
-          <img
-            src={PROFILE.resumePreviewUrl}
-            alt={`${PROFILE.name} — resume`}
-            className="resume-preview-img"
-          />
-        </div>
+        {isLoading ? (
+          <div className="resume-loading-screen">
+            <div className="pixelated-loader"></div>
+          </div>
+        ) : (
+          <div className="resume-preview-scroll">
+            <img
+              src={PROFILE.resumePreviewUrl}
+              alt={`${PROFILE.name} — resume`}
+              className="resume-preview-img"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
