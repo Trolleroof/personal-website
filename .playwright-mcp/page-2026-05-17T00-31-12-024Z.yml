@@ -1,0 +1,367 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e9]: nikhil_prabhu
+    - navigation "Site sections" [ref=e10]:
+      - link "Projects" [ref=e11] [cursor=pointer]:
+        - /url: "#projects"
+      - link "Experience" [ref=e12] [cursor=pointer]:
+        - /url: "#experience"
+      - link "Contact" [ref=e13] [cursor=pointer]:
+        - /url: "#contact"
+      - button "Resume" [ref=e14] [cursor=pointer]
+  - generic [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]: Personal Info
+      - generic [ref=e18]:
+        - generic [ref=e19]: "Focus:"
+        - list [ref=e21]:
+          - listitem [ref=e22]: Desktop assistants
+          - listitem [ref=e23]: RL at scale
+          - listitem [ref=e24]: Spatial / robotics interfaces
+      - generic [ref=e25]:
+        - generic [ref=e26]: "Recently:"
+        - generic [ref=e27]: Desktop Agent Developer @ Clue2
+      - generic [ref=e28]:
+        - generic [ref=e29]: "Location:"
+        - generic [ref=e30]: San Francisco Bay Area
+      - generic [ref=e31]:
+        - generic [ref=e32]: "Values:"
+        - generic [ref=e33]: Family, Faith, Hard Work
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - paragraph [ref=e36]: hey I'm Nikhil. I've always learned by getting obsessed with a problem and staying with it long enough to build real taste.
+        - list [ref=e37]:
+          - listitem [ref=e38]:
+            - img [ref=e40]
+            - generic [ref=e45]: basketball
+          - listitem [ref=e46]:
+            - img [ref=e48]
+            - generic [ref=e50]: video games
+          - listitem [ref=e51]:
+            - img [ref=e53]
+            - generic [ref=e57]: content creation
+          - listitem [ref=e58]:
+            - img [ref=e60]
+            - generic [ref=e63]: running a business
+          - listitem [ref=e64]:
+            - img [ref=e66]
+            - generic [ref=e70]: building software
+        - paragraph [ref=e71]: the goal in life is to conquer high peaks that reward iteration, fullfillment, and relentless improvement without brute-forcing in the wrong direction.
+      - group "Section navigation" [ref=e73]:
+        - link "experience" [ref=e74] [cursor=pointer]:
+          - /url: "#experience"
+        - link "contact" [ref=e75] [cursor=pointer]:
+          - /url: "#contact"
+        - link "chat" [ref=e76] [cursor=pointer]:
+          - /url: "#guestbook"
+        - button "resume" [ref=e77] [cursor=pointer]
+  - generic [ref=e78]:
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - img "Nikhil Prabhu — profile photo" [ref=e82]
+        - generic [ref=e83]: Nikhil Prabhu█
+        - generic [ref=e84]: Trolleroof
+        - generic [ref=e86]:
+          - generic [ref=e87]: // current status
+          - text: getting reps in a problem space im passionate about.
+        - button "+ Contact" [ref=e89] [cursor=pointer]
+        - generic [ref=e90]:
+          - link "GitHub ►" [ref=e91] [cursor=pointer]:
+            - /url: https://github.com/Trolleroof
+            - img [ref=e93]
+            - generic [ref=e96]: GitHub
+            - generic [ref=e97]: ►
+          - link "LinkedIn ►" [ref=e98] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/nikprabhu1/
+            - img [ref=e100]
+            - generic [ref=e103]: LinkedIn
+            - generic [ref=e104]: ►
+          - button "Email ►" [ref=e105] [cursor=pointer]:
+            - img [ref=e107]
+            - generic [ref=e110]: Email
+            - generic [ref=e111]: ►
+      - generic [ref=e112]:
+        - generic [ref=e113]:
+          - generic [ref=e114]: ◈
+          - text: Working on Currently
+        - generic [ref=e115]:
+          - generic [ref=e117]: Clue2 - desktop web assistant
+          - generic [ref=e118]: ▸ I'm trying to build an agentic version of Cluely that can do tasks for you.
+          - generic [ref=e121]: side project
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - generic [ref=e124]: ❝
+          - text: QUOTE
+        - blockquote [ref=e126]:
+          - paragraph [ref=e127]: Hard work beats talent when talent fails to work hard.
+          - contentinfo [ref=e128]: — Kevin Durant
+    - generic [ref=e129]:
+      - generic [ref=e130]:
+        - generic [ref=e131]:
+          - generic [ref=e132]: ◆
+          - text: Projects
+        - 'button "NIGEL — 1st Place @ c0mpiled-5/ucsd: Future Interfaces hackathon. View project details." [ref=e133] [cursor=pointer]':
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - generic [ref=e136]:
+                - generic [ref=e137]:
+                  - generic [ref=e138]: NIGEL
+                  - generic [ref=e139]: ▶
+                - generic [ref=e140]: Click to learn more
+              - paragraph [ref=e141]:
+                - generic [ref=e142]: ♦
+                - text: "1st Place @ c0mpiled-5/ucsd: Future Interfaces hackathon"
+              - generic [ref=e143]: "Navigation, Incident Guidance, and Emergency Localization & Control: a mission-control interface for firefighters. The Next.js dispatcher dashboard combines helmet-rig VSLAM point clouds, multi-unit video, radio transcripts, blueprint search, and WebSocket-fed tactical mapping."
+              - generic [ref=e144]:
+                - generic [ref=e145]: Next.js
+                - generic [ref=e146]: Three.js
+                - generic [ref=e147]: ROS 2
+                - generic [ref=e148]: WebSockets
+                - generic [ref=e149]: C++
+            - link "GitHub" [ref=e151]:
+              - /url: https://github.com/Trolleroof/NIGEL-hackathon
+        - button "Apollo Labs — 1st Place @ OpenClaw Hackathon Eragon x Nozomio x AgentMail hackathon. View project details." [ref=e152] [cursor=pointer]:
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - generic [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]: Apollo Labs
+                  - generic [ref=e158]: ▶
+                - generic [ref=e159]: Click to learn more
+              - paragraph [ref=e160]:
+                - generic [ref=e161]: ♦
+                - text: 1st Place @ OpenClaw Hackathon Eragon x Nozomio x AgentMail hackathon
+              - generic [ref=e162]: RL run orchestrator for a 2D Roomba cleaning sim. FastAPI trains PPO, evaluates against a random baseline, generates rollout GIFs, stores canonical RunReports, emails them through AgentMail, logs Nia lessons through Slack, and exposes a Next.js dashboard plus MCP tools.
+              - generic [ref=e163]:
+                - generic [ref=e164]: FastAPI
+                - generic [ref=e165]: Next.js
+                - generic [ref=e166]: PPO
+                - generic [ref=e167]: AgentMail
+                - generic [ref=e168]: MCP
+            - link "GitHub" [ref=e170]:
+              - /url: https://github.com/Trolleroof/openclaw-hackathon
+        - button "AnyGPU — Top 6 @ Nozomio Hackathon. View project details." [ref=e171] [cursor=pointer]:
+          - generic [ref=e172]:
+            - generic [ref=e173]:
+              - generic [ref=e174]:
+                - generic [ref=e175]:
+                  - generic [ref=e176]: AnyGPU
+                  - generic [ref=e177]: ▶
+                - generic [ref=e178]: Click to learn more
+              - paragraph [ref=e179]:
+                - generic [ref=e180]: ♦
+                - text: Top 6 @ Nozomio Hackathon
+              - generic [ref=e181]: Local-first GPU workload control plane and Crucible Compute agent layer. Register models, verify Docker/Kubernetes/provider inventory, refresh broker prices, benchmark placements, schedule compatible routes, launch local llama.cpp or Docker/vLLM runtimes, and expose OpenAI-compatible endpoints through a gateway.
+              - generic [ref=e182]:
+                - generic [ref=e183]: Python
+                - generic [ref=e184]: Docker
+                - generic [ref=e185]: Kubernetes
+                - generic [ref=e186]: llama.cpp
+                - generic [ref=e187]: MCP
+            - link "GitHub" [ref=e189]:
+              - /url: https://github.com/Trolleroof/nozomio-hackathon
+        - button "Recall — SandHacks — 1st place / honorable mention (edit to match your result).. View project details." [ref=e190] [cursor=pointer]:
+          - generic [ref=e191]:
+            - generic [ref=e192]:
+              - generic [ref=e193]:
+                - generic [ref=e194]:
+                  - generic [ref=e195]: Recall
+                  - generic [ref=e196]: ▶
+                - generic [ref=e197]: Click to learn more
+              - paragraph [ref=e198]:
+                - generic [ref=e199]: ♦
+                - text: SandHacks — 1st place / honorable mention (edit to match your result).
+              - generic [ref=e200]: Spatial memory assistant for finding objects in your environment. A camera builds a 3D map, YOLOv8 remembers object locations, Cerebras handles language queries, ElevenLabs gives voice guidance, and the Next.js / React Three Fiber UI connects to a ROS 2 + OpenCV backend.
+              - generic [ref=e201]:
+                - generic [ref=e202]: Next.js
+                - generic [ref=e203]: React Three Fiber
+                - generic [ref=e204]: ROS 2
+                - generic [ref=e205]: YOLOv8
+                - generic [ref=e206]: Cerebras
+            - link "GitHub" [ref=e208]:
+              - /url: https://github.com/Trolleroof/sandhacks
+        - button "CaféCode. View project details." [ref=e209] [cursor=pointer]:
+          - generic [ref=e210]:
+            - generic [ref=e211]:
+              - generic [ref=e212]:
+                - generic [ref=e213]:
+                  - generic [ref=e214]: CaféCode
+                  - generic [ref=e215]: ▶
+                - generic [ref=e216]: Click to learn more
+              - generic [ref=e217]: CaféCode — an AI coding tutor and browser-native project builder. Next.js, Monaco, WebContainer, Supabase, WebSockets, Gemini, Stripe, and an Express/Fly.io backend give learners a full coding workspace while keeping them in control of what they build.
+              - generic [ref=e218]:
+                - generic [ref=e219]: Next.js
+                - generic [ref=e220]: Monaco
+                - generic [ref=e221]: WebContainer
+                - generic [ref=e222]: Gemini AI
+                - generic [ref=e223]: Supabase
+            - link "GitHub" [ref=e225]:
+              - /url: https://github.com/Trolleroof/cafecode
+      - generic [ref=e226]:
+        - generic [ref=e227]:
+          - generic [ref=e228]: ■
+          - text: Work Experience
+        - generic [ref=e231]:
+          - generic [ref=e232]:
+            - generic [ref=e233]: UCSD Agent Development (Clue2)
+            - generic [ref=e234]: UC San Diego
+          - generic [ref=e235]:
+            - generic [ref=e236]: Desktop Agent Developer
+            - generic [ref=e237]: Jan 2025 - Present
+          - generic [ref=e238]: Architected a cross-platform Electron + TypeScript desktop agent that processes live meetings and executes tasks across user apps. Built real-time transcription, natural-language workflow automation across Gmail, Calendar, Docs, Sheets, Slack, and Notion. Working under mentorship of Professor Ranmoham Pathuri with a team of 5 PhD researchers; scaled the beta to 40+ users with early adoption by Y Combinator-backed startups.
+        - generic [ref=e241]:
+          - generic [ref=e242]:
+            - generic [ref=e243]: AI for Circuit Invention
+            - generic [ref=e244]: UC San Diego
+          - generic [ref=e245]:
+            - generic [ref=e246]: Research Assistant
+            - generic [ref=e247]: Mar 2026 - Present
+          - generic [ref=e248]: Developing an LLM-based pipeline for automated generation and verification of novel analog circuit topologies. Integrating LLM APIs with Cadence simulation tools and exploring reinforcement learning strategies for circuit design space search.
+        - generic [ref=e251]:
+          - generic [ref=e252]:
+            - generic [ref=e253]: Foot Drop Ankle-Foot Orthosis Research
+            - generic [ref=e254]: Georgia Tech
+          - generic [ref=e255]:
+            - generic [ref=e256]: Lead Researcher - IEEE ICHCI Presenter
+            - generic [ref=e257]: May 2024 - Nov 2024
+          - generic [ref=e258]: Conducted research at Georgia Tech's mmWave Antennas Laboratory on a 3D-printed ankle-foot orthosis controlled through electromyography signals. Built a custom motor actuator system, improved gait response precision by 23%, and presented the work at IEEE ICHCI 2024.
+        - generic [ref=e261]:
+          - generic [ref=e262]:
+            - generic [ref=e263]: Brain-Computer Interface Device Research
+            - generic [ref=e264]: Stanford University
+          - generic [ref=e265]:
+            - generic [ref=e266]: Lead Researcher
+            - generic [ref=e267]: Oct 2023 - Dec 2024
+          - generic [ref=e268]: Led BCI device research at Stanford's Lee-Messer Lab to help motor-impaired students communicate through neural signals. Benchmarked P300 EEG models and built a React Native assistive-learning frontend piloted with 12 patient users.
+      - generic [ref=e269]:
+        - generic [ref=e270]:
+          - generic [ref=e271]: ★
+          - text: Skills
+        - generic [ref=e273]:
+          - generic [ref=e274]:
+            - generic [ref=e275]: web & realtime
+            - generic [ref=e276]: Next.js
+            - generic [ref=e277]: React
+            - generic [ref=e278]: TypeScript
+            - generic [ref=e279]: Three.js
+            - generic [ref=e280]: WebSockets
+          - generic [ref=e281]:
+            - generic [ref=e282]: backend & data
+            - generic [ref=e283]: Python
+            - generic [ref=e284]: FastAPI
+            - generic [ref=e285]: Node.js
+            - generic [ref=e286]: Supabase
+            - generic [ref=e287]: SQLite
+          - generic [ref=e288]:
+            - generic [ref=e289]: in-browser tooling
+            - generic [ref=e290]: Monaco
+            - generic [ref=e291]: Pyodide
+            - generic [ref=e292]: xterm.js
+          - generic [ref=e293]:
+            - generic [ref=e294]: ML, CV & RL
+            - generic [ref=e295]: Gemini AI
+            - generic [ref=e296]: YOLOv8
+            - generic [ref=e297]: OpenCV
+            - generic [ref=e298]: PPO
+            - generic [ref=e299]: Reinforcement Learning
+          - generic [ref=e300]:
+            - generic [ref=e301]: robotics & spatial
+            - generic [ref=e302]: ROS 2
+            - generic [ref=e303]: C++
+            - generic [ref=e304]: SLAM
+          - generic [ref=e305]:
+            - generic [ref=e306]: shipping & infra
+            - generic [ref=e307]: Docker
+            - generic [ref=e308]: Git & GitHub
+            - generic [ref=e309]: ESLint
+            - generic [ref=e310]: Prettier
+            - generic [ref=e311]: Agile / hackathons
+      - generic [ref=e312]:
+        - generic [ref=e313]: My Friend Comments
+        - generic [ref=e315]:
+          - textbox "your name..." [ref=e316]
+          - textbox "leave a comment... (no profanity, no links)" [ref=e317]
+          - generic [ref=e318]:
+            - generic [ref=e319]: what is 3 + 7?
+            - textbox "what is 3 + 7?" [ref=e349]:
+              - /placeholder: "?"
+            - button "New question" [ref=e321] [cursor=pointer]
+          - generic [ref=e322]:
+            - text: Company website
+            - textbox [ref=e323]
+          - button "Post Comment" [ref=e324] [cursor=pointer]
+      - generic [ref=e325]:
+        - generic [ref=e326]:
+          - generic [ref=e327]: ☞
+          - text: Find Me Online
+        - generic [ref=e328]:
+          - link "GitHub" [ref=e329] [cursor=pointer]:
+            - /url: https://github.com/Trolleroof
+            - img [ref=e331]
+            - generic [ref=e334]: GitHub
+          - link "LinkedIn" [ref=e335] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/nikprabhu1/
+            - img [ref=e337]
+            - generic [ref=e340]: LinkedIn
+          - button "Email" [ref=e341] [cursor=pointer]:
+            - img [ref=e343]
+            - generic [ref=e346]: Email
+  - contentinfo [ref=e347]:
+    - paragraph [ref=e348]: Nikhil Prabhu·2026
+  - button "Open Next.js Dev Tools" [ref=e355] [cursor=pointer]:
+    - img [ref=e356]
+  - alert [ref=e359]
+  - dialog "NIGEL" [ref=e360]:
+    - generic [ref=e361]:
+      - generic [ref=e362]:
+        - generic [ref=e363]: ◆
+        - generic [ref=e364]: NIGEL
+      - generic [ref=e365]:
+        - link "GitHub" [ref=e366] [cursor=pointer]:
+          - /url: https://github.com/Trolleroof/NIGEL-hackathon
+        - button "Close" [ref=e367] [cursor=pointer]: ✕
+    - generic [ref=e369]:
+      - region "Award" [ref=e370]:
+        - generic [ref=e371]:
+          - img [ref=e373]
+          - generic [ref=e387]:
+            - heading "Award" [level=3] [ref=e388]
+            - paragraph [ref=e389]: "1st Place @ c0mpiled-5/ucsd: Future Interfaces hackathon"
+      - region "Video — NIGEL" [ref=e390]:
+        - heading "Demo" [level=3] [ref=e391]
+        - iframe [ref=e393]:
+          - generic [active] [ref=f2e1]:
+            - generic "YouTube Video Player" [ref=f2e3]
+            - button "Show player controls" [ref=f2e7] [cursor=pointer]
+      - region "Screenshots — NIGEL" [ref=e394]:
+        - heading "Gallery" [level=3] [ref=e395]
+        - generic [ref=e396]:
+          - button "Previous image" [ref=e397] [cursor=pointer]: ⟨
+          - generic [ref=e399]:
+            - figure [ref=e400]:
+              - img "Dashboard analytics mock — swap for your NIGEL screenshots" [ref=e401]
+            - figure [ref=e402]:
+              - img "Command center workstation — representative project imagery" [ref=e403]
+            - figure [ref=e404]:
+              - img "Operational map visualization — representative project imagery" [ref=e405]
+          - button "Next image" [ref=e406] [cursor=pointer]: ⟩
+        - generic [ref=e407]:
+          - button "Image 1" [ref=e408] [cursor=pointer]
+          - button "Image 2" [ref=e409] [cursor=pointer]
+          - button "Image 3" [ref=e410] [cursor=pointer]
+      - generic [ref=e411]:
+        - paragraph [ref=e412]: "Built for a Future Interfaces hackathon: a dispatcher-facing web console that turns helmet VSLAM, unit video, and radio-style audio into a shared tactical picture. The repo pairs a Next.js frontend with ROS 2 packages for Odin hardware, SLAM cloud accumulation, launch files, and WebSocket APIs."
+        - region "Tech stack" [ref=e413]:
+          - heading "Tech stack" [level=3] [ref=e414]
+          - list [ref=e415]:
+            - listitem [ref=e416]: Next.js
+            - listitem [ref=e417]: Three.js
+            - listitem [ref=e418]: ROS 2
+            - listitem [ref=e419]: WebSockets
+            - listitem [ref=e420]: C++
+        - region "Highlights" [ref=e421]:
+          - heading "Highlights" [level=3] [ref=e422]
+          - list [ref=e423]:
+            - listitem [ref=e424]: Frontend routes cover dispatcher and firefighter modes, with multi-unit viewports, a central Three.js point-cloud map, blueprint search, and transcript UX.
+            - listitem [ref=e425]: ROS 2 workspace includes the Odin driver and a SLAM cloud accumulator that streams live mapping data into the web stack.
+            - listitem [ref=e426]: WebSocket contracts keep camera, SLAM, and UI state flowing through a narrow interface while the operator stays in incident mode.

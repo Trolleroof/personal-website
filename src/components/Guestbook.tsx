@@ -149,7 +149,7 @@ const Guestbook: React.FC = () => {
 
   return (
     <div className="panel" id="guestbook">
-      <div className="panel-header">My Friend Comments</div>
+      <div className="panel-header">Leave a comment</div>
       <div className="gb-messages">
         {msgs.map((m, i) => {
           const blocked = Boolean(moderateMessage(m.from, m.text));

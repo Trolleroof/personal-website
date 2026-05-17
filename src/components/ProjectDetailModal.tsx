@@ -1,7 +1,38 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { Project, ProjectGalleryImage } from '@/lib/data';
+
+/** 7×11 “pixel unit” slab — upscale with crispEdges for retro medal vibe. */
+function PixelMedalIcon() {
+  return (
+    <svg
+      className="proj-detail-pixel-medal"
+      viewBox="0 0 7 11"
+      width="35"
+      height="55"
+      aria-hidden="true"
+    >
+      {/* ribbon */}
+      <rect x="1" y="0" width="1" height="3" fill="#9a1f16" />
+      <rect x="5" y="0" width="1" height="3" fill="#9a1f16" />
+      <rect x="1" y="2" width="1" height="1" fill="#d04030" />
+      <rect x="5" y="2" width="1" height="1" fill="#d04030" />
+      <rect x="2" y="2" width="3" height="1" fill="#f6d04d" />
+      <rect x="2" y="3" width="3" height="1" fill="#e8b923" />
+      {/* medal disc */}
+      <rect x="2" y="4" width="3" height="1" fill="#b8860b" />
+      <rect x="1" y="5" width="5" height="1" fill="#daa520" />
+      <rect x="0" y="6" width="7" height="3" fill="#daa520" />
+      <rect x="1" y="9" width="5" height="1" fill="#b8860b" />
+      <rect x="2" y="10" width="3" height="1" fill="#8b6914" />
+      {/* shine pixels */}
+      <rect x="1" y="6" width="1" height="1" fill="#fff4b8" opacity="0.85" />
+      <rect x="2" y="7" width="1" height="1" fill="#fff4b8" opacity="0.5" />
+    </svg>
+  );
+}
 
 function ProjectGalleryCarousel({ images, title }: { images: ProjectGalleryImage[]; title: string }) {
   const [slide, setSlide] = useState(0);
@@ -61,7 +92,7 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
   const detail = project?.detail;
 
   const gallery = detail?.galleryImages ?? [];
-  const hasVideo = Boolean(detail?.videoEmbedUrl);
+  const hasVideo = Boolean(detail?.videoEmbedUrl || detail?.videoFileUrl);
 
   useEffect(() => {
     if (!project) return;
@@ -115,14 +146,14 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
     }
   }, []);
 
-  if (!project || !detail) return null;
+  if (!project || !detail || typeof document === 'undefined') return null;
 
   const titleSlug = project.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
   const titleId = titleSlug.length > 0 ? `proj-modal-title-${titleSlug}` : 'proj-modal-title';
   const descriptionId = `${titleId}-description`;
 
-  return (
-    <div className="proj-modal-overlay" role="presentation">
+  return createPortal(
+    <div className="proj-modal-overlay" role="presentation" onClick={onClose}>
       <div
         ref={dialogRef}
         role="dialog"
@@ -166,18 +197,45 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
 
         <div className="proj-modal-scroll">
           <div className="proj-modal-inner">
-            {hasVideo && detail.videoEmbedUrl ? (
+            {detail.award ? (
+              <section className="proj-detail-award" aria-labelledby={`${titleId}-award`}>
+                <div className="proj-detail-award-row">
+                  <span className="proj-detail-medal-cell" aria-hidden="true">
+                    <PixelMedalIcon />
+                  </span>
+                  <div className="proj-detail-award-copy">
+                    <h3 id={`${titleId}-award`} className="proj-detail-award-heading">
+                      Award
+                    </h3>
+                    <p className="proj-detail-award-text">{detail.award}</p>
+                  </div>
+                </div>
+              </section>
+            ) : null}
+
+            {hasVideo ? (
               <section className="proj-modal-video" aria-label={`Video — ${project.name}`}>
                 <h3 className="proj-detail-h">Demo</h3>
                 <div className="proj-modal-video-shell">
-                  <iframe
-                    className="proj-modal-video-frame"
-                    src={detail.videoEmbedUrl}
-                    title={`${project.name} demo`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
+                  {detail.videoFileUrl ? (
+                    <video
+                      className="proj-modal-video-frame"
+                      src={detail.videoFileUrl}
+                      title={`${project.name} demo`}
+                      controls
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <iframe
+                      className="proj-modal-video-frame"
+                      src={detail.videoEmbedUrl}
+                      title={`${project.name} demo`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  )}
                 </div>
               </section>
             ) : null}
@@ -185,7 +243,6 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
             <ProjectGalleryCarousel key={project.name} images={gallery} title={project.name} />
 
             <div className="proj-detail-body">
-              {detail.hook ? <p className="proj-detail-hook">{detail.hook}</p> : null}
               <p id={descriptionId} className="proj-detail-overview">{detail.overview}</p>
 
               <section className="proj-detail-section" aria-labelledby={`${titleId}-stack`}>
@@ -213,6 +270,7 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

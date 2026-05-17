@@ -14,9 +14,14 @@ function ProjectRow({
 }) {
   const d = project.detail;
   const expandable = Boolean(d);
+  const awardLabel = d?.award;
   const openFrom = (opener: HTMLElement) => {
     if (expandable) onOpen(project, opener);
   };
+
+  const detailsAriaLabel = expandable
+    ? `${project.name}${awardLabel ? ` — ${awardLabel}` : ''}. View project details.`
+    : undefined;
 
   return (
     <div
@@ -24,7 +29,7 @@ function ProjectRow({
       role={expandable ? 'button' : undefined}
       tabIndex={expandable ? 0 : undefined}
       aria-haspopup={expandable ? 'dialog' : undefined}
-      aria-label={expandable ? `${project.name}: view project details` : undefined}
+      aria-label={detailsAriaLabel}
       onClick={(event) => openFrom(event.currentTarget)}
       onKeyDown={(event) => {
         if (!expandable) return;
@@ -51,6 +56,14 @@ function ProjectRow({
               </span>
             ) : null}
           </div>
+          {awardLabel ? (
+            <p className="project-item-award">
+              <span className="project-item-award-icon" aria-hidden>
+                ♦
+              </span>
+              {awardLabel}
+            </p>
+          ) : null}
           <div className="project-desc">{project.desc}</div>
           <div className="project-tags">
             {project.tags.map((t) => (

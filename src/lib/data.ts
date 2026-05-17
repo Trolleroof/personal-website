@@ -15,6 +15,8 @@ export interface ProjectDetail {
   overview: string;
   /** Optional iframe `src`: YouTube `/embed/...`, Vimeo player, etc. */
   videoEmbedUrl?: string;
+  /** Optional local/public video file shown with native controls. */
+  videoFileUrl?: string;
   /** Carousel below the video in the popup. */
   galleryImages?: ProjectGalleryImage[];
   /** Notable bullets - architecture, challenges, outcomes. */
@@ -204,35 +206,21 @@ export const PROFILE: ProfileData = {
   projects: [
     {
       name: "NIGEL",
-      desc: "Navigation, Incident Guidance, and Emergency Localization & Control: a mission-control interface for firefighters. The Next.js dispatcher dashboard combines helmet-rig VSLAM point clouds, multi-unit video, radio transcripts, blueprint search, and WebSocket-fed tactical mapping.",
-      tags: ["Next.js", "Three.js", "ROS 2", "WebSockets", "C++"],
+      desc: "Navigation, Incident Guidance, and Emergency Localization & Control — a mission-control interface for the Future Interfaces hackathon. Think air traffic control for firefighters: helmet VSLAM point clouds, multi-unit video feeds, radio transcripts, and tactical mapping in one dispatcher dashboard.",
+      tags: ["Next.js", "Three.js", "ROS 2", "WebSockets", "C++", "SLAM"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/NIGEL-hackathon" }],
       detail: {
         award: "1st Overall @ transpose/compiled-5 UCSD Hackathon",
-        hook: "Treating a distributed rescue team like a fleet you can see and coordinate in one room.",
+        hook: "Air traffic control, but for firefighters on a floor plan: multiple video feeds, a growing 3D map from the helmet rig, and a radio panel that drives what you see on the map.",
         overview:
-          "Built for a Future Interfaces hackathon: a dispatcher-facing web console that turns helmet VSLAM, unit video, and radio-style audio into a shared tactical picture. The repo pairs a Next.js frontend with ROS 2 packages for Odin hardware, SLAM cloud accumulation, launch files, and WebSocket APIs.",
+          "Built for a Future Interfaces hackathon: a dispatcher-facing web console that turns helmet VSLAM (visual mapping) data and radio-style transcripts into a unified command center. The repo pairs a Next.js frontend with ROS 2 packages for Odin hardware integration, SLAM cloud accumulation, and WebSocket APIs that stream live mapping and camera data to the UI.",
         highlights: [
-          "Frontend routes cover dispatcher and firefighter modes, with multi-unit viewports, a central Three.js point-cloud map, blueprint search, and transcript UX.",
-          "ROS 2 workspace includes the Odin driver and a SLAM cloud accumulator that streams live mapping data into the web stack.",
-          "WebSocket contracts keep camera, SLAM, and UI state flowing through a narrow interface while the operator stays in incident mode.",
+          "Frontend spans dispatcher (`/dispatcher`) and firefighter (`/firefighter`) modes with multi-unit viewports, a central Three.js point-cloud map, blueprint search, and radio / transcript UX.",
+          "ROS 2 workspace includes the Odin driver for depth / point cloud pipelines and a SLAM cloud accumulator that streams live mapping data into the web stack via WebSocket.",
+          "WebSocket contracts keep camera, SLAM, and UI state flowing through a narrow interface, letting operators coordinate multiple units and stay grounded in a shared tactical picture.",
+          "Architecture documented in `frontend/docs/WEBSOCKET_ARCHITECTURE.md` and `ros2/src/slam_cloud_accumulator/WEBSOCKET_API.md` for extensibility and integration.",
         ],
-        /** Replace with your demo reel embed (share → Embed → paste `src` only). */
-        videoEmbedUrl: "https://www.youtube.com/embed/jNQXAC9IVRw",
-        galleryImages: [
-          {
-            src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop",
-            alt: "Dashboard analytics mock - swap for your NIGEL screenshots",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1200&q=80&auto=format&fit=crop",
-            alt: "Command center workstation - representative project imagery",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop",
-            alt: "Operational map visualization - representative project imagery",
-          },
-        ],
+        videoEmbedUrl: "https://www.youtube.com/embed/rzGtTom3oS8",
       },
     },
     {
@@ -296,7 +284,7 @@ export const PROFILE: ProfileData = {
     {
       name: "AnyGPU",
       desc: "Local-first GPU workload control plane and Crucible Compute agent layer. Register models, verify Docker/Kubernetes/provider inventory, refresh broker prices, benchmark placements, schedule compatible routes, launch local llama.cpp or Docker/vLLM runtimes, and expose OpenAI-compatible endpoints through a gateway.",
-      tags: ["Python", "Docker", "Kubernetes", "llama.cpp", "MCP"],
+      tags: ["Python", "TypeScript", "Docker", "llama.cpp", "MCP"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/nozomio-hackathon" }],
       detail: {
         hook: "Pick where the GPU lives like you pick a region - but with receipts.",
@@ -320,7 +308,7 @@ export const PROFILE: ProfileData = {
       },
     },
     {
-      name: "CodeCraft IDE",
+      name: "CaféCode",
       desc: "Cafecode: an AI coding tutor and browser-native project builder. Next.js, Monaco, WebContainer, Supabase, WebSockets, Gemini, Stripe, and an Express/Fly.io backend give learners a full coding workspace while keeping them in control of what they build.",
       tags: ["Next.js", "Monaco", "WebContainer", "Gemini AI", "Supabase"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/cafecode" }],
@@ -353,8 +341,8 @@ export const PROFILE: ProfileData = {
       organization: "UC San Diego",
       date: "Jan 2025 - Present",
       logo: {
-        src: "/org-logos/ucsd-triton-spear.svg",
-        alt: "UC San Diego Triton spear logo",
+        src: "/org-logos/ucsd-triton-logo.png",
+        alt: "UC San Diego Triton logo",
       },
       desc: "Architected a cross-platform Electron + TypeScript desktop agent that processes live meetings and executes tasks across user apps. Built real-time transcription, natural-language workflow automation across Gmail, Calendar, Docs, Sheets, Slack, and Notion, and scaled the beta to 40+ users with early startup adoption.",
     },
@@ -364,8 +352,8 @@ export const PROFILE: ProfileData = {
       organization: "UC San Diego",
       date: "Mar 2026 - Present",
       logo: {
-        src: "/org-logos/ucsd-triton-spear.svg",
-        alt: "UC San Diego Triton spear logo",
+        src: "/org-logos/ucsd-triton-logo.png",
+        alt: "UC San Diego Triton logo",
       },
       desc: "Developing an LLM-based pipeline for automated generation and verification of novel analog circuit topologies. Integrating LLM APIs with Cadence simulation tools and exploring reinforcement learning strategies for circuit design space search.",
     },
