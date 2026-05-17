@@ -1,4 +1,4 @@
-// Profile data — TypeScript types & content
+// Profile data - TypeScript types & content
 
 export interface ProjectGalleryImage {
   src: string;
@@ -7,6 +7,8 @@ export interface ProjectGalleryImage {
 
 /** Rich copy + media shown in the project popup. */
 export interface ProjectDetail {
+  /** Hackathon placement, prize, or recognition - shown in list + at top of popup with medal when set. */
+  award?: string;
   /** One-line lead above the overview. */
   hook?: string;
   /** Deeper story: problem, what you built, outcome. */
@@ -15,7 +17,7 @@ export interface ProjectDetail {
   videoEmbedUrl?: string;
   /** Carousel below the video in the popup. */
   galleryImages?: ProjectGalleryImage[];
-  /** Notable bullets — architecture, challenges, outcomes. */
+  /** Notable bullets - architecture, challenges, outcomes. */
   highlights: string[];
 }
 
@@ -83,7 +85,7 @@ export interface ProfileData {
   avatarUrl: string;
   name: string;
   handle: string;
-  /** Short line under the handle (focus areas — not necessarily school). */
+  /** Short line under the handle (focus areas - not necessarily school). */
   byline: string;
   status: string;
   sidebar: InfoField[];
@@ -214,15 +216,15 @@ export const PROFILE: ProfileData = {
         galleryImages: [
           {
             src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop",
-            alt: "Dashboard analytics mock — swap for your NIGEL screenshots",
+            alt: "Dashboard analytics mock - swap for your NIGEL screenshots",
           },
           {
             src: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1200&q=80&auto=format&fit=crop",
-            alt: "Command center workstation — representative project imagery",
+            alt: "Command center workstation - representative project imagery",
           },
           {
             src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop",
-            alt: "Operational map visualization — representative project imagery",
+            alt: "Operational map visualization - representative project imagery",
           },
         ],
       },
@@ -233,7 +235,7 @@ export const PROFILE: ProfileData = {
       tags: ["FastAPI", "Next.js", "PPO", "AgentMail", "MCP"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/openclaw-hackathon" }],
       detail: {
-        hook: "Make RL runs feel observable: less “black box,” more “flight recorder.”",
+        hook: "Make RL runs feel observable: less 'black box,' more 'flight recorder.'",
         overview:
           "End-to-end lab for a 2D navigation sim: FastAPI allocates runs, queries Nia for prior lessons, trains PPO, compares it to a random baseline, writes metrics and artifacts, builds a canonical RunReport, and sends the same report through AgentMail. The Next.js surface reads that report for run history, metrics, GIFs, inbox messages, and memory lessons.",
         highlights: [
@@ -244,37 +246,42 @@ export const PROFILE: ProfileData = {
         galleryImages: [
           {
             src: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80&auto=format&fit=crop",
-            alt: "ML / robotics workspace — representative imagery",
+            alt: "ML / robotics workspace - representative imagery",
           },
           {
             src: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&q=80&auto=format&fit=crop",
-            alt: "Code on screen — representative imagery",
+            alt: "Code on screen - representative imagery",
           },
         ],
       },
     },
     {
-      name: "Recall",
-      desc: "Spatial memory assistant for finding objects in your environment. A camera builds a 3D map, YOLOv8 remembers object locations, Cerebras handles language queries, ElevenLabs gives voice guidance, and the Next.js / React Three Fiber UI connects to a ROS 2 + OpenCV backend.",
-      tags: ["Next.js", "React Three Fiber", "ROS 2", "YOLOv8", "Cerebras"],
-      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/sandhacks" }],
+      name: "SODIUM",
+      desc: "Voice-forward care companion for seniors: an autonomous robot with natural speech interaction, smart crisis detection, and a caregiver dashboard. Uses YOLOX for human-following, Cerebras for conversation routing, and Browser Use for real-world task automation like food ordering and web searches.",
+      tags: ["Svelte 5", "Bun", "TypeScript", "Browser Use", "Cerebras"],
+      links: [
+        { label: "GitHub", href: "https://github.com/TheOutcastVirus/diamondhacks-2026" },
+        { label: "Devpost", href: "https://devpost.com/software/sodium" },
+      ],
       detail: {
-        hook: "“Where did I leave it?” as a spatial query over a live world model.",
+        award: "1st Overall @ DiamondHacks 2026",
+        hook: "Elderly care through voice - a robot that understands, remembers, and takes action.",
         overview:
-          "A walking capture loop builds a navigable 3D map while YOLOv8 tags objects; voice questions resolve to places in that map instead of flat photo search. The frontend is a Next.js / React Three Fiber app, while ROS 2 packages handle the cloud web bridge, depth mapping, and Luxonis camera path.",
+          "SODIUM is an AI-powered companion for aging in place: a physical robot with voice-forward interaction paired with a caregiver monitoring dashboard. The system captures voice queries through AssemblyAI, routes intent through Cerebras (Llama-class), invokes tools like web search or food ordering via Browser Use, and responds with ElevenLabs text-to-speech. The robot autonomously follows users with YOLOX, while caregivers see live transcripts, reminders, and actual browser interactions instead of just chat logs. Crisis detection flags distress and can trigger phone outreach through Bland.",
         highlights: [
-          "Paired dense mapping with lightweight object memory so queries feel grounded in layout, not filenames.",
-          "Cerebras powers the language layer and ElevenLabs handles text-to-speech for the voice-guided object-finding loop.",
-          "Split heavy CV/robotics from the web client through a ROS bridge contract between map updates, detected objects, and UI state.",
+          "Voice-first interaction eliminates complex navigation for seniors while giving caregivers transparency into agent actions.",
+          "Autonomous robot with YOLOX-based human following paired with medication reminders and routine prompts.",
+          "Browser Use handles real-world tasks (ordering food, searching) while staying grounded in a unified caregiver dashboard.",
+          "Crisis detection and automated calling bridge monitoring and response into a single interface.",
         ],
         galleryImages: [
           {
-            src: "https://images.unsplash.com/photo-1523961134660-4bf8bf4ae539?w=1200&q=80&auto=format&fit=crop",
-            alt: "Hands with phone camera — spatial capture vibe",
+            src: "https://images.unsplash.com/photo-1576091160550-112173e7d06d?w=1200&q=80&auto=format&fit=crop",
+            alt: "Senior with robot companion - care assistance vibe",
           },
           {
-            src: "https://images.unsplash.com/photo-1639762681488-cec0fb26f210?w=1200&q=80&auto=format&fit=crop",
-            alt: "Abstract 3D geography — representative map UI mood",
+            src: "https://images.unsplash.com/photo-1576091160399-112b8d4d2b6a?w=1200&q=80&auto=format&fit=crop",
+            alt: "Dashboard monitoring interface - caregiver oversight",
           },
         ],
       },
@@ -285,7 +292,7 @@ export const PROFILE: ProfileData = {
       tags: ["Python", "Docker", "Kubernetes", "llama.cpp", "MCP"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/nozomio-hackathon" }],
       detail: {
-        hook: "Pick where the GPU lives like you pick a region — but with receipts.",
+        hook: "Pick where the GPU lives like you pick a region - but with receipts.",
         overview:
           "A control plane for messy reality: connect managed or BYOC compute, normalize hardware inventory, register and profile models, benchmark candidate placements, create policies, and route OpenAI-compatible inference across local Docker, Kubernetes manifests, Vultr, Vast, and a real local llama.cpp path. Crucible adds signup/session persistence, natural-language deployment planning, explicit spend approvals, public MCP credit gates, and simulated deployment records for personal-agent workflows.",
         highlights: [
@@ -296,11 +303,11 @@ export const PROFILE: ProfileData = {
         galleryImages: [
           {
             src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80&auto=format&fit=crop",
-            alt: "Globe tech network — infra / clouds vibe",
+            alt: "Globe tech network - infra / clouds vibe",
           },
           {
             src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format&fit=crop",
-            alt: "Server room — GPU / workload vibe",
+            alt: "Server room - GPU / workload vibe",
           },
         ],
       },
@@ -322,11 +329,11 @@ export const PROFILE: ProfileData = {
         galleryImages: [
           {
             src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&q=80&auto=format&fit=crop",
-            alt: "Code IDE aesthetic — representative project imagery",
+            alt: "Code IDE aesthetic - representative project imagery",
           },
           {
             src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80&auto=format&fit=crop",
-            alt: "Laptop workstation — IDE / maker vibe",
+            alt: "Laptop workstation - IDE / maker vibe",
           },
         ],
       },
