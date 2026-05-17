@@ -32,7 +32,12 @@ export interface Project {
 export interface Experience {
   role: string;
   place: string;
+  organization: string;
   date: string;
+  logo: {
+    src: string;
+    alt: string;
+  };
   desc: string;
 }
 
@@ -346,8 +351,8 @@ export const PROFILE: ProfileData = {
       organization: "UC San Diego",
       date: "Jan 2025 - Present",
       logo: {
-        src: "/org-logos/ucsd.svg",
-        alt: "UC San Diego logo",
+        src: "/org-logos/ucsd-triton-spear.svg",
+        alt: "UC San Diego Triton spear logo",
       },
       desc: "Architected a cross-platform Electron + TypeScript desktop agent that processes live meetings and executes tasks across user apps. Built real-time transcription, natural-language workflow automation across Gmail, Calendar, Docs, Sheets, Slack, and Notion, and scaled the beta to 40+ users with early startup adoption.",
     },
