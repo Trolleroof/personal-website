@@ -276,12 +276,12 @@ export const PROFILE: ProfileData = {
         ],
         galleryImages: [
           {
-            src: "https://images.unsplash.com/photo-1576091160550-112173e7d06d?w=1200&q=80&auto=format&fit=crop",
-            alt: "Senior with robot companion - care assistance vibe",
+            src: "https://images.unsplash.com/photo-1576091160575-2173d7999c91?w=1200&q=80&auto=format&fit=crop",
+            alt: "Robot interacting with elderly person in home environment",
           },
           {
-            src: "https://images.unsplash.com/photo-1576091160399-112b8d4d2b6a?w=1200&q=80&auto=format&fit=crop",
-            alt: "Dashboard monitoring interface - caregiver oversight",
+            src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop",
+            alt: "Healthcare monitoring dashboard with real-time data",
           },
         ],
       },
