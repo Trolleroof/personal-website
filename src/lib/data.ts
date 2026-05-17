@@ -241,6 +241,7 @@ export const PROFILE: ProfileData = {
       tags: ["FastAPI", "Next.js", "PPO", "AgentMail", "MCP"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/openclaw-hackathon" }],
       detail: {
+        award: "1st Overall @ OpenClaw Hackathon Eragon x Nozomio x AgentMail hackathon",
         hook: "Make RL runs feel observable: less 'black box,' more 'flight recorder.'",
         overview:
           "End-to-end lab for a 2D navigation sim: FastAPI allocates runs, queries Nia for prior lessons, trains PPO, compares it to a random baseline, writes metrics and artifacts, builds a canonical RunReport, and sends the same report through AgentMail. The Next.js surface reads that report for run history, metrics, GIFs, inbox messages, and memory lessons.",
