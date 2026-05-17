@@ -343,25 +343,45 @@ export const PROFILE: ProfileData = {
     {
       role: "Desktop Agent Developer - Founder",
       place: "UCSD Agent Development (Clue2)",
+      organization: "UC San Diego",
       date: "Jan 2025 - Present",
+      logo: {
+        src: "/org-logos/ucsd.svg",
+        alt: "UC San Diego logo",
+      },
       desc: "Architected a cross-platform Electron + TypeScript desktop agent that processes live meetings and executes tasks across user apps. Built real-time transcription, natural-language workflow automation across Gmail, Calendar, Docs, Sheets, Slack, and Notion, and scaled the beta to 40+ users with early startup adoption.",
     },
     {
       role: "Research Assistant",
       place: "AI for Circuit Invention",
+      organization: "UC San Diego",
       date: "Mar 2026 - Present",
+      logo: {
+        src: "/org-logos/ucsd.svg",
+        alt: "UC San Diego logo",
+      },
       desc: "Developing an LLM-based pipeline for automated generation and verification of novel analog circuit topologies. Integrating LLM APIs with Cadence simulation tools and exploring reinforcement learning strategies for circuit design space search.",
     },
     {
       role: "Lead Researcher - IEEE ICHCI Presenter",
       place: "Foot Drop Ankle-Foot Orthosis Research",
+      organization: "Georgia Tech",
       date: "May 2024 - Nov 2024",
+      logo: {
+        src: "/org-logos/georgia-tech.png",
+        alt: "Georgia Tech logo",
+      },
       desc: "Conducted research at Georgia Tech's mmWave Antennas Laboratory on a 3D-printed ankle-foot orthosis controlled through electromyography signals. Built a custom motor actuator system, improved gait response precision by 23%, and presented the work at IEEE ICHCI 2024.",
     },
     {
       role: "Lead Researcher",
       place: "Brain-Computer Interface Device Research",
+      organization: "Stanford University",
       date: "Oct 2023 - Dec 2024",
+      logo: {
+        src: "/org-logos/stanford-block-s.png",
+        alt: "Stanford University logo",
+      },
       desc: "Led BCI device research at Stanford's Lee-Messer Lab to help motor-impaired students communicate through neural signals. Benchmarked P300 EEG models and built a React Native assistive-learning frontend piloted with 12 patient users.",
     },
   ],
