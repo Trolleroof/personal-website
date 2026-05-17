@@ -208,6 +208,7 @@ export const PROFILE: ProfileData = {
       tags: ["Next.js", "Three.js", "ROS 2", "WebSockets", "C++"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/NIGEL-hackathon" }],
       detail: {
+        award: "1st Overall @ transpose/compiled-5 UCSD Hackathon",
         hook: "Treating a distributed rescue team like a fleet you can see and coordinate in one room.",
         overview:
           "Built for a Future Interfaces hackathon: a dispatcher-facing web console that turns helmet VSLAM, unit video, and radio-style audio into a shared tactical picture. The repo pairs a Next.js frontend with ROS 2 packages for Odin hardware, SLAM cloud accumulation, launch files, and WebSocket APIs.",
@@ -362,8 +363,8 @@ export const PROFILE: ProfileData = {
       organization: "UC San Diego",
       date: "Mar 2026 - Present",
       logo: {
-        src: "/org-logos/ucsd.svg",
-        alt: "UC San Diego logo",
+        src: "/org-logos/ucsd-triton-spear.svg",
+        alt: "UC San Diego Triton spear logo",
       },
       desc: "Developing an LLM-based pipeline for automated generation and verification of novel analog circuit topologies. Integrating LLM APIs with Cadence simulation tools and exploring reinforcement learning strategies for circuit design space search.",
     },
