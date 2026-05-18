@@ -22,8 +22,34 @@ const Hero: React.FC = () => {
                   <li key={line}>{line}</li>
                 ))}
               </ul>
+            ) : f.chips?.length ? (
+              <div className="hms-side-chip-row">
+                {f.lead ? (
+                  <p className="hms-side-lead hms-side-lead-chip">
+                    {f.lead}
+                    <span className="hms-lead-at" aria-hidden="true">
+                      {' @'}
+                    </span>
+                  </p>
+                ) : null}
+                <ul
+                  className="hms-side-chips"
+                  aria-label={
+                    f.lead ? `${f.lead} @ ${f.chips.join(', ')}` : f.chips.join(', ')
+                  }
+                >
+                  {f.chips.map((chip) => (
+                    <li key={chip}>
+                      <span className="hms-chip">{chip}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ) : (
-              f.value ?? ""
+              <>
+                {f.lead ? <p className="hms-side-lead">{f.lead}</p> : null}
+                {f.value ?? ""}
+              </>
             )}
           </div>
         </div>

@@ -75,6 +75,10 @@ export interface InfoField {
   value?: string;
   /** When set, shown as a bullet list instead of value. */
   bullets?: string[];
+  /** Bold stat line above chips/value (e.g. "9 wins"). */
+  lead?: string;
+  /** Pill tags (e.g. sponsor names), shown below `lead` when set. */
+  chips?: string[];
 }
 
 export type ContactIcon = "github" | "linkedin" | "email";
@@ -148,8 +152,17 @@ export const PROFILE: ProfileData = {
     { label: "Values", value: "Family, Faith, Hard Work" },
     {
       label: "Hackathons",
-      value:
-        "9 wins:\n\nAmazon, GitHub, MemVerge, Transpose VC, Eragon, Nozomio, AgentMail, MLH",
+      lead: "9 wins",
+      chips: [
+        "Amazon",
+        "GitHub",
+        "MemVerge",
+        "Transpose VC",
+        "Eragon",
+        "Nozomio",
+        "AgentMail",
+        "MLH",
+      ],
     },
   ],
   bioIntro: "hey I'm Nikhil. I've always learned by getting obsessed with a problem and staying with it long enough to build real taste.",
@@ -306,10 +319,13 @@ export const PROFILE: ProfileData = {
       name: "Crucible Compute",
       desc: "Deploy GPUs with natural language and find cost arbitrage across cloud providers. A control plane that routes inference workloads across local Docker, Kubernetes, Vultr, Vast, and llama.cpp while automatically finding the cheapest, fastest hardware matches for your models.",
       tags: ["Python", "SQLite", "Docker", "llama.cpp", "MCP"],
-      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/nozomio-hackathon" }],
+      links: [
+        { label: "Live demo", href: "https://ayxkkrd7.insforge.site/" },
+        { label: "GitHub", href: "https://github.com/Trolleroof/nozomio-hackathon" },
+      ],
       detail: {
         award: "Top 6 @ Nozomio Hackathon",
-        hook: "Just describe what you want to run—Crucible finds the best GPU deal and deploys it, no infrastructure knowledge required.",
+        hook: "Just describe what you want to run, and Crucible finds the best GPU deal and deploys it, no infrastructure knowledge required.",
         overview:
           "A GPU workload routing platform that turns natural language into optimized deployments: describe your model and workload, and Crucible searches across NVIDIA, AMD, TPU, Intel Gaudi, and Apple Silicon capacity to find the cheapest, fastest placement. The system normalizes hardware inventory across local Docker, Kubernetes clusters, and cloud providers (RunPod, Lambda Cloud, CoreWeave, Vultr, Vast), benchmarks candidate placements in real time, and routes inference through a unified OpenAI-compatible gateway. Built on Python with SQLite state management, it includes explicit spend approval gates before launching paid GPU instances and produces canonical deployment records for reproducibility and cost auditing.",
         highlights: [
@@ -389,7 +405,7 @@ export const PROFILE: ProfileData = {
         src: "/org-logos/triton-removebg-preview.png",
         alt: "UC San Diego Triton logo",
       },
-      desc: "Architected a cross-platform Electron + TypeScript desktop agent that processes live meetings and executes tasks across user apps. Built real-time transcription, natural-language workflow automation across Gmail, Calendar, Docs, Sheets, Slack, and Notion, and scaled the beta to 40+ users with early startup adoption.",
+      desc: "Architected a cross-platform Electron + TypeScript desktop agent that processes live meetings and executes tasks across user apps. Built real-time transcription, natural-language workflow automation across Gmail, Calendar, Docs, Sheets, Slack, and Notion, and scaled the beta to 40+ users with early adoption from YC startups.",
     },
     {
       role: "Research Assistant",
@@ -423,6 +439,17 @@ export const PROFILE: ProfileData = {
         alt: "Stanford University logo",
       },
       desc: "Led BCI device research at Stanford's Lee-Messer Lab to help motor-impaired students communicate through neural signals. Benchmarked P300 EEG models and built a React Native assistive-learning frontend piloted with 12 patient users.",
+    },
+    {
+      role: "Founder",
+      place: "SoloScale Solutions",
+      organization: "Self-employed · San Francisco Bay Area · On-site",
+      date: "Mar 2023 - Jun 2025",
+      logo: {
+        src: "/org-logos/soloscale.svg",
+        alt: "SoloScale Solutions logo",
+      },
+      desc: "Founded a consulting agency that helped small, local businesses implement AI automations and technology to increase inbound leads, handle customer service, and automate mundane tasks. Served 10+ businesses and nonprofits over the course of the business - learned a ton.",
     },
   ],
   publications: [
