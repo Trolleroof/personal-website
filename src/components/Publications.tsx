@@ -13,7 +13,7 @@ const Publications: React.FC = () => {
           <article key={idx} className="pub-item">
             <div className="pub-header">
               <h3 className="pub-title">
-                <a href={pub.url} target="_blank" rel="noopener noreferrer">
+                <a href={pub.url} target="_blank" rel="noopener noreferrer">       
                   {pub.title}
                 </a>
               </h3>
@@ -28,7 +28,10 @@ const Publications: React.FC = () => {
               <span className="pub-date">•</span>
               <span className="pub-date">{pub.date}</span>
             </div>
-            <p className="pub-description">{pub.description}</p>
+            <div className="pub-description-wrap">
+              <p className="pub-description">{pub.description}</p>
+              <span className="pub-description-hint">Hover · full abstract</span>
+            </div>
           </article>
         ))}
       </div>

@@ -170,7 +170,7 @@ export const PROFILE: ProfileData = {
   ],
   skills: [
     {
-      label: "web & realtime",
+      label: "web dev",
       items: [
         { name: "Next.js" },
         { name: "React" },
@@ -196,7 +196,7 @@ export const PROFILE: ProfileData = {
     {
       label: "ML, CV & RL",
       items: [
-        { name: "Gemini AI" },
+        { name: "MediaPipe" },
         { name: "YOLOv8" },
         { name: "OpenCV" },
         { name: "PPO" },

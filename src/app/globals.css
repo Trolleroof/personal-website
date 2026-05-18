@@ -335,17 +335,11 @@ a:hover { color: var(--pink); }
   position: relative;
   overflow: hidden;
 }
-.panel-header::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -40%;
-  width: 30%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
-  animation: chromeSweep 6.5s linear infinite;
+.panel-header .ph-icon {
+  color: #fff;
+  font-size: 19px;
+  line-height: 1;
 }
-.panel-header .ph-icon { color: #ffd0ee; font-size: 19px; animation: blink 1.9s ease-in-out infinite; }
 .panel-body { padding: 10px; }
 
 /* PROFILE CARD */
@@ -661,18 +655,6 @@ a:hover { color: var(--pink); }
   overflow: hidden;
 }
 
-.proj-modal-toolbar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -40%;
-  width: 30%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
-  animation: chromeSweep 6.5s linear infinite;
-  pointer-events: none;
-}
-
 .proj-modal-heading {
   display: flex;
   align-items: center;
@@ -683,9 +665,9 @@ a:hover { color: var(--pink); }
 }
 
 .proj-modal-heading .ph-icon {
-  color: #ffd0ee;
+  color: #fff;
   font-size: 19px;
-  animation: blink 1.9s ease-in-out infinite;
+  line-height: 1;
 }
 
 .proj-modal-title {
@@ -1212,11 +1194,52 @@ a:hover { color: var(--pink); }
   line-height: 1.35;
 }
 
-.pub-description {
+.pub-description-wrap {
+  position: relative;
+  margin-top: 8px;
+}
+
+.pub-description-wrap .pub-description {
   color: #555;
   font-size: 15px;
   line-height: 1.5;
-  margin: 8px 0 0 0;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.pub-description-wrap:hover .pub-description {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+}
+
+.pub-description-hint {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--blue);
+  border-bottom: 1px dashed var(--blue-light);
+  padding-bottom: 2px;
+  user-select: none;
+}
+
+.pub-description-wrap:hover .pub-description-hint {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 /* INTERESTS */
@@ -1472,18 +1495,6 @@ a:hover { color: var(--pink); }
   overflow: hidden;
 }
 
-.resume-modal-toolbar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -40%;
-  width: 30%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
-  animation: chromeSweep 6.5s linear infinite;
-  pointer-events: none;
-}
-
 .resume-modal-heading {
   display: flex;
   align-items: center;
@@ -1494,9 +1505,9 @@ a:hover { color: var(--pink); }
 }
 
 .resume-modal-toolbar .ph-icon {
-  color: #ffd0ee;
+  color: #fff;
   font-size: 19px;
-  animation: blink 1.9s ease-in-out infinite;
+  line-height: 1;
 }
 
 .resume-modal-title {
