@@ -136,6 +136,11 @@ export const PROFILE: ProfileData = {
     { label: "Recently", value: "Founder / Desktop Agent Developer @ Clue2" },
     { label: "Location", value: "San Francisco Bay Area" },
     { label: "Values", value: "Family, Faith, Hard Work" },
+    {
+      label: "Hackathons",
+      value:
+        "9 wins:\n\nAmazon, GitHub, MemVerge, Transpose VC, Eragon, Nozomio, AgentMail, MLH",
+    },
   ],
   bioIntro: "hey I'm Nikhil. I've always learned by getting obsessed with a problem and staying with it long enough to build real taste.",
   obsessions: [
@@ -213,61 +218,70 @@ export const PROFILE: ProfileData = {
         award: "1st Overall @ transpose/compiled-5 UCSD Hackathon",
         hook: "Air traffic control, but for firefighters on a floor plan: multiple video feeds, a growing 3D map from the helmet rig, and a radio panel that drives what you see on the map.",
         overview:
-          "Built for a Future Interfaces hackathon: a dispatcher-facing web console that turns helmet VSLAM (visual mapping) data and radio-style transcripts into a unified command center. The repo pairs a Next.js frontend with ROS 2 packages for Odin hardware integration, SLAM cloud accumulation, and WebSocket APIs that stream live mapping and camera data to the UI.",
+          "Our team built this for the Transpose VC × compiled-5 hackathon series at UC San Diego. We shipped a dispatcher-facing web console that turns helmet rigs and incoming body-cam feeds into live VSLAM-style mapping, plus an agent layer that helps interpret radio traffic and surface events and hazards inside one unified command center. The stack is a Next.js frontend with ROS 2 packages for Odin hardware integration, SLAM cloud accumulation, and WebSockets that stream mapping and camera data to the UI in real time. The radio/event agent runs on Cerebras for low-latency inference.",
         highlights: [
           "Frontend spans dispatcher (`/dispatcher`) and firefighter (`/firefighter`) modes with multi-unit viewports, a central Three.js point-cloud map, blueprint search, and radio / transcript UX.",
           "ROS 2 workspace includes the Odin driver for depth / point cloud pipelines and a SLAM cloud accumulator that streams live mapping data into the web stack via WebSocket.",
           "WebSocket contracts keep camera, SLAM, and UI state flowing through a narrow interface, letting operators coordinate multiple units and stay grounded in a shared tactical picture.",
-          "Architecture documented in `frontend/docs/WEBSOCKET_ARCHITECTURE.md` and `ros2/src/slam_cloud_accumulator/WEBSOCKET_API.md` for extensibility and integration.",
         ],
         videoEmbedUrl: "https://www.youtube.com/embed/rzGtTom3oS8",
       },
     },
     {
       name: "Apollo Labs",
-      desc: "RL run orchestrator for a 2D Roomba cleaning sim. FastAPI trains PPO, evaluates against a random baseline, generates rollout GIFs, stores canonical RunReports, emails them through AgentMail, logs Nia lessons through Slack, and exposes a Next.js dashboard plus MCP tools.",
-      tags: ["FastAPI", "Next.js", "PPO", "AgentMail", "MCP"],
+      desc: "RL training orchestrator for a 2D Roomba cleaning sim that automates the full workflow: FastAPI trains PPO agents, evaluates them, generates GIFs, and delivers results through email (AgentMail), memory (Nia), and MCP tools for autonomous agent-driven optimization.",
+      tags: ["FastAPI", "Next.js", "PPO", "AgentMail", "MCP", "Python"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/openclaw-hackathon" }],
       detail: {
-        award: "1st Overall @ OpenClaw Hackathon Eragon x Nozomio x AgentMail hackathon",
+        award: "1st Overall @ OpenClaw Hackathon Eragon x Nozomio x AgentMail",
         hook: "Make RL runs feel observable: less 'black box,' more 'flight recorder.'",
         overview:
-          "End-to-end lab for a 2D navigation sim: FastAPI allocates runs, queries Nia for prior lessons, trains PPO, compares it to a random baseline, writes metrics and artifacts, builds a canonical RunReport, and sends the same report through AgentMail. The Next.js surface reads that report for run history, metrics, GIFs, inbox messages, and memory lessons.",
+          "End-to-end lab for a 2D navigation sim: FastAPI orchestrates the complete ML workflow—querying narrative memory (Nia) *before* training to incorporate prior lessons, training PPO agents against a random baseline, generating metrics and rollout GIFs, and producing a canonical RunReport that serves as the single source of truth. The same report flows to email (AgentMail), Slack, memory storage, and the Next.js dashboard. MCP tools enable external agents to drive the entire workflow autonomously.",
         highlights: [
-          "Run lifecycle writes metadata, config snapshots, model checkpoints, eval metrics, combined PPO-vs-baseline metrics, rollout GIFs, logs, and report JSON under each run.",
-          "AgentMail, Slack, and Nia are first-class outputs, so experiments produce human-readable reports and reusable lessons instead of dashboard-only state.",
-          "MCP tools expose listing, training, evaluation, GIF generation, reward-hacking summaries, and run comparisons to external agents.",
+          "Intelligent memory layer: queries Nia before training to build on learned lessons, then writes post-run summaries back for future reference and curriculum building.",
+          "Unified RunReport object: serves dashboard, email, memory, and agent-driven tools—no duplicate state, no integration glue.",
+          "Complete artifact lifecycle: each run stores metadata, config snapshots, trained models, eval metrics, GIFs, and structured logs under versioned directories.",
+          "MCP-driven automation: agents can launch runs, compare results, derive curriculum recommendations, and surface insights without human-in-the-loop.",
         ],
         galleryImages: [
           {
-            src: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80&auto=format&fit=crop",
-            alt: "ML / robotics workspace - representative imagery",
+            src: "/projects/apollo-labs/apollo-labs-runs.png",
+            alt: "Apollo Labs runs dashboard showing completed RL training runs, metrics, and rollout previews",
           },
           {
-            src: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&q=80&auto=format&fit=crop",
-            alt: "Code on screen - representative imagery",
+            src: "/projects/apollo-labs/apollo-labs-obstacle-success-rollout.gif",
+            alt: "Animated rollout GIF from Apollo Labs run_3ea5136506, a 100 percent success obstacle-avoidance PPO run",
+          },
+          {
+            src: "/projects/apollo-labs/apollo-labs-obstacle-run-detail.png",
+            alt: "Apollo Labs run detail view for a 100 percent success obstacle-avoidance PPO run",
+          },
+          {
+            src: "/projects/apollo-labs/apollo-labs-agentmail.png",
+            alt: "Apollo Labs AgentMail inbox with a selected RL run report loaded in the message preview",
+          },
+          {
+            src: "/projects/apollo-labs/apollo-labs-memory.png",
+            alt: "Apollo Labs Nia memory page with a selected lesson showing run metrics and recommendations",
           },
         ],
       },
     },
     {
       name: "SODIUM",
-      desc: "Voice-forward care companion for seniors: an autonomous robot with natural speech interaction, smart crisis detection, and a caregiver dashboard. Uses YOLOX for human-following, Cerebras for conversation routing, and Browser Use for real-world task automation like food ordering and web searches.",
-      tags: ["Svelte 5", "Bun", "TypeScript", "Browser Use", "Cerebras"],
-      links: [
-        { label: "GitHub", href: "https://github.com/TheOutcastVirus/diamondhacks-2026" },
-        { label: "Devpost", href: "https://devpost.com/software/sodium" },
-      ],
+      desc: "Voice-first AI companion for senior care: an autonomous robot with natural speech interaction, wake-word detection, medication reminders, crisis detection, and a caregiver monitoring dashboard. Frontend built with Svelte 5 and Bun runtime for a lightweight, responsive experience.",
+      tags: ["Svelte 5", "Bun", "TypeScript", "Python", "Voice AI"],
+      links: [{ label: "GitHub", href: "https://github.com/TheOutcastVirus/diamondhacks-2026" }],
       detail: {
         award: "1st Overall @ DiamondHacks 2026",
-        hook: "Elderly care through voice - a robot that understands, remembers, and takes action.",
+        hook: "Elderly care through voice — a robot that understands, remembers, and helps without complex interfaces.",
         overview:
-          "SODIUM is an AI-powered companion for aging in place: a physical robot with voice-forward interaction paired with a caregiver monitoring dashboard. The system captures voice queries through AssemblyAI, routes intent through Cerebras (Llama-class), invokes tools like web search or food ordering via Browser Use, and responds with ElevenLabs text-to-speech. The robot autonomously follows users with YOLOX, while caregivers see live transcripts, reminders, and actual browser interactions instead of just chat logs. Crisis detection flags distress and can trigger phone outreach through Bland.",
+          "SODIUM is an AI-powered voice-first assistant designed for aging in place: a lightweight system that listens for wake words, understands natural speech, handles everyday tasks, and reports to caregivers. The frontend runs on Svelte 5 with Bun runtime, keeping the system responsive and efficient. The bot component detects wake words and routes requests through a natural language processor, while the caregiver dashboard provides real-time visibility into the senior's interactions, medication reminders, and any detected distress signals.",
         highlights: [
-          "Voice-first interaction eliminates complex navigation for seniors while giving caregivers transparency into agent actions.",
-          "Autonomous robot with YOLOX-based human following paired with medication reminders and routine prompts.",
-          "Browser Use handles real-world tasks (ordering food, searching) while staying grounded in a unified caregiver dashboard.",
-          "Crisis detection and automated calling bridge monitoring and response into a single interface.",
+          "Voice-activated interaction eliminates navigation complexity for seniors while giving caregivers transparency into what was asked and attempted.",
+          "Wake-word detection and lightweight Python bot component keeps the system responsive without heavy server dependencies.",
+          "Modular Svelte 5 + Bun frontend supports both the in-home robot interface and the caregiver monitoring dashboard from the same codebase.",
+          "Integrated medication reminders, routine prompts, and crisis detection flags bridge monitoring and response into a single interface.",
         ],
         galleryImages: [
           {
@@ -282,27 +296,45 @@ export const PROFILE: ProfileData = {
       },
     },
     {
-      name: "AnyGPU",
-      desc: "Local-first GPU workload control plane and Crucible Compute agent layer. Register models, verify Docker/Kubernetes/provider inventory, refresh broker prices, benchmark placements, schedule compatible routes, launch local llama.cpp or Docker/vLLM runtimes, and expose OpenAI-compatible endpoints through a gateway.",
-      tags: ["Python", "TypeScript", "Docker", "llama.cpp", "MCP"],
+      name: "Crucible Compute",
+      desc: "Deploy GPUs with natural language and find cost arbitrage across cloud providers. A control plane that routes inference workloads across local Docker, Kubernetes, Vultr, Vast, and llama.cpp while automatically finding the cheapest, fastest hardware matches for your models.",
+      tags: ["Python", "SQLite", "Docker", "llama.cpp", "MCP"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/nozomio-hackathon" }],
       detail: {
-        hook: "Pick where the GPU lives like you pick a region - but with receipts.",
+        award: "Top 6 @ Nozomio Hackathon",
+        hook: "Just describe what you want to run—Crucible finds the best GPU deal and deploys it, no infrastructure knowledge required.",
         overview:
-          "A control plane for messy reality: connect managed or BYOC compute, normalize hardware inventory, register and profile models, benchmark candidate placements, create policies, and route OpenAI-compatible inference across local Docker, Kubernetes manifests, Vultr, Vast, and a real local llama.cpp path. Crucible adds signup/session persistence, natural-language deployment planning, explicit spend approvals, public MCP credit gates, and simulated deployment records for personal-agent workflows.",
+          "A GPU workload routing platform that turns natural language into optimized deployments: describe your model and workload, and Crucible searches across NVIDIA, AMD, TPU, Intel Gaudi, and Apple Silicon capacity to find the cheapest, fastest placement. The system normalizes hardware inventory across local Docker, Kubernetes clusters, and cloud providers (RunPod, Lambda Cloud, CoreWeave, Vultr, Vast), benchmarks candidate placements in real time, and routes inference through a unified OpenAI-compatible gateway. Built on Python with SQLite state management, it includes explicit spend approval gates before launching paid GPU instances and produces canonical deployment records for reproducibility and cost auditing.",
         highlights: [
-          "Provider broker covers seeded NVIDIA, AMD, TPU, Intel Gaudi, and Apple Silicon capacity, with live Vast and Vultr price/capacity refresh adapters.",
-          "Verified benchmark records feed route selection, cost estimates, deployment explanations, and OpenAI-compatible gateway headers.",
-          "Crucible Compute keeps paid GPU launch paths behind explicit approval and exposes the same backend through CLI and MCP-style tools.",
+          "Provider broker maintains a live catalog of seeded hardware capacity across RunPod, Lambda Cloud, CoreWeave, plus direct Vast and Vultr price/availability adapters for cost-aware routing.",
+          "Verified benchmark records feed real placement decisions: every deployment includes cost estimates, performance explanations, and hardware rationale instead of black-box routing.",
+          "Natural-language planning enables conversational deployment recommendations through Claude/Cursor, with explicit approval gates before launching paid GPU instances.",
+          "Complete artifact tracking: each deployment stores metadata, execution logs, performance metrics, and cost records under versioned directories for analysis and curriculum building.",
         ],
         galleryImages: [
           {
-            src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80&auto=format&fit=crop",
-            alt: "Globe tech network - infra / clouds vibe",
+            src: "/projects/crucible-compute/landing.png",
+            alt: "Crucible Compute landing page showing the private GPU deployment backend workflow",
           },
           {
-            src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format&fit=crop",
-            alt: "Server room - GPU / workload vibe",
+            src: "/projects/crucible-compute/dashboard.png",
+            alt: "Crucible Compute dashboard with deployment status, endpoint health, and context panels",
+          },
+          {
+            src: "/projects/crucible-compute/deploy.png",
+            alt: "Crucible Compute new deployment planner with model, objective, and plan preview controls",
+          },
+          {
+            src: "/projects/crucible-compute/providers.png",
+            alt: "Crucible Compute provider status table showing GPU cloud capabilities and missing credentials",
+          },
+          {
+            src: "/projects/crucible-compute/context.png",
+            alt: "Crucible Compute context page showing Nia evidence hits, source coverage, and cited deployment context",
+          },
+          {
+            src: "/projects/crucible-compute/agent-access.png",
+            alt: "Crucible Compute agent access page showing MCP server, API token, and CLI configuration",
           },
         ],
       },

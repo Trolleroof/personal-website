@@ -201,7 +201,12 @@ a:hover { color: var(--pink); }
 }
 .hms-side-field { margin-bottom: 8px; }
 .hms-side-label { color: var(--text); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
-.hms-side-val { color: #555; font-size: 15px; line-height: 1.5; }
+.hms-side-val {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
 .hms-side-bullets {
   margin: 4px 0 0;
   padding-left: 18px;
@@ -900,9 +905,10 @@ a:hover { color: var(--pink); }
 
 .proj-modal-carousel-img {
   width: 100%;
-  height: clamp(140px, 32vw, 280px);
-  object-fit: cover;
+  height: clamp(300px, 48vw, 560px);
+  object-fit: contain;
   display: block;
+  background: #050505;
 }
 
 .proj-modal-carousel-prev,
@@ -1084,8 +1090,10 @@ a:hover { color: var(--pink); }
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 4px;
-  background: #fff;
+  padding: 3px;
+  /* Dark inset matches UCSD / sponsor tiles; avoids white halo on dark PNGs */
+  background: #0a1628;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.88);
   image-rendering: auto;
 }
 .exp-main { min-width: 0; }
