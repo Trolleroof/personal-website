@@ -1,0 +1,39 @@
+import { PROFILE } from '@/lib/data';
+
+const Publications: React.FC = () => {
+  if (!PROFILE.publications || PROFILE.publications.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="panel" id="publications">
+      <div className="panel-header"><span className="ph-icon">📄</span> Publications</div>
+      <div className="pub-list">
+        {PROFILE.publications.map((pub, idx) => (
+          <article key={idx} className="pub-item">
+            <div className="pub-header">
+              <h3 className="pub-title">
+                <a href={pub.url} target="_blank" rel="noopener noreferrer">
+                  {pub.title}
+                </a>
+              </h3>
+              {pub.isPeerReviewed && (
+                <a href={pub.url} target="_blank" rel="noopener noreferrer" className="pub-badge-link">
+                  peer-reviewed
+                </a>
+              )}
+            </div>
+            <div className="pub-meta">
+              <span className="pub-conference">{pub.conference}</span>
+              <span className="pub-date">•</span>
+              <span className="pub-date">{pub.date}</span>
+            </div>
+            <p className="pub-description">{pub.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Publications;

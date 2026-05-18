@@ -34,20 +34,43 @@ function PixelMedalIcon() {
   );
 }
 
-function ProjectGalleryCarousel({ images, title }: { images: ProjectGalleryImage[]; title: string }) {
-  const [slide, setSlide] = useState(0);
+type MediaCarouselProps = {
+  title: string;
+  videoEmbedUrl?: string;
+  videoFileUrl?: string;
+  images: ProjectGalleryImage[];
+};
 
-  const wrap = images.length;
+function ProjectMediaCarousel({ title, videoEmbedUrl, videoFileUrl, images }: MediaCarouselProps) {
+  const [slide, setSlide] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const hasVideo = Boolean(videoFileUrl || videoEmbedUrl);
+  const slideCount = (hasVideo ? 1 : 0) + images.length;
+  /** Index of the demo video slide when present (always first). */
+  const videoSlideIndex = hasVideo ? 0 : null;
+
+  useEffect(() => {
+    if (videoSlideIndex === null) return;
+    if (slide !== videoSlideIndex) {
+      videoRef.current?.pause();
+    }
+  }, [slide, videoSlideIndex]);
+
+  const wrap = slideCount;
   const prev = useCallback(() => setSlide((i) => (i - 1 + wrap) % wrap), [wrap]);
   const next = useCallback(() => setSlide((i) => (i + 1) % wrap), [wrap]);
 
-  if (images.length === 0) return null;
+  if (slideCount === 0) return null;
+
+  const heading =
+    hasVideo && images.length > 0 ? 'Demo & gallery' : hasVideo ? 'Demo' : 'Gallery';
 
   return (
-    <section className="proj-modal-gallery" aria-label={`Screenshots — ${title}`}>
-      <h3 className="proj-detail-h">Gallery</h3>
+    <section className="proj-modal-gallery" aria-label={`${heading} — ${title}`}>
+      <h3 className="proj-detail-h">{heading}</h3>
       <div className="proj-modal-carousel">
-        <button type="button" className="proj-modal-carousel-prev" aria-label="Previous image" onClick={prev}>
+        <button type="button" className="proj-modal-carousel-prev" aria-label="Previous slide" onClick={prev}>
           ⟨
         </button>
         <div className="proj-modal-carousel-viewport">
@@ -55,6 +78,32 @@ function ProjectGalleryCarousel({ images, title }: { images: ProjectGalleryImage
             className="proj-modal-carousel-track"
             style={{ transform: `translateX(-${slide * 100}%)` }}
           >
+            {hasVideo ? (
+              <figure key={`${title}-demo-video`} className="proj-modal-carousel-slide">
+                <div className="proj-modal-carousel-slide-inner proj-modal-carousel-slide-inner--video">
+                  {videoFileUrl ? (
+                    <video
+                      ref={videoRef}
+                      className="proj-modal-video-frame"
+                      src={videoFileUrl}
+                      title={`${title} demo`}
+                      controls
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <iframe
+                      className="proj-modal-video-frame"
+                      src={videoEmbedUrl}
+                      title={`${title} demo`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  )}
+                </div>
+              </figure>
+            ) : null}
             {images.map((img) => (
               <figure key={`${title}-${img.src}`} className="proj-modal-carousel-slide">
                 <img src={img.src} alt={img.alt} className="proj-modal-carousel-img" loading="lazy" />
@@ -62,17 +111,17 @@ function ProjectGalleryCarousel({ images, title }: { images: ProjectGalleryImage
             ))}
           </div>
         </div>
-        <button type="button" className="proj-modal-carousel-next" aria-label="Next image" onClick={next}>
+        <button type="button" className="proj-modal-carousel-next" aria-label="Next slide" onClick={next}>
           ⟩
         </button>
       </div>
       <div className="proj-modal-carousel-dots">
-        {images.map((_, dot) => (
+        {Array.from({ length: slideCount }, (_, dot) => (
           <button
             key={`dot-${dot}`}
             type="button"
             className={`proj-modal-carousel-dot${dot === slide ? ' proj-modal-carousel-dot--active' : ''}`}
-            aria-label={`Image ${dot + 1}`}
+            aria-label={`Slide ${dot + 1} of ${slideCount}`}
             aria-current={dot === slide}
             onClick={() => setSlide(dot)}
           />
@@ -92,7 +141,6 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
   const detail = project?.detail;
 
   const gallery = detail?.galleryImages ?? [];
-  const hasVideo = Boolean(detail?.videoEmbedUrl || detail?.videoFileUrl);
 
   useEffect(() => {
     if (!project) return;
@@ -213,34 +261,13 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
               </section>
             ) : null}
 
-            {hasVideo ? (
-              <section className="proj-modal-video" aria-label={`Video — ${project.name}`}>
-                <h3 className="proj-detail-h">Demo</h3>
-                <div className="proj-modal-video-shell">
-                  {detail.videoFileUrl ? (
-                    <video
-                      className="proj-modal-video-frame"
-                      src={detail.videoFileUrl}
-                      title={`${project.name} demo`}
-                      controls
-                      playsInline
-                      preload="metadata"
-                    />
-                  ) : (
-                    <iframe
-                      className="proj-modal-video-frame"
-                      src={detail.videoEmbedUrl}
-                      title={`${project.name} demo`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  )}
-                </div>
-              </section>
-            ) : null}
-
-            <ProjectGalleryCarousel key={project.name} images={gallery} title={project.name} />
+            <ProjectMediaCarousel
+              key={project.name}
+              title={project.name}
+              videoEmbedUrl={detail.videoEmbedUrl}
+              videoFileUrl={detail.videoFileUrl}
+              images={gallery}
+            />
 
             <div className="proj-detail-body">
               <p id={descriptionId} className="proj-detail-overview">{detail.overview}</p>
