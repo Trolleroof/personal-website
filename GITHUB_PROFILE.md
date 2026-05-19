@@ -40,7 +40,7 @@ Right now I'm focused on **desktop agents**, **RL at scale**, and **spatial / ro
 | **SODIUM** | Voice-first AI companion for senior care — wake word, caregiver dashboard, crisis detection | [repo](https://github.com/TheOutcastVirus/diamondhacks-2026) · 🥇 DiamondHacks 2026 |
 | **Apollo Labs** | RL training orchestrator with RunReports, AgentMail, Nia memory, and MCP automation | [repo](https://github.com/Trolleroof/openclaw-hackathon) · 🥇 OpenClaw Hackathon |
 | **NIGEL** | Firefighter mission control — VSLAM point clouds, multi-cam feeds, radio transcripts | [repo](https://github.com/Trolleroof/NIGEL-hackathon) · 🥇 transpose/compiled-5 @ UCSD |
-| **Crucible Compute** | Natural-language GPU deployments with cost-aware routing across cloud providers | [demo](https://ayxkkrd7.insforge.site/) · [repo](https://github.com/Trolleroof/nozomio-hackathon) · Top 6 @ Nozomio |
+| **Crucible Compute** | Natural-language GPU deployments with cost-aware routing across cloud providers | [demo](https://ayxkkrd7.insforge.site/) · [repo](https://github.com/Trolleroof/nozomio-hackathon) · 5th Place @ Nozomio |
 | **CaféCode** | Browser-native AI coding tutor — Monaco, WebContainer, Gemini, Supabase | [repo](https://github.com/Trolleroof/cafecode) |
 
 More on **[nikhilprabhu.tech](https://nikhilprabhu.tech)**.

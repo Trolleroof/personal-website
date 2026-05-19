@@ -323,7 +323,7 @@ export const PROFILE: ProfileData = {
         { label: "GitHub", href: "https://github.com/Trolleroof/nozomio-hackathon" },
       ],
       detail: {
-        award: "Top 6 @ Nozomio Hackathon",
+        award: "5th Place @ Nozomio Hackathon",
         hook: "Just describe what you want to run, and Crucible finds the best GPU deal and deploys it, no infrastructure knowledge required.",
         overview:
           "A GPU workload routing platform that turns natural language into optimized deployments: describe your model and workload, and Crucible searches across NVIDIA, AMD, TPU, Intel Gaudi, and Apple Silicon capacity to find the cheapest, fastest placement. The system normalizes hardware inventory across local Docker, Kubernetes clusters, and cloud providers (RunPod, Lambda Cloud, CoreWeave, Vultr, Vast), benchmarks candidate placements in real time, and routes inference through a unified OpenAI-compatible gateway. Built on Python with SQLite state management, it includes explicit spend approval gates before launching paid GPU instances and produces canonical deployment records for reproducibility and cost auditing.",
