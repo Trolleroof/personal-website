@@ -1,8 +1,15 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Project } from '@/lib/data';
 import { PROFILE } from '@/lib/data';
+import {
+  findProjectBySlug,
+  parseProjectDetailHash,
+  projectDetailHash,
+  projectSlug,
+  scrollToProjectsSection,
+} from '@/lib/project-slugs';
 import ProjectDetailModal from '@/components/ProjectDetailModal';
 
 function ProjectRow({
@@ -10,11 +17,12 @@ function ProjectRow({
   onOpen,
 }: {
   project: Project;
-  onOpen: (p: Project, opener: HTMLElement) => void;
+  onOpen: (p: Project, opener: HTMLElement | null) => void;
 }) {
   const d = project.detail;
   const expandable = Boolean(d);
   const awardLabel = d?.award;
+  const slug = expandable ? projectSlug(project.name) : undefined;
   const openFrom = (opener: HTMLElement) => {
     if (expandable) onOpen(project, opener);
   };
@@ -25,6 +33,7 @@ function ProjectRow({
 
   return (
     <div
+      id={slug ? `project-${slug}` : undefined}
       className={`project-item${expandable ? ' project-item--interactive' : ''}`}
       role={expandable ? 'button' : undefined}
       tabIndex={expandable ? 0 : undefined}
@@ -96,18 +105,56 @@ export default function ProjectList() {
   const [modalProject, setModalProject] = useState<Project | null>(null);
   const modalOpenerRef = useRef<HTMLElement | null>(null);
 
-  const openProject = (project: Project, opener: HTMLElement) => {
+  const openProject = useCallback((project: Project, opener: HTMLElement | null) => {
+    if (!project.detail) return;
     modalOpenerRef.current = opener;
     setModalProject(project);
-  };
 
-  const closeProject = () => {
+    const hash = projectDetailHash(projectSlug(project.name));
+    if (window.location.hash !== hash) {
+      window.history.pushState({ projectModal: projectSlug(project.name) }, '', hash);
+    }
+    scrollToProjectsSection();
+  }, []);
+
+  const closeProject = useCallback(() => {
     setModalProject(null);
     requestAnimationFrame(() => {
       modalOpenerRef.current?.focus();
       modalOpenerRef.current = null;
     });
-  };
+
+    if (parseProjectDetailHash(window.location.hash)) {
+      window.history.replaceState(null, '', '#projects');
+    }
+  }, []);
+
+  const syncModalFromHash = useCallback(() => {
+    const slug = parseProjectDetailHash(window.location.hash);
+    if (!slug) {
+      setModalProject(null);
+      return;
+    }
+
+    const project = findProjectBySlug(slug);
+    if (project) {
+      setModalProject(project);
+      scrollToProjectsSection();
+      return;
+    }
+
+    setModalProject(null);
+  }, []);
+
+  useEffect(() => {
+    syncModalFromHash();
+    window.addEventListener('hashchange', syncModalFromHash);
+    window.addEventListener('popstate', syncModalFromHash);
+    return () => {
+      window.removeEventListener('hashchange', syncModalFromHash);
+      window.removeEventListener('popstate', syncModalFromHash);
+    };
+  }, [syncModalFromHash]);
 
   return (
     <>
