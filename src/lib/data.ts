@@ -366,6 +366,25 @@ export const PROFILE: ProfileData = {
       },
     },
     {
+      name: "Motion",
+      desc: "Crowdsourced marketplace for robot training data. Contributors record industrial motions via their phone, and an automated verification pipeline (Gemma 4 VLM + Kimi K2 decision agent) scores and mints verified clips to a dataset marketplace. Built @ Stanford × DeepMind Hackathon.",
+      tags: ["Next.js", "Express", "Gemma 4", "Kimi K2", "MediaPipe", "Google Cloud Run"],
+      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/Motion-StanfordDeepMind" }],
+      detail: {
+        hook: "Crowdsource robot training data—record a motion clip with your phone, get verified by AI, and see it sold on the marketplace.",
+        overview:
+          "Motion is a crowdsourced marketplace for robot training data built at the Stanford × DeepMind Hackathon. Contributors record 30-second industrial manipulation clips (pick & place, valve turns, box stacking) using their webcam with live MediaPipe skeleton overlay. Each submission runs through an automated multi-agent verification pipeline: Gemma 4 analyzes video semantics (task match, hand visibility, motion completeness), and Kimi K2 acts as a decision agent that either approves the clip (assigns price tier and mints to marketplace) or requests re-recording with actionable feedback. Approved clips are bundled with pose JSON, quality scores, and metadata thats ready for robotics companies building physical AI models. The platform replaces traditional data collection with real-world, incentive-driven motion data.",
+        highlights: [
+          "Live MediaPipe skeleton overlay during recording; instant pose confidence + motion variety scoring.",
+          "Gemma 4 VLM analyzes each clip for task match, object interaction, and motion quality; returns structured JSON.",
+          "Kimi K2 decision agent approves or rejects with tool calling—clips below quality threshold get specific feedback.",
+          "Approved clips mint to marketplace with composite quality score, price tier ($0.50–$4.00), and downloadable dataset bundle.",
+          "Dataset export compatible with LeRobot and Open X-Embodiment robotics frameworks.",
+        ],
+        videoEmbedUrl: "", // TODO: Add YouTube video link
+      },
+    },
+    {
       name: "CaféCode",
       desc: "Cafecode: an AI coding tutor and browser-native project builder. Next.js, Monaco, WebContainer, Supabase, WebSockets, Gemini, Stripe, and an Express/Fly.io backend give learners a full coding workspace while keeping them in control of what they build.",
       tags: ["Next.js", "Monaco", "WebContainer", "Express", "Node", "Supabase"],
