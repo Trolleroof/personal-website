@@ -3,6 +3,8 @@
 export interface ProjectGalleryImage {
   src: string;
   alt: string;
+  /** Enlarge this slide in the carousel — `strong` zooms more than default. */
+  emphasize?: boolean | 'strong';
 }
 
 /** Rich copy + media shown in the project popup. */
@@ -212,7 +214,6 @@ export const PROFILE: ProfileData = {
         { name: "MediaPipe" },
         { name: "YOLOv8" },
         { name: "OpenCV" },
-        { name: "PPO" },
         { name: "Reinforcement Learning" },
       ],
     },
@@ -226,8 +227,6 @@ export const PROFILE: ProfileData = {
         { name: "Docker" },
         { name: "Git & GitHub" },
         { name: "ESLint" },
-        { name: "Prettier" },
-        { name: "Agile / hackathons" },
       ],
     },
   ],
@@ -243,10 +242,10 @@ export const PROFILE: ProfileData = {
         overview:
           "SODIUM is an AI-powered voice-first assistant designed for aging in place: a lightweight system that listens for wake words, understands natural speech, handles everyday tasks, and reports to caregivers. The frontend runs on Svelte 5 with Bun runtime, keeping the system responsive and efficient. The bot component detects wake words and routes requests through a natural language processor, while the caregiver dashboard provides real-time visibility into the senior's interactions, medication reminders, and any detected distress signals.",
         highlights: [
-          "Voice-activated interaction eliminates navigation complexity for seniors while giving caregivers transparency into what was asked and attempted.",
-          "Wake-word detection and lightweight Python bot component keeps the system responsive without heavy server dependencies.",
-          "Modular Svelte 5 + Bun frontend supports both the in-home robot interface and the caregiver monitoring dashboard from the same codebase.",
-          "Integrated medication reminders, routine prompts, and crisis detection flags bridge monitoring and response into a single interface.",
+          "Seniors use voice instead of menus; caregivers see what was said and what the system tried to do.",
+          "Wake-word detection plus a lightweight Python bot keeps replies fast without a heavy backend.",
+          "One Svelte 5 + Bun app powers both the in-home robot screen and the caregiver dashboard.",
+          "Medication reminders, daily prompts, and crisis alerts share one interface.",
         ],
         videoFileUrl: "/projects/sodium/SODIUMmp4.mp4",
         galleryImages: [
@@ -268,10 +267,10 @@ export const PROFILE: ProfileData = {
         overview:
           "End-to-end lab for a 2D navigation sim: FastAPI orchestrates the complete ML workflow—querying narrative memory (Nia) *before* training to incorporate prior lessons, training PPO agents against a random baseline, generating metrics and rollout GIFs, and producing a canonical RunReport that serves as the single source of truth. The same report flows to email (AgentMail), Slack, memory storage, and the Next.js dashboard. MCP tools enable external agents to drive the entire workflow autonomously.",
         highlights: [
-          "Intelligent memory layer: queries Nia before training to build on learned lessons, then writes post-run summaries back for future reference and curriculum building.",
-          "Unified RunReport object: serves dashboard, email, memory, and agent-driven tools—no duplicate state, no integration glue.",
-          "Complete artifact lifecycle: each run stores metadata, config snapshots, trained models, eval metrics, GIFs, and structured logs under versioned directories.",
-          "MCP-driven automation: agents can launch runs, compare results, derive curriculum recommendations, and surface insights without human-in-the-loop.",
+          "Reads past lessons from Nia before training, then saves a summary after each run for the next one.",
+          "One RunReport object feeds the dashboard, email, memory, and agent tools—no duplicate state.",
+          "Each run stores configs, models, metrics, rollout GIFs, and logs in a versioned folder.",
+          "MCP tools let agents start runs, compare results, and suggest what to train next.",
         ],
         galleryImages: [
           {
@@ -308,9 +307,9 @@ export const PROFILE: ProfileData = {
         overview:
           "Our team built this for the Transpose VC × compiled-5 hackathon series at UC San Diego. We shipped a dispatcher-facing web console that turns helmet rigs and incoming body-cam feeds into live VSLAM-style mapping, plus an agent layer that helps interpret radio traffic and surface events and hazards inside one unified command center. The stack is a Next.js frontend with ROS 2 packages for Odin hardware integration, SLAM cloud accumulation, and WebSockets that stream mapping and camera data to the UI in real time. The radio/event agent runs on Cerebras for low-latency inference.",
         highlights: [
-          "Frontend spans dispatcher (`/dispatcher`) and firefighter (`/firefighter`) modes with multi-unit viewports, a central Three.js point-cloud map, blueprint search, and radio / transcript UX.",
-          "ROS 2 workspace includes the Odin driver for depth / point cloud pipelines and a SLAM cloud accumulator that streams live mapping data into the web stack via WebSocket.",
-          "WebSocket contracts keep camera, SLAM, and UI state flowing through a narrow interface, letting operators coordinate multiple units and stay grounded in a shared tactical picture.",
+          "Dispatcher and firefighter views in one Next.js app: live video tiles, a Three.js point-cloud map, floor-plan search, and radio transcripts.",
+          "ROS 2 reads depth and point clouds from Odin helmets and streams SLAM maps to the browser over WebSockets.",
+          "One WebSocket API syncs cameras, maps, and UI so multiple units share the same tactical picture.",
         ],
         videoEmbedUrl: "https://www.youtube.com/embed/rzGtTom3oS8",
       },
@@ -329,15 +328,16 @@ export const PROFILE: ProfileData = {
         overview:
           "A GPU workload routing platform that turns natural language into optimized deployments: describe your model and workload, and Crucible searches across NVIDIA, AMD, TPU, Intel Gaudi, and Apple Silicon capacity to find the cheapest, fastest placement. The system normalizes hardware inventory across local Docker, Kubernetes clusters, and cloud providers (RunPod, Lambda Cloud, CoreWeave, Vultr, Vast), benchmarks candidate placements in real time, and routes inference through a unified OpenAI-compatible gateway. Built on Python with SQLite state management, it includes explicit spend approval gates before launching paid GPU instances and produces canonical deployment records for reproducibility and cost auditing.",
         highlights: [
-          "Provider broker maintains a live catalog of seeded hardware capacity across RunPod, Lambda Cloud, CoreWeave, plus direct Vast and Vultr price/availability adapters for cost-aware routing.",
-          "Verified benchmark records feed real placement decisions: every deployment includes cost estimates, performance explanations, and hardware rationale instead of black-box routing.",
-          "Natural-language planning enables conversational deployment recommendations through Claude/Cursor, with explicit approval gates before launching paid GPU instances.",
-          "Complete artifact tracking: each deployment stores metadata, execution logs, performance metrics, and cost records under versioned directories for analysis and curriculum building.",
+          "Live GPU catalog across RunPod, Lambda, CoreWeave, Vast, and Vultr to pick the cheapest viable option.",
+          "Benchmarks drive placement—each plan shows cost, speed, and why that hardware was chosen.",
+          "Describe the job in plain English; paid GPU launches wait for your approval.",
+          "Every deployment logs config, runs, metrics, and cost in versioned records.",
         ],
         galleryImages: [
           {
             src: "/projects/crucible-compute/landing.png",
             alt: "Crucible Compute landing page showing the private GPU deployment backend workflow",
+            emphasize: true,
           },
           {
             src: "/projects/crucible-compute/dashboard.png",
@@ -346,14 +346,17 @@ export const PROFILE: ProfileData = {
           {
             src: "/projects/crucible-compute/deploy.png",
             alt: "Crucible Compute new deployment planner with model, objective, and plan preview controls",
+            emphasize: 'strong',
           },
           {
             src: "/projects/crucible-compute/providers.png",
             alt: "Crucible Compute provider status table showing GPU cloud capabilities and missing credentials",
+            emphasize: 'strong',
           },
           {
             src: "/projects/crucible-compute/context.png",
             alt: "Crucible Compute context page showing Nia evidence hits, source coverage, and cited deployment context",
+            emphasize: true,
           },
           {
             src: "/projects/crucible-compute/agent-access.png",
@@ -365,17 +368,17 @@ export const PROFILE: ProfileData = {
     {
       name: "CaféCode",
       desc: "Cafecode: an AI coding tutor and browser-native project builder. Next.js, Monaco, WebContainer, Supabase, WebSockets, Gemini, Stripe, and an Express/Fly.io backend give learners a full coding workspace while keeping them in control of what they build.",
-      tags: ["Next.js", "Monaco", "WebContainer", "Gemini AI", "Supabase"],
+      tags: ["Next.js", "Monaco", "WebContainer", "Express", "Node", "Supabase"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/cafecode" }],
       detail: {
         hook: "Browser-native dev box: edit, run Python, ask the model, without leaving the tab.",
         overview:
           "Cafecode is a full-stack AI coding tutor for building real projects while understanding the code. The frontend uses Next.js, TypeScript, Tailwind, shadcn/ui, Monaco, and WebContainer for a VS Code-like editor, terminal, npm installs, file operations, and browser-native execution. The Express backend coordinates AI orchestration, workspace management, Stripe payments, file sync, and Supabase-backed auth.",
         highlights: [
-          "Core experience: Brewster as your coding companion, smart fixes with real-time analysis, an instant in-browser runner for many languages with zero install, and roadmap mentor tooling (including Gabby).",
-          "WebContainer moved the terminal and file system into the browser, reducing server load while preserving live terminals, package installs, and workspace operations.",
-          "Gemini assistance stays project-aware: guided project creation, context-aware hints, code fixes, and step discussion beside the editor.",
-          "Supabase row-level security, WebSocket sync, Helmet/CORS/rate limits, and Dockerized Fly.io services make the workspace model feel closer to a real product than a static demo.",
+          "Brewster guides you with hints, fixes, in-browser run, and step-by-step setup—no local install.",
+          "WebContainer runs the terminal and files in the browser, so npm install and edits stay fast with less server load.",
+          "Gemini reads your project for creation, fixes, and chat right beside the Monaco editor.",
+          "Supabase auth, WebSocket sync, rate limits, and Fly.io deploy back a real multi-user workspace.",
         ],
         videoEmbedUrl: "https://www.youtube.com/embed/0IPA8BSmDp8",
         galleryImages: [
@@ -385,7 +388,7 @@ export const PROFILE: ProfileData = {
           },
           {
             src: "/projects/cafecode/core-features.png",
-            alt: "Core Features grid — Brewster AI assistant, smart code fixes, instant runner, and Gabby virtual mentor",
+            alt: "Core Features grid — Brewster AI assistant, smart code fixes, built-in compiler, web viewer, intelligent project guidance",
           },
           {
             src: "/projects/cafecode/project-brewer-ide.png",
@@ -446,7 +449,7 @@ export const PROFILE: ProfileData = {
       organization: "Self-employed · San Francisco Bay Area · On-site",
       date: "Mar 2023 - Jun 2025",
       logo: {
-        src: "/org-logos/soloscale.svg",
+        src: "/org-logos/soloscale.png",
         alt: "SoloScale Solutions logo",
       },
       desc: "Founded a consulting agency that helped small, local businesses implement AI automations and technology to increase inbound leads, handle customer service, and automate mundane tasks. Served 10+ businesses and nonprofits over the course of the business - learned a ton.",

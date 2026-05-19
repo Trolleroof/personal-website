@@ -105,7 +105,19 @@ function ProjectMediaCarousel({ title, videoEmbedUrl, videoFileUrl, images }: Me
               </figure>
             ) : null}
             {images.map((img) => (
-              <figure key={`${title}-${img.src}`} className="proj-modal-carousel-slide">
+              <figure
+                key={`${title}-${img.src}`}
+                className={[
+                  'proj-modal-carousel-slide',
+                  img.emphasize === 'strong'
+                    ? 'proj-modal-carousel-slide--emphasized-strong'
+                    : img.emphasize
+                      ? 'proj-modal-carousel-slide--emphasized'
+                      : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              >
                 <img src={img.src} alt={img.alt} className="proj-modal-carousel-img" loading="lazy" />
               </figure>
             ))}
@@ -272,9 +284,9 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
             <div className="proj-detail-body">
               <p id={descriptionId} className="proj-detail-overview">{detail.overview}</p>
 
-              <section className="proj-detail-section" aria-labelledby={`${titleId}-stack`}>
-                <h3 id={`${titleId}-stack`} className="proj-detail-h">
-                  Tech stack
+              <section className="proj-detail-section" aria-labelledby={`${titleId}-tech-used`}>
+                <h3 id={`${titleId}-tech-used`} className="proj-detail-h">
+                  Tech used
                 </h3>
                 <ul className="proj-detail-tags-inline">
                   {project.tags.map((t) => (

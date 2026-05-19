@@ -946,6 +946,19 @@ a:hover { color: var(--pink); }
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.proj-modal-carousel-slide--emphasized .proj-modal-carousel-img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.proj-modal-carousel-slide--emphasized-strong .proj-modal-carousel-img {
+  object-fit: cover;
+  object-position: top center;
+  transform: scale(1.28);
+  transform-origin: top center;
 }
 
 .proj-modal-carousel-img {
