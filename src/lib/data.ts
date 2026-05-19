@@ -381,7 +381,7 @@ export const PROFILE: ProfileData = {
           "Approved clips mint to marketplace with composite quality score, price tier ($0.50–$4.00), and downloadable dataset bundle.",
           "Dataset export compatible with LeRobot and Open X-Embodiment robotics frameworks.",
         ],
-        videoEmbedUrl: "", // TODO: Add YouTube video link
+        videoFileUrl: "/projects/motion/linkedin-video.mp4",
       },
     },
     {
