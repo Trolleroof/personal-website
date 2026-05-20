@@ -103,7 +103,7 @@ export interface ProfileData {
   resumeUrl: string;
   /** Long screenshot of the resume for the modal viewer. */
   resumePreviewUrl: string;
-  /** Portrait profile photo in /public (profile-avatar.png). */
+  /** Square headshot in /public (e.g. profile-avatar.png). */
   avatarUrl: string;
   name: string;
   handle: string;
