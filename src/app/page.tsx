@@ -8,7 +8,6 @@ import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import Publications from '@/components/Publications';
-import Guestbook from '@/components/Guestbook';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -29,7 +28,6 @@ export default function Home() {
           <Experience />
           <Publications />
           <Skills />
-          <Guestbook />
           <Contact />
         </div>
       </div>

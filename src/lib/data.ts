@@ -11,6 +11,8 @@ export interface ProjectGalleryImage {
 export interface ProjectDetail {
   /** Hackathon placement, prize, or recognition - shown in list + at top of popup with medal when set. */
   award?: string;
+  /** Red "Featured" badge on the project card (auto-hides after a few seconds). */
+  featured?: boolean;
   /** One-line lead above the overview. */
   hook?: string;
   /** Deeper story: problem, what you built, outcome. */
@@ -52,12 +54,6 @@ export interface Publication {
   description: string;
   url: string;
   isPeerReviewed?: boolean;
-}
-
-export interface GuestbookMsg {
-  from: string;
-  date: string;
-  text: string;
 }
 
 export interface SkillCat {
@@ -119,7 +115,6 @@ export interface ProfileData {
   projects: Project[];
   experience: Experience[];
   publications: Publication[];
-  guestbook: GuestbookMsg[];
   contact: ContactLink[];
   sidebarQuote: SidebarQuoteData;
   visitorCount: string;
@@ -232,9 +227,28 @@ export const PROFILE: ProfileData = {
   ],
   projects: [
     {
+      name: "Battle Angel",
+      desc: "Rescue mission control for simulated disaster response. PPO training on eight MuJoCo simulation environments, Gemini environment generation, and a language-driven console with live rollouts and GIF replay.",
+      tags: ["Next.js", "FastAPI", "MuJoCo", "PPO", "Gemini", "Three.js"],
+      links: [{ label: "GitHub", href: "https://github.com/aravindkrishna2008/disaster-rescue" }],
+      detail: {
+        featured: true,
+        hook: "Train in simulation, spin up new disaster scenes from language, then watch a PPO policy navigate environments it has never seen.",
+        overview:
+          "Battle Angel trains a Unitree G1 humanoid to reach survivors across simulated disaster environments. The Training Gym runs vectorized PPO on eight MuJoCo scenes, from earthquake corridors to buried-rubble triage. The Scene Generator turns plain-language disaster descriptions into new layouts with a Three.js preview. The Interactive Console is where you can see the policy perform in an unknown environment. You are able to set triage priorities in natural language, Gemini picks the target, and a trained policy executes a rollout in an unseen environment with live telemetry and GIF replay.",
+        highlights: [
+          "Training Gym: vectorized PPO on eight MuJoCo disaster scenes with parallel runs, learning curves, and rollout GIFs.",
+          "Scene Generator: plain-language descriptions become new disaster layouts with instant Three.js preview.",
+          "Interactive Console: natural-language triage drives a trained policy through environments it has never trained on, with live reach outcomes and GIF replay.",
+          "Unitree G1 humanoid in MuJoCo: 21D observations, locomotion assist, and reach-based success across visible and buried survivor scenarios.",
+        ],
+        videoEmbedUrl: "https://www.youtube.com/embed/QL_UhVSLMKc",
+      },
+    },
+    {
       name: "SODIUM",
       desc: "Voice-first AI companion for senior care: an autonomous robot with natural speech interaction, wake-word detection, medication reminders, crisis detection, and a caregiver monitoring dashboard. Frontend built with Svelte 5 and Bun runtime for a lightweight, responsive experience.",
-      tags: ["Svelte 5", "Bun", "TypeScript", "Python", "Voice AI"],
+      tags: ["ROS 2", "Bun", "TypeScript", "Python", "Embedded Systems"],
       links: [{ label: "GitHub", href: "https://github.com/TheOutcastVirus/diamondhacks-2026" }],
       detail: {
         award: "1st Overall @ DiamondHacks 2026",
@@ -492,7 +506,6 @@ export const PROFILE: ProfileData = {
       description: "Foot drop, a condition that impairs foot mobility due to weakened dorsiflexor muscles, increases the risk of falls and unstable gait. This study investigates the use of electromyography (EMG) signals from functional muscles to control assistive devices for individuals with foot drop, focusing on optimal sensor placement for accurate signal acquisition. Using Arduino-based hardware and MATLAB algorithms, EMG signals were recorded from targeted muscles during controlled ankle movements, with Butterworth filtering and smoothing applied to enhance signal clarity. A 3D virtual actuation model demonstrated real-time control of object movements based on EMG data, achieving a strong correlation (R = 0.968) between EMG amplitude and actuator precision. These results suggest that accurate EMG-based control is feasible for developing effective assistive devices, improving mobility in individuals with foot drop.",
     },
   ],
-  guestbook: [],
   contact: [
     { icon: "github", label: "GitHub", href: "https://github.com/Trolleroof" },
     { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/nikprabhu1/" },

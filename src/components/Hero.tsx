@@ -78,9 +78,6 @@ const Hero: React.FC = () => {
           <a href="#contact" className="hms-btn-trio">
             contact
           </a>
-          <a href="#guestbook" className="hms-btn-trio" title="Friend comments">
-            chat
-          </a>
           <button type="button" className="hms-btn-trio" onClick={openResume}>
             resume
           </button>
