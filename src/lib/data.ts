@@ -149,9 +149,10 @@ export const PROFILE: ProfileData = {
     { label: "Values", value: "Family, Faith, Hard Work" },
     {
       label: "Hackathons",
-      lead: "9 wins",
+      lead: "10 wins",
       chips: [
         "Amazon",
+        "Bow Capital",
         "GitHub",
         "MemVerge",
         "Transpose VC",
@@ -170,7 +171,7 @@ export const PROFILE: ProfileData = {
     { label: "running a business", icon: "business" },
     { label: "building software", icon: "code" },
   ],
-  bioOutro: "the goal in life is to conquer high peaks that reward iteration, fullfillment, and relentless improvement without brute-forcing in the wrong direction.",
+  bioOutro: "the goal in life is to conquer high peaks that reward iteration, fulfillment, and relentless improvement without brute-forcing in the wrong direction.",
   interests: [
     { label: "Basketball", icon: "basketball", value: "Dub Nation first. I love the pace, spacing, and constant reps that make basketball feel like live problem solving." },
     { label: "Video games", icon: "gamepad", value: "I grew up on games that reward mechanics, systems thinking, and getting better one run at a time." },
@@ -227,22 +228,25 @@ export const PROFILE: ProfileData = {
   ],
   projects: [
     {
-      name: "Battle Angel",
-      desc: "Rescue mission control for simulated disaster response. PPO training on eight MuJoCo simulation environments, Gemini environment generation, and a language-driven console with live rollouts and GIF replay.",
-      tags: ["Next.js", "FastAPI", "MuJoCo", "PPO", "Gemini", "Three.js"],
-      links: [{ label: "GitHub", href: "https://github.com/aravindkrishna2008/disaster-rescue" }],
+      name: "DroneOS",
+      desc: "End-to-end autonomous drone platform that identifies targets, navigates without GPS, and coordinates swarm behavior without communication — built by team Outcast Virus and awarded 1st Overall at the Bow Capital × DS3 × SIC hackathon at UC San Diego.",
+      tags: ["Swarm RL", "Behavioral Cloning", "MAPPO", "YOLOX", "Norfair", "SLAM", "Visual Odometry", "3D Gaussian Splatting"],
+      links: [
+        { label: "Devpost", href: "https://devpost.com/software/outcast-virus" },
+        { label: "GitHub", href: "https://github.com/Trolleroof/bow-capital-hackathon" },
+      ],
       detail: {
+        award: "1st Overall @ Bow Capital × DS3 × SIC Hackathon",
         featured: true,
-        hook: "Train in simulation, spin up new disaster scenes from language, then watch a PPO policy navigate environments it has never seen.",
+        hook: "An operating system for drones to run in swarms autonomously on edge devices — no WiFi, no GPS, no comms.",
         overview:
-          "Battle Angel trains a Unitree G1 humanoid to reach survivors across simulated disaster environments. The Training Gym runs vectorized PPO on eight MuJoCo scenes, from earthquake corridors to buried-rubble triage. The Scene Generator turns plain-language disaster descriptions into new layouts with a Three.js preview. The Interactive Console is where you can see the policy perform in an unknown environment. You are able to set triage priorities in natural language, Gemini picks the target, and a trained policy executes a rollout in an unseen environment with live telemetry and GIF replay.",
+          "DroneOS is an end-to-end autonomous drone platform that can identify targets, navigate without GPS, and coordinate swarm behavior without explicit communication. For perception, we run real-time multi-object detection with YOLOX and track identities over time with Norfair so targets can be re-acquired even after leaving the frame. For onboard autonomy, the stack couples a SLAM pipeline (visual odometry + mapping) with a geo-referenced 3D reconstruction using Gaussian Splatting. For swarm behavior, we trained policies using behavioral cloning + MAPPO so drones can move together and complete tasks without having to rely on GPS or communications that could get jammed.",
         highlights: [
-          "Training Gym: vectorized PPO on eight MuJoCo disaster scenes with parallel runs, learning curves, and rollout GIFs.",
-          "Scene Generator: plain-language descriptions become new disaster layouts with instant Three.js preview.",
-          "Interactive Console: natural-language triage drives a trained policy through environments it has never trained on, with live reach outcomes and GIF replay.",
-          "Unitree G1 humanoid in MuJoCo: 21D observations, locomotion assist, and reach-based success across visible and buried survivor scenarios.",
+          "RL Swarms: behavioral cloning + MAPPO to learn coordination and task completion without communication.",
+          "YOLOX + Norfair tracking: real-time detection + multi-object tracking that re-identifies targets after occlusion/out-of-frame.",
+          "Friend-or-Foe classification: on-device labeling of detected entities as friendly or hostile.",
+          "Autonomous localization + mapping: GPS-denied pose tracking via SLAM with geo-referenced 3D maps via Gaussian Splatting.",
         ],
-        videoEmbedUrl: "https://www.youtube.com/embed/QL_UhVSLMKc",
       },
     },
     {
@@ -377,6 +381,25 @@ export const PROFILE: ProfileData = {
             alt: "Crucible Compute agent access page showing MCP server, API token, and CLI configuration",
           },
         ],
+      },
+    },
+    {
+      name: "Battle Angel",
+      desc: "Rescue mission control for simulated disaster response. PPO training on eight MuJoCo simulation environments, Gemini environment generation, and a language-driven console with live rollouts and GIF replay.",
+      tags: ["Next.js", "FastAPI", "MuJoCo", "PPO", "Gemini", "Three.js"],
+      links: [{ label: "GitHub", href: "https://github.com/aravindkrishna2008/disaster-rescue" }],
+      detail: {
+        featured: true,
+        hook: "Train in simulation, spin up new disaster scenes from language, then watch a PPO policy navigate environments it has never seen.",
+        overview:
+          "Battle Angel trains a Unitree G1 humanoid to reach survivors across simulated disaster environments. The Training Gym runs vectorized PPO on eight MuJoCo scenes, from earthquake corridors to buried-rubble triage. The Scene Generator turns plain-language disaster descriptions into new layouts with a Three.js preview. The Interactive Console is where you can see the policy perform in an unknown environment. You are able to set triage priorities in natural language, Gemini picks the target, and a trained policy executes a rollout in an unseen environment with live telemetry and GIF replay.",
+        highlights: [
+          "Training Gym: vectorized PPO on eight MuJoCo disaster scenes with parallel runs, learning curves, and rollout GIFs.",
+          "Scene Generator: plain-language descriptions become new disaster layouts with instant Three.js preview.",
+          "Interactive Console: natural-language triage drives a trained policy through environments it has never trained on, with live reach outcomes and GIF replay.",
+          "Unitree G1 humanoid in MuJoCo: 21D observations, locomotion assist, and reach-based success across visible and buried survivor scenarios.",
+        ],
+        videoEmbedUrl: "https://www.youtube.com/embed/QL_UhVSLMKc",
       },
     },
     {
