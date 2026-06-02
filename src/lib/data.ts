@@ -139,9 +139,9 @@ export const PROFILE: ProfileData = {
     {
       label: "Focus",
       bullets: [
-        "Desktop assistants",
-        "RL at scale",
-        "Spatial / robotics interfaces",
+        "Robotics",
+        "RL & policy at scale",
+        "Spatial interfaces",
       ],
     },
     { label: "Recently", value: "Founder / Desktop Agent Developer @ Clue2" },
@@ -210,7 +210,7 @@ export const PROFILE: ProfileData = {
         { name: "MediaPipe" },
         { name: "YOLOv8" },
         { name: "OpenCV" },
-        { name: "Reinforcement Learning" },
+        { name: "Gymnasium" },
       ],
     },
     {
@@ -247,6 +247,7 @@ export const PROFILE: ProfileData = {
           "Friend-or-Foe classification: on-device labeling of detected entities as friendly or hostile.",
           "Autonomous localization + mapping: GPS-denied pose tracking via SLAM with geo-referenced 3D maps via Gaussian Splatting.",
         ],
+        videoFileUrl: "/projects/droneos/combatos-demo.mp4",
       },
     },
     {

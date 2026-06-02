@@ -27,7 +27,7 @@ body {
   animation: pageGlow 18s ease-in-out infinite;
   color: var(--text);
   font-family: var(--sans);
-  font-size: 21px;
+  font-size: clamp(16px, 2.1vw, 21px);
   line-height: 1.55;
   min-height: 100vh;
   overflow-x: hidden;
@@ -525,6 +525,17 @@ a:hover { color: var(--pink); }
   gap: 0;
   position: relative;
   transition: background 0.1s, transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+/* Prevent long strings/URLs from causing horizontal scroll on mobile */
+.hms-body,
+.project-desc,
+.proj-modal-copy,
+.proj-modal-highlights li,
+.exp-desc,
+.pub-desc {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .project-item:last-child { border-bottom: none; }
 
