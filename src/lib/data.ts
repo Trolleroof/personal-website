@@ -11,8 +11,6 @@ export interface ProjectGalleryImage {
 export interface ProjectDetail {
   /** Hackathon placement, prize, or recognition - shown in list + at top of popup with medal when set. */
   award?: string;
-  /** Red "Featured" badge on the project card (auto-hides after a few seconds). */
-  featured?: boolean;
   /** One-line lead above the overview. */
   hook?: string;
   /** Deeper story: problem, what you built, outcome. */
@@ -237,7 +235,6 @@ export const PROFILE: ProfileData = {
       ],
       detail: {
         award: "1st Overall @ Bow Capital × DS3 × SIC Hackathon",
-        featured: true,
         hook: "An operating system for drones to run in swarms autonomously on edge devices — no WiFi, no GPS, no comms.",
         overview:
           "DroneOS is an end-to-end autonomous drone platform that can identify targets, navigate without GPS, and coordinate swarm behavior without explicit communication. For perception, we run real-time multi-object detection with YOLOX and track identities over time with Norfair so targets can be re-acquired even after leaving the frame. For onboard autonomy, the stack couples a SLAM pipeline (visual odometry + mapping) with a geo-referenced 3D reconstruction using Gaussian Splatting. For swarm behavior, we trained policies using behavioral cloning + MAPPO so drones can move together and complete tasks without having to rely on GPS or communications that could get jammed.",
@@ -390,7 +387,6 @@ export const PROFILE: ProfileData = {
       tags: ["Next.js", "FastAPI", "MuJoCo", "PPO", "Gemini", "Three.js"],
       links: [{ label: "GitHub", href: "https://github.com/aravindkrishna2008/disaster-rescue" }],
       detail: {
-        featured: true,
         hook: "Train in simulation, spin up new disaster scenes from language, then watch a PPO policy navigate environments it has never seen.",
         overview:
           "Battle Angel trains a Unitree G1 humanoid to reach survivors across simulated disaster environments. The Training Gym runs vectorized PPO on eight MuJoCo scenes, from earthquake corridors to buried-rubble triage. The Scene Generator turns plain-language disaster descriptions into new layouts with a Three.js preview. The Interactive Console is where you can see the policy perform in an unknown environment. You are able to set triage priorities in natural language, Gemini picks the target, and a trained policy executes a rollout in an unseen environment with live telemetry and GIF replay.",

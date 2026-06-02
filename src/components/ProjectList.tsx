@@ -12,23 +12,6 @@ import {
 } from '@/lib/project-slugs';
 import ProjectDetailModal from '@/components/ProjectDetailModal';
 
-function FeaturedBadge() {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setVisible(false), 4000);
-    return () => window.clearTimeout(timer);
-  }, []);
-
-  if (!visible) return null;
-
-  return (
-    <p className="project-item-featured" aria-label="Featured project">
-      Featured
-    </p>
-  );
-}
-
 function ProjectRow({
   project,
   onOpen,
@@ -39,14 +22,13 @@ function ProjectRow({
   const d = project.detail;
   const expandable = Boolean(d);
   const awardLabel = d?.award;
-  const isFeatured = Boolean(d?.featured);
   const slug = expandable ? projectSlug(project.name) : undefined;
   const openFrom = (opener: HTMLElement) => {
     if (expandable) onOpen(project, opener);
   };
 
   const detailsAriaLabel = expandable
-    ? `${project.name}${isFeatured ? ' — Featured' : ''}${awardLabel ? ` — ${awardLabel}` : ''}. View project details.`
+    ? `${project.name}${awardLabel ? ` — ${awardLabel}` : ''}. View project details.`
     : undefined;
 
   return (
@@ -83,7 +65,6 @@ function ProjectRow({
               </span>
             ) : null}
           </div>
-          {isFeatured ? <FeaturedBadge /> : null}
           {awardLabel ? (
             <p className="project-item-award">
               <span className="project-item-award-icon" aria-hidden>
