@@ -19,7 +19,7 @@ const ProfileCard: React.FC = () => {
           priority
         />
       </div>
-      <div className="profile-name cursor">{PROFILE.name}</div>
+      <div className="profile-name">{PROFILE.name}</div>
       <div className="profile-handle">{PROFILE.handle}</div>
       <div className="deco-line" style={{ margin: "0 12px" }}></div>
       <div className="profile-status">
