@@ -1,0 +1,102 @@
+\input{preamble.tex}
+\input{resume-spacing.tex}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large \scshape Nikhil Prabhu} \\ \vspace{1pt}
+    \small (925) 819-4040 $|$ \href{mailto:nikhilprabhu06@gmail.com}{\underline{nikhilprabhu06@gmail.com}} $|$ 
+    \href{https://www.linkedin.com/in/nikprabhu1/}{\underline{linkedin.com/in/nikprabhu1}} $|$
+    \href{https://github.com/Trolleroof}{\underline{github.com/Trolleroof}} $|$
+    \href{https://nikhilprabhu.tech}{\underline{nikhilprabhu.tech}}
+\end{center}
+\small
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, San Diego (UCSD)}{San Diego, CA}
+      {B.S. in Computer Science $|$ Cumulative GPA: 3.67}{Expected Graduation: June 2028}
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, nosep, topsep=2pt, itemsep=3pt, parsep=0pt]
+  \item \textbf{Languages:} Python, C++, TypeScript, JavaScript
+  \item \textbf{Robotics Infra:} ROS 2, MuJoCo, SLAM, visual odometry, embedded systems, real-time streaming pipelines
+  \item \textbf{Backend:} FastAPI, Node.js, Express, WebSockets, SQLite, Supabase, Docker, Kubernetes, Linux
+  \item \textbf{ML + Tooling:} PyTorch, PPO/MAPPO, OpenCV, YOLOX, Git, CI workflows, MCP tool servers
+\end{itemize}
+\vspace{-4pt}
+
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Desktop Agent Developer \& Founder --- UCSD Agent Development (Clue2)}{San Diego, CA}
+      {Mentored by Prof. Ramamohan Paturi}{Jan 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Architected a cross-platform Electron + TypeScript desktop agent with real-time meeting transcription, WebSocket streaming, dual-channel capture, buffering, and fault-tolerant session management.}
+        \resumeItem{Built an LLM workflow engine across Gmail, Calendar, Docs, Sheets, Slack, Notion, and 7+ services; scaled beta to 40+ users with YC-startup adoption.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Undergraduate Research Assistant --- AI for Circuit Invention, UCSD}{San Diego, CA}
+      {Research Assistant (with Prof. Prasad Gudem \& Samvid AI)}{March 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Built infrastructure connecting LLM APIs to Cadence simulation tools, automating generate-simulate-evaluate loops and parsing Spectre output into structured benchmarks for RL design-space search.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lead Researcher --- Foot Drop Ankle-Foot Orthosis (Georgia Tech mmWave Lab)}{Atlanta, GA}
+      {IEEE ICHCI 2024 Presenter}{May 2024 -- Nov 2024}
+      \resumeItemListStart
+        \resumeItem{Built the embedded sensing + actuation stack for a 3D-printed EMG-driven orthosis (R = 0.968 correlation, 23\% gait precision gain); first-author paper at IEEE ICHCI 2024.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Robotics Projects}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {SODIUM --- In-Home Care Robot}{}
+      {1st Overall, DiamondHacks 2026}{April 2026}
+      \resumeItemListStart
+        \resumeItem{Built a ROS 2 robot stack with wake-word detection, NL task routing, medication reminders, and crisis detection --- embedded on-device software with a cloud caregiver control loop.}
+        \resumeItem{Shipped a lightweight Svelte 5 / Bun frontend powering both the in-home robot UI and the operator dashboard over real-time WebSocket sync.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {DroneOS}{}
+      {1st Overall, Bow Capital $\times$ DS3 $\times$ SIC Hackathon (UCSD)}{2026}
+      \resumeItemListStart
+        \resumeItem{Built edge autonomy integrating SLAM, visual odometry, and YOLOX + Norfair perception for GPS-denied navigation; trained MAPPO swarm policies validated in simulation before deployment.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Battle Angel --- MuJoCo Simulation Infrastructure}{}
+      {Google Gemini 3.5 Hackathon}{2026}
+      \resumeItemListStart
+        \resumeItem{Built a PPO training + evaluation harness over eight MuJoCo environments with a FastAPI backend, vectorized rollouts, GIF replay, and Gemini-generated disaster scene layouts.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Crucible Compute --- Containerized Inference Control Plane}{}
+      {5th Place, Nozomio Hackathon}{2026}
+      \resumeItemListStart
+        \resumeItem{Built a GPU routing control plane across Docker, Kubernetes, Vultr, and Vast with spend-approval gates and an OpenAI-compatible inference gateway.}
+        \resumeItem{Benchmarked cost/performance placements in real time and exposed MCP tools so agents can deploy workloads autonomously across cloud GPU providers.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Publications}
+  \resumeItemListStart
+    \resumeItem{\textbf{Real-Time EMG Control for Assistive Devices} --- IEEE ICHCI 2024.}
+    \resumeItem{\textbf{Co-Heritability of Antibiotic Resistance in TB Evolution} --- Bioinformatics \& Biomedical Technology, 2025.}
+  \resumeItemListEnd
+
+\end{document}

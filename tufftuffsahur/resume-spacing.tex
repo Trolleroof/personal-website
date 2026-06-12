@@ -1,0 +1,16 @@
+% Shared Jake-style spacing overrides for Nikhil Prabhu resumes.
+% Input after preamble.tex, before \begin{document}.
+% Reference: tufftuffsahur/RESUME_FORMATTING.md
+
+\renewcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+\renewcommand{\resumeItem}[1]{\item\small{#1}}
+\renewcommand{\resumeItemListStart}{%
+  \begin{itemize}[leftmargin=0.15in, label=\textbullet, topsep=2pt, itemsep=2pt, parsep=0pt, partopsep=0pt]%
+}
+\renewcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}

@@ -1,0 +1,103 @@
+\input{preamble.tex}
+\input{resume-spacing.tex}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large \scshape Nikhil Prabhu} \\ \vspace{1pt}
+    \small (925) 819-4040 $|$ \href{mailto:nikhilprabhu06@gmail.com}{\underline{nikhilprabhu06@gmail.com}} $|$ 
+    \href{https://www.linkedin.com/in/nikprabhu1/}{\underline{linkedin.com/in/nikprabhu1}} $|$
+    \href{https://github.com/Trolleroof}{\underline{github.com/Trolleroof}} $|$
+    \href{https://nikhilprabhu.tech}{\underline{nikhilprabhu.tech}}
+\end{center}
+\small
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, San Diego (UCSD)}{San Diego, CA}
+      {B.S. in Computer Science $|$ Cumulative GPA: 3.67}{Expected Graduation: June 2028}
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, nosep, topsep=2pt, itemsep=3pt, parsep=0pt]
+  \item \textbf{Languages:} Python, C++, TypeScript, JavaScript
+  \item \textbf{Deep Learning:} PyTorch, Gymnasium, vision-language pipelines, behavioral cloning, Gemini / VLM integration
+  \item \textbf{RL \& Policies:} PPO, MAPPO, reward design, sim-to-real, online rollout/eval loops, MCP agent tooling
+  \item \textbf{Robotics + Infra:} ROS 2, SLAM, visual odometry, MuJoCo manipulation sims, FastAPI, Docker, WebSockets
+\end{itemize}
+\vspace{-4pt}
+
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Undergraduate Research Assistant --- AI for Circuit Invention, UCSD}{San Diego, CA}
+      {Research Assistant (with Prof. Prasad Gudem \& Samvid AI)}{March 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Designed an LLM-driven generation pipeline with a closed-loop Cadence evaluator, iterating on model behavior against simulation feedback --- the same generate, evaluate, and refine cadence used to train robotic policies.}
+        \resumeItem{Exploring reinforcement learning strategies for design-space search; building tooling to benchmark model outputs at scale against simulation baselines.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lead Researcher --- Brain-Computer Interface (Stanford Lee-Messer Lab)}{Stanford, CA}
+      {Stanford University School of Medicine}{Oct 2023 -- Dec 2024}
+      \resumeItemListStart
+        \resumeItem{Built and benchmarked ML models on a P300 EEG paradigm, turning noisy multimodal sensor streams into reliable real-time control commands.}
+        \resumeItem{Owned the full research loop --- data collection, model iteration, and deployment --- piloting with 12 users on a shipped React Native assistive platform.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lead Researcher --- Foot Drop Ankle-Foot Orthosis (Georgia Tech mmWave Lab)}{Atlanta, GA}
+      {IEEE ICHCI 2024 Presenter \& Published Author}{May 2024 -- Nov 2024}
+      \resumeItemListStart
+        \resumeItem{Built an EMG-controlled actuation system (R = 0.968 correlation, 23\% gait precision gain); first-author paper published and presented at IEEE ICHCI 2024.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Robotics \& RL Projects}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {DroneOS}{}
+      {1st Overall, Bow Capital $\times$ DS3 $\times$ SIC Hackathon (UCSD)}{2026}
+      \resumeItemListStart
+        \resumeItem{Trained multi-agent swarm policies (MAPPO + behavioral cloning) for GPS-denied navigation and target identification, validating learned behavior in simulation before deployment.}
+        \resumeItem{Built the perception stack: YOLOX + Norfair detection/tracking fused with SLAM, visual odometry, and 3D Gaussian Splatting for friend-or-foe labeling on edge.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Apollo Labs \& Battle Angel --- RL Policy Training}{}
+      {1st Overall, OpenClaw Hackathon \& Google Gemini 3.5 Hackathon}{2026}
+      \resumeItemListStart
+        \resumeItem{Built a FastAPI PPO orchestrator with RunReports, rollout GIFs, versioned artifacts, and MCP tools for autonomous policy optimization.}
+        \resumeItem{Trained Unitree G1 PPO agents across eight MuJoCo disaster environments with language-driven rollouts in unseen scenes --- directly adjacent to home-robot autonomy policy design.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {SODIUM --- Embodied Home Robot}{}
+      {1st Overall, DiamondHacks 2026}{April 2026}
+      \resumeItemListStart
+        \resumeItem{Built a voice-first in-home care robot on ROS 2 with wake-word detection, NL task routing, and a real-time caregiver dashboard --- full embedded-to-cloud autonomy loop.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Motion --- Robot Training Data Pipeline}{}
+      {Stanford $\times$ DeepMind Hackathon}{2026}
+      \resumeItemListStart
+        \resumeItem{Built a crowdsourced manipulation marketplace with Gemma 4 + Kimi K2 VLM verification labeling clips for fleet-scale policy training (LeRobot / Open X-Embodiment export).}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Publications}
+  \resumeItemListStart
+    \resumeItem{\textbf{Real-Time EMG Control for Assistive Devices} --- IEEE ICHCI 2024.}
+    \resumeItem{\textbf{Co-Heritability of Antibiotic Resistance in TB Evolution} --- Bioinformatics \& Biomedical Technology, 2025.}
+  \resumeItemListEnd
+
+\end{document}

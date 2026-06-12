@@ -1,0 +1,101 @@
+\input{preamble.tex}
+\input{resume-spacing.tex}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large \scshape Nikhil Prabhu} \\ \vspace{1pt}
+    \small (925) 819-4040 $|$ \href{mailto:nikhilprabhu06@gmail.com}{\underline{nikhilprabhu06@gmail.com}} $|$ 
+    \href{https://www.linkedin.com/in/nikprabhu1/}{\underline{linkedin.com/in/nikprabhu1}} $|$
+    \href{https://github.com/Trolleroof}{\underline{github.com/Trolleroof}} $|$
+    \href{https://nikhilprabhu.tech}{\underline{nikhilprabhu.tech}}
+\end{center}
+\small
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, San Diego (UCSD)}{San Diego, CA}
+      {B.S. in Computer Science $|$ Cumulative GPA: 3.67}{Expected Graduation: June 2028}
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, nosep, topsep=2pt, itemsep=3pt, parsep=0pt]
+  \item \textbf{Languages:} Python, C++, TypeScript, JavaScript, Java
+  \item \textbf{Data Curation:} multimodal labeling, rollout curation, VLM verification, behavioral cloning, LeRobot / Open X-Embodiment export
+  \item \textbf{Embodied AI:} reinforcement learning (PPO, MAPPO), sim-to-real, MediaPipe pose, vision-language pipelines, Google Cloud Run
+  \item \textbf{Robotics + Infra:} ROS 2, SLAM, visual odometry, Docker, FastAPI, WebSockets, multi-service data pipelines
+\end{itemize}
+\vspace{-4pt}
+
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Undergraduate Research Assistant --- AI for Circuit Invention, UCSD}{San Diego, CA}
+      {Research Assistant (with Prof. Prasad Gudem \& Samvid AI)}{March 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Curated and labeled multimodal design samples (netlists, simulation logs, performance metrics), turning raw Cadence tool output into clean supervision signals for model fine-tuning.}
+        \resumeItem{Integrated LLM APIs with simulation tools in a closed-loop generate-evaluate-feedback workflow over a large multimodal search space.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Desktop Agent Developer \& Founder --- UCSD Agent Development (Clue2)}{San Diego, CA}
+      {Mentored by Prof. Ramamohan Paturi}{Jan 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Captured session metadata and real-time meeting transcripts across 7+ integrated services, producing structured training traces from live user workflows at 40+ beta users.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lead Researcher --- Brain-Computer Interface (Stanford Lee-Messer Lab)}{Stanford, CA}
+      {Stanford University School of Medicine}{Oct 2023 -- Dec 2024}
+      \resumeItemListStart
+        \resumeItem{Collected, labeled, and benchmarked multimodal EEG datasets on a P300 paradigm; piloted with 12 users and shipped a React Native frontend turning raw neural signals into labeled, evaluation-ready control output.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Robotics \& Data Projects}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {DroneOS}{}
+      {1st Overall, Bow Capital $\times$ DS3 $\times$ SIC Hackathon (UCSD)}{2026}
+      \resumeItemListStart
+        \resumeItem{Trained swarm policies (MAPPO, behavioral cloning) over large simulated multimodal rollouts; curated vision data through YOLOX + Norfair fused with SLAM and 3D Gaussian Splatting maps.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Motion --- Crowdsourced Robot Training Data Marketplace}{}
+      {Stanford $\times$ DeepMind Hackathon}{2026}
+      \resumeItemListStart
+        \resumeItem{Built an egocentric pipeline where contributors record industrial manipulation clips via phone with live MediaPipe skeleton overlay and instant pose-confidence scoring.}
+        \resumeItem{Designed a Gemma 4 + Kimi K2 VLM verification stack on Google Cloud Run; exported LeRobot / Open X-Embodiment bundles with quality scores and price-tier metadata.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Battle Angel --- Simulation Data Generation}{}
+      {Google Gemini 3.5 Hackathon}{2026}
+      \resumeItemListStart
+        \resumeItem{Curated rollout data across eight MuJoCo environments via PPO + FastAPI with GIF replay and Gemini-generated scene layouts.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Apollo Labs --- RL Training Orchestrator}{}
+      {1st Overall, Eragon $\times$ Nozomio $\times$ AgentMail OpenClaw Hackathon}{May 2026}
+      \resumeItemListStart
+        \resumeItem{Built a PPO orchestrator with RunReports (metrics, rollout GIFs, versioned artifacts) synced to email, Nia memory, and MCP agent tooling.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Publications}
+  \resumeItemListStart
+    \resumeItem{\textbf{Real-Time EMG Control for Assistive Devices} --- IEEE ICHCI 2024.}
+    \resumeItem{\textbf{Co-Heritability of Antibiotic Resistance in TB Evolution} --- Bioinformatics \& Biomedical Technology, 2025.}
+  \resumeItemListEnd
+
+\end{document}

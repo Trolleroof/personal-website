@@ -1,0 +1,101 @@
+\input{preamble.tex}
+\input{resume-spacing.tex}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large \scshape Nikhil Prabhu} \\ \vspace{1pt}
+    \small (925) 819-4040 $|$ \href{mailto:nikhilprabhu06@gmail.com}{\underline{nikhilprabhu06@gmail.com}} $|$ 
+    \href{https://www.linkedin.com/in/nikprabhu1/}{\underline{linkedin.com/in/nikprabhu1}} $|$
+    \href{https://github.com/Trolleroof}{\underline{github.com/Trolleroof}} $|$
+    \href{https://nikhilprabhu.tech}{\underline{nikhilprabhu.tech}}
+\end{center}
+\small
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, San Diego (UCSD)}{San Diego, CA}
+      {B.S. in Computer Science $|$ Cumulative GPA: 3.67}{Expected Graduation: June 2028}
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, nosep, topsep=2pt, itemsep=3pt, parsep=0pt]
+  \item \textbf{Languages:} Python, C++, TypeScript, JavaScript
+  \item \textbf{Robotics Stack:} ROS 2, perception/planning/control pipelines, sensor integration, embedded deployment, real-time systems
+  \item \textbf{Perception + Learning:} PyTorch, OpenCV, YOLOX, MediaPipe, PPO/MAPPO, behavioral cloning, sim-to-real transfer
+  \item \textbf{Simulation + Hardware:} MuJoCo, Gymnasium, NVIDIA Jetson, Arduino embedded systems, Docker, field iteration on physical hardware
+\end{itemize}
+\vspace{-4pt}
+
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Lead Researcher --- Foot Drop Ankle-Foot Orthosis (Georgia Tech mmWave Lab)}{Atlanta, GA}
+      {IEEE ICHCI 2024 Presenter \& Published Author}{May 2024 -- Nov 2024}
+      \resumeItemListStart
+        \resumeItem{Deployed a real-time EMG sensing + motor actuation control system on embedded Arduino hardware through iterative field testing (R = 0.968 correlation, 23\% gait precision gain).}
+        \resumeItem{First-author paper published and presented at IEEE ICHCI 2024 on sensor placement and closed-loop control for assistive devices.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lead Researcher --- Brain-Computer Interface (Stanford Lee-Messer Lab)}{Stanford, CA}
+      {Stanford University School of Medicine}{Oct 2023 -- Dec 2024}
+      \resumeItemListStart
+        \resumeItem{Built and benchmarked ML models converting noisy sensor streams into reliable real-time control commands; piloted with 12 users on shipped assistive hardware.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Undergraduate Research Assistant --- AI for Circuit Invention, UCSD}{San Diego, CA}
+      {Research Assistant (with Prof. Prasad Gudem \& Samvid AI)}{March 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Built a closed-loop generate-simulate-evaluate pipeline integrating LLM APIs with Cadence Spectre tools; exploring RL for design-space search over simulation feedback.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Robotics \& Manufacturing Projects}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Motion --- Industrial Manipulation Data Platform}{}
+      {Stanford $\times$ DeepMind Hackathon}{2026}
+      \resumeItemListStart
+        \resumeItem{Built a crowdsourced pipeline for industrial manipulation clips (pick \& place, valve turns, box stacking) with live MediaPipe pose overlay and instant quality scoring on contributor devices.}
+        \resumeItem{Designed a Gemma 4 + Kimi K2 VLM verification stack to score task match, hand visibility, and motion completeness; exported LeRobot / Open X-Embodiment bundles for physical-AI training.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {SODIUM --- Embodied Robot on Real Hardware}{}
+      {1st Overall, DiamondHacks 2026}{April 2026}
+      \resumeItemListStart
+        \resumeItem{Deployed a ROS 2 robot stack on Jetson-class embedded compute with on-device perception, wake-word detection, and real-time control integrated with a cloud operator dashboard (Svelte 5 / Bun).}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Battle Angel --- Sim-to-Real Policy Training}{}
+      {Google Gemini 3.5 Hackathon}{2026}
+      \resumeItemListStart
+        \resumeItem{Trained vectorized PPO policies for a Unitree G1 humanoid across eight MuJoCo environments with automated evaluation, unseen-scene rollouts, and GIF replay --- direct experience bridging simulation limits to real-world deployment.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {DroneOS}{}
+      {1st Overall, Bow Capital $\times$ DS3 $\times$ SIC Hackathon (UCSD)}{2026}
+      \resumeItemListStart
+        \resumeItem{Built perception (YOLOX + Norfair), SLAM, and visual odometry on edge hardware; trained MAPPO swarm policies and validated sim-to-real transfer from simulation to autonomous flight.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Publications}
+  \resumeItemListStart
+    \resumeItem{\textbf{Real-Time EMG Control for Assistive Devices} --- IEEE ICHCI 2024.}
+    \resumeItem{\textbf{Co-Heritability of Antibiotic Resistance in TB Evolution} --- Bioinformatics \& Biomedical Technology, 2025.}
+  \resumeItemListEnd
+
+\end{document}
