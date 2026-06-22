@@ -17,12 +17,44 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://nikhilprabhu.tech");
 
-const siteDescription = "welcome to my personal website";
+const siteDescription =
+  "Personal portfolio of Nikhil Prabhu — agents, robotics UIs, and systems that ship. CS @ UC San Diego.";
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Nikhil Prabhu",
+  url: siteUrl,
+  image: `${siteUrl}/profile-avatar.png`,
+  jobTitle: "Computer Science Student",
+  description: siteDescription,
+  email: "mailto:nikhilprabhu06@gmail.com",
+  sameAs: [
+    "https://github.com/Trolleroof",
+    "https://www.linkedin.com/in/nikprabhu1/",
+  ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "University of California, San Diego",
+  },
+  knowsAbout: [
+    "Robotics",
+    "Reinforcement Learning",
+    "Autonomous Systems",
+    "Agentic Software",
+    "Computer Vision",
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Nikhil Prabhu",
   description: siteDescription,
+  alternates: {
+    types: {
+      "text/plain": [{ url: "/llms.txt", title: "LLMs.txt — machine-readable profile" }],
+    },
+  },
   openGraph: {
     title: "Nikhil Prabhu",
     description: siteDescription,
@@ -35,6 +67,14 @@ export const metadata: Metadata = {
     title: "Nikhil Prabhu",
     description: siteDescription,
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -44,6 +84,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <link rel="llms-txt" href={`${siteUrl}/llms.txt`} type="text/plain" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </head>
       <body className={geistSans.className}>
         <Providers>{children}</Providers>
       </body>

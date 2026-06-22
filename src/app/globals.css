@@ -1395,6 +1395,16 @@ a:hover { color: var(--pink); }
   font-weight: 500;
   letter-spacing: 0.04em;
 }
+.site-footer-link {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 0.15em;
+}
+.site-footer-link:hover {
+  text-decoration-color: #fff;
+}
 
 .deco-line { height: 2px; background: repeating-linear-gradient(90deg, var(--pink) 0 8px, transparent 8px 12px); margin: 4px 0; }
 ::-webkit-scrollbar { width: 6px; }
