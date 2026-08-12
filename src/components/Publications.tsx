@@ -7,7 +7,7 @@ const Publications: React.FC = () => {
 
   return (
     <div className="panel" id="publications">
-      <div className="panel-header"><span className="ph-icon">📄</span> Publications</div>
+      <div className="panel-header">Publications</div>
       <div className="pub-list">
         {PROFILE.publications.map((pub, idx) => (
           <article key={idx} className="pub-item">

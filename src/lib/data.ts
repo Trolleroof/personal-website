@@ -54,6 +54,16 @@ export interface Publication {
   isPeerReviewed?: boolean;
 }
 
+export interface BlogPost {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  body: string[];
+  tag?: string;
+  readTime?: string;
+}
+
 export interface SkillCat {
   label: string;
   items: { name: string }[];
@@ -113,6 +123,7 @@ export interface ProfileData {
   projects: Project[];
   experience: Experience[];
   publications: Publication[];
+  blog: BlogPost[];
   contact: ContactLink[];
   sidebarQuote: SidebarQuoteData;
   visitorCount: string;
@@ -139,10 +150,9 @@ export const PROFILE: ProfileData = {
       bullets: [
         "Robotics",
         "RL & policy at scale",
-        "Spatial interfaces",
       ],
     },
-    { label: "Recently", value: "Founder / Desktop Agent Developer @ Clue2" },
+    { label: "Recently", value: "Building at Vern Robotics, formerly building @ Clue2" },
     { label: "Location", value: "San Francisco Bay Area" },
     { label: "Values", value: "Family, Faith, Hard Work" },
     {
@@ -399,57 +409,6 @@ export const PROFILE: ProfileData = {
         videoEmbedUrl: "https://www.youtube.com/embed/QL_UhVSLMKc",
       },
     },
-    {
-      name: "Motion",
-      desc: "Crowdsourced marketplace for robot training data. Contributors record industrial motions via their phone, and an automated verification pipeline (Gemma 4 VLM + Kimi K2 decision agent) scores and mints verified clips to a dataset marketplace. Built @ Stanford × DeepMind Hackathon.",
-      tags: ["Next.js", "Express", "Gemma 4", "Kimi K2", "MediaPipe", "Google Cloud Run"],
-      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/Motion-StanfordDeepMind" }],
-      detail: {
-        hook: "Crowdsource robot training data—record a motion clip with your phone, get verified by AI, and see it sold on the marketplace.",
-        overview:
-          "Motion is a crowdsourced marketplace for robot training data built at the Stanford × DeepMind Hackathon. Contributors record 30-second industrial manipulation clips (pick & place, valve turns, box stacking) using their webcam with live MediaPipe skeleton overlay. Each submission runs through an automated multi-agent verification pipeline: Gemma 4 analyzes video semantics (task match, hand visibility, motion completeness), and Kimi K2 acts as a decision agent that either approves the clip (assigns price tier and mints to marketplace) or requests re-recording with actionable feedback. Approved clips are bundled with pose JSON, quality scores, and metadata thats ready for robotics companies building physical AI models. The platform replaces traditional data collection with real-world, incentive-driven motion data.",
-        highlights: [
-          "Live MediaPipe skeleton overlay during recording; instant pose confidence + motion variety scoring.",
-          "Gemma 4 VLM analyzes each clip for task match, object interaction, and motion quality; returns structured JSON.",
-          "Kimi K2 decision agent approves or rejects with tool calling—clips below quality threshold get specific feedback.",
-          "Approved clips mint to marketplace with composite quality score, price tier ($0.50–$4.00), and downloadable dataset bundle.",
-          "Dataset export compatible with LeRobot and Open X-Embodiment robotics frameworks.",
-        ],
-        videoFileUrl: "/projects/motion/linkedin-video.mp4",
-      },
-    },
-    {
-      name: "CaféCode",
-      desc: "Cafecode: an AI coding tutor and browser-native project builder. Next.js, Monaco, WebContainer, Supabase, WebSockets, Gemini, Stripe, and an Express/Fly.io backend give learners a full coding workspace while keeping them in control of what they build.",
-      tags: ["Next.js", "Monaco", "WebContainer", "Express", "Node", "Supabase"],
-      links: [{ label: "GitHub", href: "https://github.com/Trolleroof/cafecode" }],
-      detail: {
-        hook: "Browser-native dev box: edit, run Python, ask the model, without leaving the tab.",
-        overview:
-          "Cafecode is a full-stack AI coding tutor for building real projects while understanding the code. The frontend uses Next.js, TypeScript, Tailwind, shadcn/ui, Monaco, and WebContainer for a VS Code-like editor, terminal, npm installs, file operations, and browser-native execution. The Express backend coordinates AI orchestration, workspace management, Stripe payments, file sync, and Supabase-backed auth.",
-        highlights: [
-          "Brewster guides you with hints, fixes, in-browser run, and step-by-step setup—no local install.",
-          "WebContainer runs the terminal and files in the browser, so npm install and edits stay fast with less server load.",
-          "Gemini reads your project for creation, fixes, and chat right beside the Monaco editor.",
-          "Supabase auth, WebSocket sync, rate limits, and Fly.io deploy back a real multi-user workspace.",
-        ],
-        videoEmbedUrl: "https://www.youtube.com/embed/0IPA8BSmDp8",
-        galleryImages: [
-          {
-            src: "/projects/cafecode/bitter-truth-hero.png",
-            alt: "CaféCode landing — “The Bitter Truth” story framing why intentional coding practice still matters",
-          },
-          {
-            src: "/projects/cafecode/core-features.png",
-            alt: "Core Features grid — Brewster AI assistant, smart code fixes, built-in compiler, web viewer, intelligent project guidance",
-          },
-          {
-            src: "/projects/cafecode/project-brewer-ide.png",
-            alt: "Project Brewer workspace — explorer, Monaco editor with guided steps, and Cody assistant panel",
-          },
-        ],
-      },
-    },
   ],
   experience: [
     {
@@ -506,6 +465,92 @@ export const PROFILE: ProfileData = {
         alt: "SoloScale Solutions logo",
       },
       desc: "Founded a consulting agency that helped small, local businesses implement AI automations and technology to increase inbound leads, handle customer service, and automate mundane tasks. Served 10+ businesses and nonprofits over the course of the business - learned a ton.",
+    },
+  ],
+  blog: [
+    {
+      slug: "building-in-public",
+      title: "Why I keep building in public",
+      date: "Aug 10, 2026",
+      excerpt:
+        "Shipping side projects taught me more about taste than any course. This is the loop I use: pick a problem I can't stop thinking about, build the smallest version that proves the idea, and write down what broke.",
+      tag: "notes",
+      readTime: "4 min",
+      body: [
+        "I've shipped more unfinished projects than I can count, and every one changed how I think about the next build.",
+        "The loop is simple: pick something I can't stop thinking about, build the smallest version that proves the idea, ship it somewhere public, and write down what broke.",
+        "Public builds force honesty. You can't hide behind a roadmap when the demo either works or it doesn't. That pressure is uncomfortable, but it's also the fastest way I've found to develop taste.",
+        "This post is placeholder copy for now — I'll replace it with a real essay soon.",
+      ],
+    },
+    {
+      slug: "desktop-agents",
+      title: "Agents that actually do work on your desktop",
+      date: "Jul 22, 2026",
+      excerpt:
+        "Clue2 started as a meeting copilot and turned into a broader question: how do you give an agent enough context to act across Gmail, Calendar, and Slack without turning the UI into a control panel?",
+      tag: "build log",
+      readTime: "6 min",
+      body: [
+        "Desktop agents fail when they ask you to manage them. The whole point is that the agent should absorb complexity, not add another dashboard to your day.",
+        "With Clue2, the interesting design question wasn't transcription — it was orchestration. How much context does an agent need before it can safely draft an email, move a calendar block, or summarize a thread across apps?",
+        "Temporary draft: I'll expand this into a proper build log with architecture notes, failure modes, and what we learned from beta users.",
+      ],
+    },
+    {
+      slug: "hackathons-compressed",
+      title: "Hackathons as compressed product cycles",
+      date: "Jun 14, 2026",
+      excerpt:
+        "Forty-eight hours forces clarity. The projects that win aren't the ones with the most features — they're the ones with one sharp demo moment and a story that makes the judges lean in.",
+      tag: "reflection",
+      readTime: "3 min",
+      body: [
+        "A hackathon is a product cycle with the paperwork removed. You have a problem, a team, a deadline, and one shot to make strangers believe the thing works.",
+        "The teams that win usually do less, not more. One sharp demo moment beats ten half-finished tabs every time.",
+        "Placeholder reflection — more thoughts on demo craft and scope discipline coming later.",
+      ],
+    },
+    {
+      slug: "first-week-vern",
+      title: "First week building at Vern Robotics",
+      date: "Aug 4, 2026",
+      excerpt:
+        "Early notes from joining a robotics team: calibration rituals, sim quirks, and why the first week is mostly listening before you touch the stack.",
+      tag: "field notes",
+      readTime: "5 min",
+      body: [
+        "Week one at a robotics company is mostly calibration — literally and figuratively. You learn how the team names things, where sim diverges from hardware, and which problems are sacred.",
+        "I'm still in listen mode. The goal is to understand the system's failure modes before proposing changes.",
+        "Temporary entry — will update once I have more to share publicly.",
+      ],
+    },
+    {
+      slug: "rl-and-taste",
+      title: "What RL projects taught me about taste",
+      date: "May 30, 2026",
+      excerpt:
+        "Training loops, reward hacking, and rollout GIFs all teach the same lesson: metrics lie unless you know what good behavior looks like before you optimize for it.",
+      tag: "notes",
+      readTime: "4 min",
+      body: [
+        "Reinforcement learning makes you articulate success before you chase it. If you can't describe the behavior you want, the policy will find a weird shortcut and call it victory.",
+        "Rollout GIFs saved me more than loss curves. Seeing the agent fail in space beats staring at a scalar that looks fine.",
+        "Draft placeholder — planning a longer piece on eval design for side projects.",
+      ],
+    },
+    {
+      slug: "spatial-ui-sketch",
+      title: "Sketch: spatial interfaces without the gimmick",
+      date: "Apr 18, 2026",
+      excerpt:
+        "Three ideas for making 3D and spatial UI feel useful instead of flashy — anchoring, progressive disclosure, and letting the map breathe.",
+      tag: "sketch",
+      readTime: "2 min",
+      body: [
+        "Spatial UI fails when it asks users to admire the interface instead of finish the task. The fix is usually boring: anchor controls to real objects, reveal depth slowly, and keep the map readable at a glance.",
+        "This is a stub post for layout testing on the blog page.",
+      ],
     },
   ],
   publications: [

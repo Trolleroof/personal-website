@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useResumeModal } from '@/context/ResumeModalContext';
 
 const TopBar: React.FC = () => {
@@ -8,14 +9,14 @@ const TopBar: React.FC = () => {
   return (
     <div className="topbar">
       <div className="topbar-left">
-        <span className="topbar-dot"></span>
-        <span className="topbar-dot"></span>
-        <span className="topbar-dot"></span>
-        <span style={{ marginLeft: 6 }}>nikhil_prabhu</span>
+        <Link href="/" className="topbar-home-link">
+          nikhil prabhu
+        </Link>
       </div>
       <nav className="topbar-nav" aria-label="Site sections">
-        <a href="#projects">Projects</a>
+        <Link href="/">Projects</Link>
         <a href="#experience">Experience</a>
+        <Link href="/blog">Blogs</Link>
         <a href="#contact">Contact</a>
         <button type="button" onClick={openResume}>
           Resume ↗

@@ -2,7 +2,7 @@ import { PROFILE } from '@/lib/data';
 
 const Experience: React.FC = () => (
   <div className="panel" id="experience">
-    <div className="panel-header"><span className="ph-icon">■</span> Work Experience</div>
+    <div className="panel-header">Work Experience</div>
     {PROFILE.experience.map((e) => (
       <div className="exp-item" key={e.role + e.place}>
         <div className="exp-logo" aria-hidden="true">
