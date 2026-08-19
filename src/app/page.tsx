@@ -1,4 +1,3 @@
-import TopBar from '@/components/TopBar';
 import Marquee from '@/components/Marquee';
 import Hero from '@/components/Hero';
 import ProfileCard from '@/components/ProfileCard';
@@ -14,7 +13,6 @@ import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <>
-      <TopBar />
       <Marquee />
       <Hero />
       <div className="page-wrap">

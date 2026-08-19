@@ -54,7 +54,7 @@ function ProjectRow({
             <div className="project-name-row">
               <span className="project-name">{project.name}</span>
               {expandable ? (
-                <span className="project-chevron pixel-chevron" aria-hidden>
+                <span className="project-chevron" aria-hidden>
                   ▶
                 </span>
               ) : null}

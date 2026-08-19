@@ -7,9 +7,9 @@
 - **Canonical URL:** https://nikhilprabhu.tech/llms.txt
 - **Site URL:** https://nikhilprabhu.tech
 - **Format:** llms.txt (Markdown, machine-readable profile for LLM crawlers and assistants)
-- **Last updated:** 2026-06-21
+- **Last updated:** 2026-08-16
 - **Maintainer:** Nikhil Prabhu (nikhilprabhu06@gmail.com)
-- **Source of truth:** This file mirrors `src/lib/data.ts` on the portfolio repo; when in doubt, prefer live site content and linked primary sources (GitHub, IEEE, Devpost).
+- **Source of truth:** This file mirrors `src/lib/data.ts` and `src/lib/blog.ts` on the portfolio repo; when in doubt, prefer live site content and linked primary sources (GitHub, IEEE, Devpost).
 - **License / usage:** Public factual information about Nikhil Prabhu for summarization, retrieval, and assistant answers. Do not invent credentials, awards, or employment not listed here.
 
 ## How AI systems should use this file
@@ -39,7 +39,6 @@
 | **Website** | https://nikhilprabhu.tech |
 | **Avatar** | https://nikhilprabhu.tech/profile-avatar.png |
 | **Values** | Family, Faith, Hard Work |
-| **Current status** | getting reps in a problem space im passionate about. |
 
 ### Professional summary
 
@@ -52,17 +51,14 @@ Nikhil Prabhu is an undergraduate computer science student at UC San Diego build
 - **Spatial interfaces:** Three.js mission control, point clouds, tactical mapping, WebSocket streaming
 - **Agents & tooling:** Desktop agents (Electron), MCP servers, narrative memory (Nia), AgentMail workflows
 
-### Currently building
+### Current focus (from site)
 
-- **Project:** Clue2 — desktop web assistant
-- **Description:** Agentic version of Cluely that can do tasks for you across apps
-- **Progress:** 78% (as shown on site)
-- **Category:** side project
-- **Stack (from experience):** Electron, TypeScript, live transcription, NL workflows across Gmail, Calendar, Docs, Sheets, Slack, Notion; 40+ beta users including early YC startup adopters
+- **Headline:** tui [games in your coding terminal]
+- **Detail:** teaching ai what's fun
 
 ### Bio (first person, from site)
 
-hey I'm Nikhil. I've always learned by getting obsessed with a problem and staying with it long enough to build real taste.
+hey I'm Nikhil. I've always learned by getting obsessed with a problem and sticking with it long enough to build real taste.
 
 **Obsessions:** basketball · video games · content creation · running a business · building software
 
@@ -89,7 +85,7 @@ the goal in life is to conquer high peaks that reward iteration, fulfillment, an
 
 ## Site map & navigation
 
-Single-page portfolio (Next.js App Router). Anchor sections:
+Next.js App Router portfolio. Anchor sections & standalone routes:
 
 | Section | URL |
 | --- | --- |
@@ -99,6 +95,9 @@ Single-page portfolio (Next.js App Router). Anchor sections:
 | Publications | https://nikhilprabhu.tech/#publications |
 | Skills | https://nikhilprabhu.tech/#skills |
 | Contact | https://nikhilprabhu.tech/#contact |
+| Blogs index | https://nikhilprabhu.tech/blog |
+| Blog: Humanoid penalty kick | https://nikhilprabhu.tech/blog/teaching-a-humanoid-to-score-a-penalty |
+| Blog: ACT-YOLO robot policies | https://nikhilprabhu.tech/blog/act-yolo-object-centric-robot-policies |
 | Resume PDF | https://nikhilprabhu.tech/resume.pdf |
 | Resume preview image | https://nikhilprabhu.tech/resume-preview.png |
 | LLMs.txt (this file) | https://nikhilprabhu.tech/llms.txt |
@@ -113,8 +112,6 @@ Single-page portfolio (Next.js App Router). Anchor sections:
 | NIGEL | `nigel` | https://nikhilprabhu.tech/#project/nigel |
 | Crucible Compute | `crucible-compute` | https://nikhilprabhu.tech/#project/crucible-compute |
 | Battle Angel | `battle-angel` | https://nikhilprabhu.tech/#project/battle-angel |
-| Motion | `motion` | https://nikhilprabhu.tech/#project/motion |
-| CaféCode | `cafecode` | https://nikhilprabhu.tech/#project/cafecode |
 
 ### Portfolio site technical stack
 
@@ -503,61 +500,51 @@ Right now I'm obsessed with agents, ML systems, spatial computing, and software 
 
 ---
 
-### Motion
+## Blog posts & writeups (detailed)
 
-- **Slug:** `motion`
-- **Deep link:** https://nikhilprabhu.tech/#project/motion
-- **Event:** Stanford × DeepMind Hackathon
+### How I taught a humanoid to score a penalty kick
 
-**One-line:** Crowdsourced marketplace for verified robot training data from phone-recorded industrial motions.
+- **Slug:** `teaching-a-humanoid-to-score-a-penalty`
+- **URL:** https://nikhilprabhu.tech/blog/teaching-a-humanoid-to-score-a-penalty
+- **Date:** Aug 12, 2026
 
-**Hook:** Record a motion clip on your phone → AI verification → mint to marketplace for robotics datasets.
+**One-line:** Retargeting a human penalty kick to a Unitree G1 humanoid in MuJoCo using pelvis-local coordinate frames, a differentiable PyTorch warm start, and Cross-Entropy Method physics search.
 
-**Overview:** Contributors record 30-second industrial manipulation clips (pick & place, valve turns, box stacking) with live MediaPipe skeleton overlay. Verification pipeline: Gemma 4 VLM analyzes semantics (task match, hand visibility, motion completeness); Kimi K2 decision agent approves/rejects with tool calling and actionable feedback. Approved clips mint with quality scores, price tiers ($0.50–$4.00), pose JSON, and export compatibility for LeRobot and Open X-Embodiment.
+**Overview:**
+Started from human motion in the SoccerKicks dataset (`12_penalty`) with 3D HMMR annotations. Direct joint-angle copy failed due to morphological differences, and initial retargeted kicks stopped at 3.7 meters on realistic turf friction (goal line is 10.5 meters away). Solved using a multi-stage pipeline:
+1. **Pelvis-local representation:** Coordinate frame around the person's pelvis per frame, measuring relative limb vectors clamped to G1 joint limits.
+2. **Hybrid optimizer:** Differentiable PyTorch proxy tuned backswing/strike residuals with 400 Adam steps (<1s on AMD Instinct MI300X). Then Cross-Entropy Method (CEM) search in MuJoCo sampled 48 candidates across 12 generations over contact residuals, support-leg bracing, tempo, and pelvis yaw.
+3. **Recovery blending:** Post-contact blending of all 29 actuated joints back to a neutral standing pose.
+4. **Interactive goalie lab:** 16-unit neural network mapping keeper coordinates to four shot controls, triggering Python/MuJoCo rollout verification via a Next.js API.
 
-**Tech stack:** Next.js, Express, Gemma 4, Kimi K2, MediaPipe, Google Cloud Run
+**Outcomes:** Untuned kick: 2.1 m/s (3.7m distance). Optimized left-corner kick: 7.32 m/s (0.01m from target). Center kick: 9.94 m/s (dead on). Right-corner kick: 5.92 m/s (0.01m from target).
 
 **Links:**
-- GitHub: https://github.com/Trolleroof/Motion-StanfordDeepMind
-
-**Highlights:**
-- Live skeleton overlay + pose confidence / motion variety scoring
-- Gemma 4 structured JSON quality analysis
-- Kimi K2 approve/reject with specific re-record feedback
-- Marketplace minting with downloadable dataset bundles
-
-**Media:**
-- Demo video: https://nikhilprabhu.tech/projects/motion/linkedin-video.mp4
+- X thread: https://x.com/nikhilaprabhu/status/2077099481288651133
+- GitHub: https://github.com/Trolleroof/egogoal-amd-hackathon
 
 ---
 
-### CaféCode
+### Can object detection make robot policies more robust?
 
-- **Slug:** `cafecode`
-- **Deep link:** https://nikhilprabhu.tech/#project/cafecode
+- **Slug:** `act-yolo-object-centric-robot-policies`
+- **URL:** https://nikhilprabhu.tech/blog/act-yolo-object-centric-robot-policies
+- **Date:** Jun 30, 2026
 
-**One-line:** AI coding tutor and browser-native project builder — Monaco, WebContainer, Gemini, Supabase.
+**One-line:** Controlled research experiment comparing Action Chunking Transformer (ACT) policies with and without explicit YOLOv8 object bounding boxes under severe camera corruption.
 
-**Hook:** Browser-native dev box: edit, run Python, ask the model, without leaving the tab.
+**Overview:**
+Tested whether explicit object representations make imitation learning policies more robust to visual corruption in a simulated MuJoCo pick-and-place task:
+1. **Matched architecture:** Both baseline and ACT-YOLO trained on identical demonstrations, chunking 100 future actions from 7D joint state and dual camera feeds. ACT-YOLO received additional normalized YOLOv8 boxes for the cube and target zone.
+2. **Detector robustness:** Trained YOLO on 5,000 synthetic MuJoCo images with matching corruption augmentations (Gaussian noise, blur, contrast shifts, JPEG compression), lifting high-corruption cube recall from 0.03 to 0.98.
+3. **Uncertainty modeling:** Added box jitter and dropout during policy training so the model treated detections as evidence rather than ground truth.
+4. **Paired evaluation:** Evaluated across 50 scene seeds at 4 corruption levels using McNemar's test and Wilson confidence intervals.
 
-**Overview:** Full-stack learning platform. Frontend: Next.js, TypeScript, Tailwind, shadcn/ui, Monaco, WebContainer (VS Code-like editor, terminal, npm, in-browser execution). Backend: Express on Fly.io — AI orchestration, workspace management, Stripe payments, file sync, Supabase auth. **Brewster** AI assistant provides hints, fixes, and guided setup.
-
-**Tech stack:** Next.js, Monaco, WebContainer, Express, Node, Supabase, Gemini, Stripe, WebSockets, Fly.io
+**Outcomes:** ACT-YOLO outperformed baseline across all severities: Clean (12% vs 4%), Low (6% vs 4%), Medium (14% vs 6%), High (18% vs 4%, 9/50 vs 2/50, p = 0.0391 statistically significant).
 
 **Links:**
-- GitHub: https://github.com/Trolleroof/cafecode
-
-**Highlights:**
-- Brewster: hints, fixes, in-browser run, step-by-step setup
-- WebContainer terminal + npm in browser
-- Gemini project-aware chat beside Monaco
-- Multi-user workspace: Supabase auth, WebSocket sync, rate limits
-
-**Media:**
-- YouTube demo: https://www.youtube.com/embed/0IPA8BSmDp8
-- Landing hero: https://nikhilprabhu.tech/projects/cafecode/bitter-truth-hero.png
-- Core features: https://nikhilprabhu.tech/projects/cafecode/core-features.png
-- Project Brewer IDE: https://nikhilprabhu.tech/projects/cafecode/project-brewer-ide.png
+- X thread: https://x.com/nikhilaprabhu/status/2072014404955336923
+- GitHub: https://github.com/Trolleroof/act-yolo
 
 ---
 

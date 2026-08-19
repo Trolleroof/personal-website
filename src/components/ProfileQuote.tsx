@@ -5,7 +5,7 @@ const ProfileQuote: React.FC = () => {
   return (
     <div className="panel">
       <div className="panel-header">
-        <span className="ph-icon">❝</span> QUOTE
+        QUOTE
       </div>
       <div className="panel-body quote-panel-body">
         <blockquote className="sidebar-quote">

@@ -3,7 +3,7 @@ import InterestIcon from './InterestIcon';
 
 const Interests: React.FC = () => (
   <div className="panel interests-section">
-    <div className="panel-header"><span className="ph-icon">◇</span> Obsessions</div>
+    <div className="panel-header">Obsessions</div>
     <div className="panel-body interests-body">
       <div className="interests-grid">
         {PROFILE.interests.map((item) => (

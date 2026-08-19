@@ -16,16 +16,9 @@ const BlogList: React.FC = () => {
             <h3 className="blog-title">
               <Link href={`/blog/${post.slug}`}>{post.title}</Link>
             </h3>
-            {post.tag && <span className="blog-tag">{post.tag}</span>}
           </div>
           <div className="blog-meta">
             <span className="blog-date">{post.date}</span>
-            {post.readTime && (
-              <>
-                <span className="blog-date">•</span>
-                <span className="blog-read-time">{post.readTime}</span>
-              </>
-            )}
           </div>
           <p className="blog-excerpt">{post.excerpt}</p>
           <Link href={`/blog/${post.slug}`} className="blog-read-link">

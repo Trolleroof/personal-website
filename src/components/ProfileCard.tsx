@@ -22,10 +22,6 @@ const ProfileCard: React.FC = () => {
       <div className="profile-name">{PROFILE.name}</div>
       <div className="profile-handle">{PROFILE.handle}</div>
       <div className="deco-line" style={{ margin: "0 12px" }}></div>
-      <div className="profile-status">
-        <span className="status-label">{'// current status'}</span>
-        {PROFILE.status}
-      </div>
       <div className="profile-actions">
         <button className="btn btn-pink" onClick={() => setOpen((o) => !o)}>
           {open ? "− Socials" : "+ Contact"}

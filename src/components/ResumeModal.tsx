@@ -26,7 +26,6 @@ const ResumeModal: React.FC = () => {
       <div className="resume-modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="resume-modal-toolbar">
           <div className="resume-modal-heading">
-            <span className="ph-icon">■</span>
             <span className="resume-modal-title">Resume</span>
           </div>
           <div className="resume-modal-actions">

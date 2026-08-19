@@ -15,10 +15,10 @@ function PixelMedalIcon() {
       aria-hidden="true"
     >
       {/* ribbon */}
-      <rect x="1" y="0" width="1" height="3" fill="#9a1f16" />
-      <rect x="5" y="0" width="1" height="3" fill="#9a1f16" />
-      <rect x="1" y="2" width="1" height="1" fill="#d04030" />
-      <rect x="5" y="2" width="1" height="1" fill="#d04030" />
+      <rect x="1" y="0" width="1" height="3" fill="#1b3a5b" />
+      <rect x="5" y="0" width="1" height="3" fill="#1b3a5b" />
+      <rect x="1" y="2" width="1" height="1" fill="#2b5b88" />
+      <rect x="5" y="2" width="1" height="1" fill="#2b5b88" />
       <rect x="2" y="2" width="3" height="1" fill="#f6d04d" />
       <rect x="2" y="3" width="3" height="1" fill="#e8b923" />
       {/* medal disc */}
@@ -227,7 +227,6 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
       >
         <div className="proj-modal-toolbar">
           <div className="proj-modal-heading">
-            <span className="ph-icon">◆</span>
             <span id={titleId} className="proj-modal-title">
               {project.name}
             </span>
