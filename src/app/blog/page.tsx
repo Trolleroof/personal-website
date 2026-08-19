@@ -16,7 +16,6 @@ export default function BlogPage() {
         <div className="panel blog-page-panel">
           <div className="panel-header">Blogs</div>
           <div className="panel-body blog-panel-body">
-            <p className="blog-page-intro">Notes, build logs, and reflections.</p>
             <BlogList />
           </div>
         </div>

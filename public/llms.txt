@@ -7,7 +7,7 @@
 - **Canonical URL:** https://nikhilprabhu.tech/llms.txt
 - **Site URL:** https://nikhilprabhu.tech
 - **Format:** llms.txt (Markdown, machine-readable profile for LLM crawlers and assistants)
-- **Last updated:** 2026-08-16
+- **Last updated:** 2026-08-18
 - **Maintainer:** Nikhil Prabhu (nikhilprabhu06@gmail.com)
 - **Source of truth:** This file mirrors `src/lib/data.ts` and `src/lib/blog.ts` on the portfolio repo; when in doubt, prefer live site content and linked primary sources (GitHub, IEEE, Devpost).
 - **License / usage:** Public factual information about Nikhil Prabhu for summarization, retrieval, and assistant answers. Do not invent credentials, awards, or employment not listed here.

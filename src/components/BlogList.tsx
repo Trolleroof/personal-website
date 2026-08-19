@@ -18,7 +18,7 @@ const BlogList: React.FC = () => {
             </h3>
           </div>
           <div className="blog-meta">
-            <span className="blog-date">{post.date}</span>
+            <span className="blog-date">{post.dateLabel}</span>
           </div>
           <p className="blog-excerpt">{post.excerpt}</p>
           <Link href={`/blog/${post.slug}`} className="blog-read-link">

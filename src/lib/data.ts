@@ -54,16 +54,6 @@ export interface Publication {
   isPeerReviewed?: boolean;
 }
 
-export interface BlogPost {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  body: (string | { heading: string })[];
-  clips?: { src: string; label: string }[];
-  links?: { label: string; href: string }[];
-}
-
 export interface SkillCat {
   label: string;
   items: { name: string }[];
@@ -123,7 +113,6 @@ export interface ProfileData {
   projects: Project[];
   experience: Experience[];
   publications: Publication[];
-  blog: BlogPost[];
   contact: ContactLink[];
   sidebarQuote: SidebarQuoteData;
   visitorCount: string;
@@ -455,81 +444,6 @@ export const PROFILE: ProfileData = {
         alt: "SoloScale Solutions logo",
       },
       desc: "Founded a consulting agency that helped small, local businesses implement AI automations and technology to increase inbound leads, handle customer service, and automate mundane tasks. Served 10+ businesses and nonprofits over the course of the business - learned a ton.",
-    },
-  ],
-  blog: [
-    {
-      slug: "teaching-a-humanoid-to-score-a-penalty",
-      title: "How I taught a humanoid to score a penalty kick",
-      date: "Aug 12, 2026",
-      excerpt:
-        "A human kick only moved the ball 3.7 meters after I retargeted it to a Unitree G1. Here is how pelvis-local motion mapping, a differentiable warm start, and MuJoCo search turned it into accurate shots to either corner.",
-      clips: [
-        { src: "/blog/humanoid-penalty/source-motion.mp4", label: "1 / Human source motion" },
-        { src: "/blog/humanoid-penalty/behind-goal.mp4", label: "2 / Behind goal — ball crossing" },
-        { src: "/blog/humanoid-penalty/kick-follow-through.mp4", label: "3 / Close replay — follow-through" },
-      ],
-      links: [
-        { label: "X thread", href: "https://x.com/nikhilaprabhu/status/2077099481288651133" },
-        { label: "GitHub", href: "https://github.com/Trolleroof/egogoal-amd-hackathon" },
-      ],
-      body: [
-        "I wanted to see whether I could take a human penalty kick and make a Unitree G1 reproduce it in simulation. The idea came from watching the World Cup: start with a real person's motion, preserve the parts that make the kick recognizable, then let physics decide what has to change for a humanoid body.",
-        "The first version looked like a kick but did not behave like one. With realistic turf friction in MuJoCo, the ball stopped after 3.7 meters. The goal was 10.5 meters away. That failure became the useful part of the project: copying a pose is not the same as transferring a skill.",
-        { heading: "Turning a human clip into robot motion" },
-        "I started with the 12_penalty clip from the SoccerKicks dataset and its per-frame 3D HMMR joint annotations. A direct joint-angle copy would not work because a human and a G1 have different proportions, joint limits, mass distribution, and zero-pose conventions.",
-        "Instead, I built a coordinate frame around the person's pelvis for every frame. The hip line and the neck-to-hip direction define local down, left, and forward axes. From there I measured limb vectors relative to the person's own orientation, converted them into hip, knee, ankle, shoulder, elbow, and waist angles, and expressed most of them as changes from the initial standing pose.",
-        "That pelvis-local representation removed the camera angle from the problem and kept the character of the original motion. I also clamped every mapped joint to the G1's usable range so a noisy pose estimate could not send the simulator into an impossible configuration.",
-        { heading: "Why the retargeted kick still failed" },
-        "Kinematic retargeting answers where the joints should go. It does not answer whether the robot can create enough foot speed, transfer momentum through contact, or stay balanced while doing it. Those are dynamics questions.",
-        "The difference only became obvious after I gave the virtual pitch meaningful rolling friction. A weak kick no longer glided forever. It died at 3.7 meters, which made the benchmark honest: reach the goal line, cross near the requested lane, and do it inside the same MuJoCo model that would render the final replay.",
-        { heading: "A hybrid optimizer instead of one giant training run" },
-        "MuJoCo's rigid-body contacts are not something I could simply backpropagate through, so I split the problem in two. First, a small differentiable PyTorch proxy warm-started the contact-critical motion. It tuned the backswing and strike residuals with 400 Adam steps in under a second on an AMD Instinct MI300X. The proxy proposed a candidate; it never got to declare that the kick worked.",
-        "Then Cross-Entropy Method search took over in the real simulator. Each candidate changed a compact set of controls: right hip, knee, and ankle residuals at three moments around contact; support-leg bracing; playback speed; and pelvis yaw. For each target I sampled 48 candidates, ran their MuJoCo rollouts in parallel, kept the elite results, refit the sampling distribution, and repeated that process for 12 generations.",
-        "The objective rewarded a ball that crossed the goal line near the requested target, favored useful speed, and charged a small penalty for drifting too far from the human motion. This was much more sample-efficient than training a full policy from scratch, while still making contact physics the final judge.",
-        "After contact, I blended all 29 actuated joints back toward a neutral standing pose. That recovery phase mattered: a kick that scores but leaves the robot collapsed is not a convincing transferred skill.",
-        { heading: "The shots that came out" },
-        "The untuned motion topped out around 2.1 m/s and stopped at 3.7 meters. The optimized left-corner kick reached 7.32 m/s and crossed 0.01 meters from its target. The center shot reached 9.94 m/s and crossed essentially dead on. The right-corner shot reached 5.92 m/s and also finished 0.01 meters from its target. All three scoring results came from MuJoCo rollouts, not from the differentiable proxy.",
-        { heading: "Making it interactive" },
-        "I wanted the demo to be more than three canned clips, so I added a goalie lab. You can place a keeper anywhere across the goal mouth. A small PyTorch network maps that one coordinate to four shot controls: target lane, power, tempo, and pelvis yaw.",
-        "The network is deliberately tiny: one input, a 16-unit hidden layer, and four outputs. I trained it with supervised labels generated by searching real MuJoCo outcomes at 25 keeper positions. When you run it on the site, a Next.js API calls the Python pipeline, replays the selected action against your keeper in MuJoCo, renders several camera angles, and returns the result. The video is the verification rollout itself, not an animation that assumes the policy succeeded.",
-        { heading: "What I learned" },
-        "The biggest lesson was that motion imitation and physical success are separate stages. Human data gave the kick its structure. A differentiable proxy made optimization fast. Population search handled the contact dynamics that gradients could not. MuJoCo kept every claim grounded in the same physics environment.",
-        "This is still simulation work, not proof that the trajectory can be deployed unchanged on a physical G1. Real hardware adds actuator latency, compliance, calibration error, safety constraints, and a much less forgiving floor. But as a simulation-first pipeline, it showed me a practical way to turn a human demonstration into a targeted, testable humanoid skill without throwing away the original motion or hiding behind a good-looking replay.",
-      ],
-    },
-    {
-      slug: "act-yolo-object-centric-robot-policies",
-      title: "Can object detection make robot policies more robust?",
-      date: "Jun 30, 2026",
-      excerpt:
-        "I built ACT-YOLO to test one focused idea: whether explicit object locations help an imitation policy keep working when its camera feed gets noisy, blurry, dark, and compressed.",
-      links: [
-        { label: "X thread", href: "https://x.com/nikhilaprabhu/status/2072014404955336923" },
-        { label: "GitHub", href: "https://github.com/Trolleroof/act-yolo" },
-      ],
-      body: [
-        "This started as my first mini research experiment rather than another open-ended robotics build. I wanted one question I could answer with a controlled comparison: when visual input gets corrupted, does giving an imitation policy an explicit representation of the important objects make it more robust?",
-        "I chose a simulated pick-and-place task because it is simple enough to isolate perception, but still unforgiving. The robot has to find a small cube, grasp it, move it across the table, and release it inside a target zone. A few pixels of localization error can become a completely missed grasp.",
-        { heading: "The experiment I built" },
-        "I trained two Action Chunking Transformer policies in the same MuJoCo environment. The baseline received the robot's seven-dimensional joint state plus top and wrist camera images. ACT-YOLO received those exact inputs plus normalized YOLOv8 boxes for the cube and target zone: center, width, height, and confidence for each object.",
-        "Everything else stayed matched. Both policies used the same demonstrations, ACT architecture, image augmentation, training schedule, and evaluation scenes. That left one intended difference between them: whether the policy also received an object-centric spatial signal.",
-        "For demonstrations, I wrote a numerical-IK waypoint controller that moved through pre-grasp, grasp, lift, carry, and release phases. Each 400-step episode stored both camera views, joint positions, actions, and object boxes. I then trained both policies to predict chunks of 100 future actions instead of choosing only the next action one step at a time.",
-        { heading: "Making the detector part of the experiment" },
-        "I generated 5,000 detector images directly from MuJoCo. Segmentation renders gave me exact masks for the cube and target zone, which I converted into YOLO labels automatically. That avoided a manual labeling pass and kept the detector data tied to the same geometry as the task.",
-        "My first detector looked strong on clean validation images and then collapsed on the small cube once I corrupted the camera feed. At medium and high corruption, cube recall fell to 0.17 and 0.03. The policy could not benefit from object guidance if the guidance disappeared exactly when vision became difficult.",
-        "The fix was to train YOLO with the same corruption family used at evaluation: Gaussian noise, blur, brightness and contrast shifts, and JPEG compression. With the training data and epoch count held fixed, corruption augmentation raised cube recall at medium severity from 0.17 to 1.00 and at high severity from 0.03 to 0.98 in the controlled detector check.",
-        "I also added box jitter and dropout while training ACT-YOLO. Feeding perfect boxes during training and imperfect detections during evaluation would have created another hidden distribution shift. The policy needed to learn that a detector output is useful evidence, not ground truth.",
-        { heading: "Keeping the comparison fair" },
-        "A weak baseline would make the idea look better than it was, so both ACT policies saw identical image corruption during training. During evaluation, both faced the same 50 scene seeds at each of four corruption levels. I compared paired successes with McNemar's test and reported Wilson confidence intervals instead of treating a few lucky rollouts as a conclusion.",
-        "That paired design mattered. Without it, a policy could get easier cube positions by chance and I might mistake scene variation for a model improvement. Matching the rollouts made each result a direct baseline-versus-guided comparison on the same task instance.",
-        { heading: "What happened" },
-        "ACT-YOLO beat the baseline at every tested severity: 12% versus 4% on clean images, 6% versus 4% at low corruption, 14% versus 6% at medium corruption, and 18% versus 4% at high corruption. The largest gap was at the highest severity, where the guided policy completed 9 of 50 rollouts and the baseline completed 2 of 50. That 14-point difference was the only statistically significant result, with p = 0.0391.",
-        "The honest interpretation is narrower than 'object detection solves robust manipulation.' The baseline was already near the floor, and ACT-YOLO still failed most rollouts. The experiment gives evidence that explicit object locations can help under severe visual corruption, but it does not yet show a strong manipulation policy or prove that the same gain transfers to a real robot.",
-        { heading: "What I would change next" },
-        "The next useful run is not a bigger model by default. I would first lift the clean-task success rate so corruption has more performance to degrade, then repeat the paired sweep across more seeds. I would also add a ground-truth-box policy to separate the value of object-centric state from the errors introduced by YOLO.",
-        "What I liked about this project was the research loop: state one falsifiable question, find the confounders, build gates before expensive training, and keep the final claim no larger than the evidence. The most valuable implementation work was not adding another network. It was making sure the comparison actually measured the idea I cared about.",
-      ],
     },
   ],
   publications: [
