@@ -19,6 +19,7 @@ export interface BlogPostFrontmatter {
   title: string;
   date: string;
   excerpt: string;
+  thumbnail?: string;
   clips?: BlogClip[];
   links?: BlogLink[];
 }
@@ -27,9 +28,13 @@ export interface BlogPostMeta extends BlogPostFrontmatter {
   slug: string;
   /** Human-readable date for display, e.g. "Aug 12, 2026". */
   dateLabel: string;
+  /** First words of the post body, for index cards. */
+  preview: string;
 }
 
-export interface BlogPost extends BlogPostMeta {
+export interface BlogPost extends BlogPostFrontmatter {
+  slug: string;
+  dateLabel: string;
   content: string;
 }
 
@@ -86,6 +91,24 @@ function listBlogSlugs(): string[] {
     .sort();
 }
 
+function previewFromContent(content: string, maxWords = 28): string {
+  const plain = content
+    .replace(/^#+\s.*$/gm, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/[*_`]/g, '')
+    .trim();
+
+  const firstParagraph =
+    plain.split(/\n\n+/).find((paragraph) => paragraph.trim().length > 0)?.trim() ?? '';
+
+  const words = firstParagraph.split(/\s+/).filter(Boolean);
+  if (words.length <= maxWords) {
+    return firstParagraph;
+  }
+
+  return `${words.slice(0, maxWords).join(' ')}…`;
+}
+
 function readBlogPost(slug: string): BlogPost {
   const raw = fs.readFileSync(path.join(BLOG_DIR, slug, POST_FILENAME), 'utf8');
   const { data, content } = matter(raw);
@@ -100,6 +123,7 @@ function readBlogPost(slug: string): BlogPost {
     date,
     dateLabel: formatDateLabel(date),
     excerpt,
+    thumbnail: data.thumbnail ? String(data.thumbnail) : undefined,
     clips: Array.isArray(data.clips) ? (data.clips as BlogClip[]) : undefined,
     links: Array.isArray(data.links) ? (data.links as BlogLink[]) : undefined,
     content: content.trim(),
@@ -110,8 +134,11 @@ export function getBlogPosts(): BlogPostMeta[] {
   return listBlogSlugs()
     .map((slug) => {
       const post = readBlogPost(slug);
-      const { content: _content, ...meta } = post;
-      return meta;
+      const { content, ...meta } = post;
+      return {
+        ...meta,
+        preview: previewFromContent(content),
+      };
     })
     .sort((a, b) => parseDate(b.date) - parseDate(a.date));
 }

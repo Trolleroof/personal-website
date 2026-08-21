@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Marquee from '@/components/Marquee';
-import Footer from '@/components/Footer';
 import BlogPostContent from '@/components/BlogPostContent';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
 
@@ -57,25 +56,39 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
               </header>
               {post.clips && post.clips.length > 0 && (
-                <div className="blog-post-clips" aria-label="Video clips">
-                  {post.clips.map((clip) => (
-                    <figure key={clip.src} className="blog-clip-figure">
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        controls
-                        preload="metadata"
-                        aria-label={clip.label}
-                        className="blog-clip-video"
-                      >
-                        <source src={clip.src} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                      <figcaption className="blog-clip-caption">{clip.label}</figcaption>
-                    </figure>
-                  ))}
+                <div className="blog-post-clips" aria-label="Media clips">
+                  {post.clips.map((clip) => {
+                    const isImage = /\.(gif|png|jpe?g|webp)$/i.test(clip.src);
+
+                    return (
+                      <figure key={clip.src} className="blog-clip-figure">
+                        {isImage ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={clip.src}
+                            alt={clip.label}
+                            className="blog-clip-media"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            controls
+                            preload="metadata"
+                            aria-label={clip.label}
+                            className="blog-clip-media"
+                          >
+                            <source src={clip.src} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        )}
+                        <figcaption className="blog-clip-caption">{clip.label}</figcaption>
+                      </figure>
+                    );
+                  })}
                 </div>
               )}
               <BlogPostContent content={post.content} />
@@ -101,7 +114,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="panel">
             <div className="panel-header">More Posts</div>
             <div className="panel-body other-posts-panel">
-              <ul className="other-posts-list other-posts-list--wide">
+              <ul className="other-posts-list">
                 {otherPosts.map((p) => (
                   <li key={p.slug}>
                     <Link href={`/blog/${p.slug}`} className="other-post-link">
@@ -115,7 +128,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         )}
       </main>
-      <Footer />
     </>
   );
 }

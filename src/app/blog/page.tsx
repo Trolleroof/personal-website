@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Marquee from '@/components/Marquee';
 import BlogList from '@/components/BlogList';
-import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Blogs — Nikhil Prabhu',
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <>
+    <div className="blog-page-shell">
       <Marquee />
       <main className="blog-page-wrap">
         <div className="panel blog-page-panel">
@@ -20,7 +19,6 @@ export default function BlogPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </>
+    </div>
   );
 }

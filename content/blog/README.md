@@ -63,9 +63,14 @@ Put images and videos under `public/blog/<your-slug>/` and reference them in fro
 ```
 
 ```yaml
+thumbnail: /blog/my-post/thumbnail.gif
 clips:
-  - src: /blog/my-post/demo.mp4
+  - src: /blog/my-post/demo.gif
     label: Side-by-side replay
+  - src: /blog/my-post/results.png
+    label: Results chart
 ```
+
+Clips support `.mp4`, `.gif`, `.png`, `.jpg`, and `.webp`. Use `thumbnail` for the blog index card image.
 
 After saving, run `npm run dev` and open `/blog/your-slug` to preview.
