@@ -31,6 +31,8 @@ export interface Project {
   tags: string[];
   links: { label: string; href: string }[];
   detail?: ProjectDetail;
+  /** Shown on the homepage projects panel; full list lives at /projects. */
+  featured?: boolean;
 }
 
 export interface Experience {
@@ -132,23 +134,8 @@ export const PROFILE: ProfileData = {
   byline: "agents · robotics UIs · systems that ship",
   sidebar: [
     { label: "Recently", value: "tinkering on robotics-related projects" },
-    { label: "Location", value: "San Francisco Bay Area" },
+    { label: "Location", value: "SF Bay Area" },
     { label: "Values", value: "Family, Faith, Hard Work" },
-    {
-      label: "Hackathons",
-      lead: "10 wins",
-      chips: [
-        "Amazon",
-        "Bow Capital",
-        "GitHub",
-        "MemVerge",
-        "Transpose VC",
-        "Eragon",
-        "Nozomio",
-        "AgentMail",
-        "MLH",
-      ],
-    },
   ],
   bioIntro: "hey I'm Nikhil. I've always learned by getting obsessed with a problem and sticking with it long enough to build real taste.",
   obsessions: [
@@ -216,6 +203,7 @@ export const PROFILE: ProfileData = {
   projects: [
     {
       name: "DroneOS",
+      featured: true,
       desc: "End-to-end autonomous drone platform that identifies targets, navigates without GPS, and coordinates swarm behavior without communication — built by team Outcast Virus and awarded 1st Overall at the Bow Capital × DS3 × SIC hackathon at UC San Diego.",
       tags: ["Swarm RL", "Behavioral Cloning", "MAPPO", "YOLOX", "Norfair", "SLAM", "Visual Odometry", "3D Gaussian Splatting"],
       links: [
@@ -238,6 +226,7 @@ export const PROFILE: ProfileData = {
     },
     {
       name: "SODIUM",
+      featured: true,
       desc: "Voice-first AI companion for senior care: an autonomous robot with natural speech interaction, wake-word detection, medication reminders, crisis detection, and a caregiver monitoring dashboard. Frontend built with Svelte 5 and Bun runtime for a lightweight, responsive experience.",
       tags: ["ROS 2", "Bun", "TypeScript", "Python", "Embedded Systems"],
       links: [{ label: "GitHub", href: "https://github.com/TheOutcastVirus/diamondhacks-2026" }],
@@ -263,6 +252,7 @@ export const PROFILE: ProfileData = {
     },
     {
       name: "Apollo Labs",
+      featured: true,
       desc: "RL training orchestrator for a 2D Roomba cleaning sim that automates the full workflow: FastAPI trains PPO agents, evaluates them, generates GIFs, and delivers results through email (AgentMail), memory (Nia), and MCP tools for autonomous agent-driven optimization.",
       tags: ["FastAPI", "Next.js", "PPO", "AgentMail", "MCP", "Python"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/openclaw-hackathon" }],
@@ -351,12 +341,12 @@ export const PROFILE: ProfileData = {
           {
             src: "/projects/crucible-compute/deploy.png",
             alt: "Crucible Compute new deployment planner with model, objective, and plan preview controls",
-            emphasize: 'strong',
+            emphasize: "strong",
           },
           {
             src: "/projects/crucible-compute/providers.png",
             alt: "Crucible Compute provider status table showing GPU cloud capabilities and missing credentials",
-            emphasize: 'strong',
+            emphasize: "strong",
           },
           {
             src: "/projects/crucible-compute/context.png",
@@ -386,6 +376,109 @@ export const PROFILE: ProfileData = {
           "Unitree G1 humanoid in MuJoCo: 21D observations, locomotion assist, and reach-based success across visible and buried survivor scenarios.",
         ],
         videoEmbedUrl: "https://www.youtube.com/embed/QL_UhVSLMKc",
+      },
+    },
+    {
+      name: "PREVUE",
+      featured: true,
+      desc: "A pre-execution world model verifier for robot skills. Claude proposes a pick-and-place plan, a learned action-conditioned world model imagines the outcome from camera frames, and a verifier predicts failure so the plan gets repaired before the arm ever moves.",
+      tags: ["V-JEPA", "World Models", "MuJoCo", "PyTorch", "Claude", "Robot Planning"],
+      links: [
+        { label: "Blog post", href: "/blog/prevue-world-model-verifier" },
+        { label: "GitHub", href: "https://github.com/Trolleroof/skill-level-world-model" },
+      ],
+      detail: {
+        hook: "Coding agents can write fluent robot plans, but nothing tells them a grasp is six centimeters off until the arm has already missed.",
+        overview:
+          "PREVUE adds a checkpoint between the plan and the robot. A task in plain English becomes a structured pick-and-place trace from Claude, and a learned action-conditioned world model imagines roughly four seconds of motion from an observation window plus that action trace. An outcome head predicts whether the block lifts, whether it lands in the target zone, and whether the skill succeeds, along with an uncertainty score. If the imagined rollout looks bad, Claude gets the metrics and the likely failure back and repairs the waypoints; only an approved plan runs in MuJoCo. The model is a small head trained on 5,000 generated episodes on top of a frozen V-JEPA visual encoder.",
+        highlights: [
+          "Injected a deliberate six-centimeter grasp miss: the verifier scored the plan at 7.3% success, Claude re-aimed at the observed block centre, and the repaired plan scored 94.7% and landed 2.3 cm from the pad.",
+          "Across eight scenes with the same injected miss, unverified execution recovered 0/8 while world-model verification caught the bad plan 8/8 and succeeded 6/8.",
+          "A geometry-only checker with oracle block positions edged it 7/8 — a useful upper bound for the vision-only approach.",
+          "Out-of-distribution asks (block-on-block instead of block-on-pad) are the clear weak spot, since the training corpus only covers the green pad.",
+        ],
+        galleryImages: [
+          {
+            src: "/blog/prevue-world-model-verifier/prevue_demo.gif",
+            alt: "PREVUE demo — unverified failure versus verified repair on the same flawed grasp plan",
+            emphasize: true,
+          },
+          {
+            src: "/blog/prevue-world-model-verifier/demo-sweep-success.svg",
+            alt: "Success rate across the eight-scene demo sweep for unverified, world-model, and geometry-only verification",
+          },
+          {
+            src: "/blog/prevue-world-model-verifier/lifted-by-window.svg",
+            alt: "Predicted lift probability as a function of the observation window length",
+          },
+        ],
+      },
+    },
+    {
+      name: "EgoGoal",
+      featured: true,
+      desc: "Teaching a Unitree G1 humanoid to score a penalty kick in MuJoCo. Human penalty-kick motion is retargeted through a pelvis-local frame, then a differentiable proxy warm-starts a CEM search that turns a 3.7 m dribble into accurate shots to both corners.",
+      tags: ["MuJoCo", "PyTorch", "Motion Retargeting", "CEM", "Unitree G1", "Humanoids"],
+      links: [
+        { label: "Blog post", href: "/blog/teaching-a-humanoid-to-score-a-penalty" },
+        { label: "GitHub", href: "https://github.com/Trolleroof/egogoal-amd-hackathon" },
+      ],
+      detail: {
+        hook: "Copied human motion looked like a kick and behaved like a nudge — with real turf friction the ball stopped 3.7 meters short of a 10.5 meter goal.",
+        overview:
+          "Starting from SoccerKicks clips and their per-frame 3D HMMR joint annotations, I built a pelvis-local coordinate frame per frame so limb vectors are measured relative to the person's own orientation rather than the camera, then clamped every joint to the G1's range. Retargeting produced kick-shaped motion but no foot speed or force transfer, so optimization split in two: a small PyTorch proxy runs gradients to guess backswing and strike timing in about 400 Adam steps, and Cross-Entropy Method search in the full simulator (48 candidates × 12 rounds) tunes hip, knee, and ankle targets around contact, plant-leg bracing, playback speed, and pelvis yaw. MuJoCo physics always cast the deciding vote, and all 29 joints blend back to a neutral stand after contact so the G1 stays upright.",
+        highlights: [
+          "Untuned retargeted motion: 2.1 m/s, ball dead at 3.7 m. Optimized center shot: 9.94 m/s, crossing essentially dead on target.",
+          "Left- and right-corner shots reached 7.32 m/s and 5.92 m/s, each crossing 0.01 m from their target.",
+          "Pelvis-local retargeting removes camera angle from the pose data and keeps joints inside the G1's limits.",
+          "Interactive demo: place the keeper anywhere across the goal mouth and a tiny supervised net maps that to lane, power, tempo, and yaw — the replay is the actual verification rollout.",
+        ],
+        videoFileUrl: "/blog/humanoid-penalty/behind-goal.mp4",
+        galleryImages: [
+          {
+            src: "/blog/humanoid-penalty/thumbnail.png",
+            alt: "Unitree G1 humanoid striking a penalty kick in MuJoCo",
+            emphasize: true,
+          },
+          {
+            src: "/projects/egogoal/source-motion.gif",
+            alt: "Human penalty-kick source motion from the SoccerKicks dataset used for retargeting",
+          },
+          {
+            src: "/projects/egogoal/kick-follow-through.gif",
+            alt: "Close replay of the optimized G1 kick and its follow-through in MuJoCo",
+          },
+        ],
+      },
+    },
+    {
+      name: "ACT-YOLO",
+      desc: "Object-centric imitation policy that augments ACT with YOLOv8 detections for pick-and-place under visual corruption.",
+      tags: ["Robotics", "Imitation Learning", "Computer Vision"],
+      links: [
+        { label: "Blog post", href: "/blog/act-yolo-object-centric-robot-policies" },
+        { label: "GitHub", href: "https://github.com/Trolleroof/act-yolo" },
+      ],
+      detail: {
+        hook: "Does explicit object location help a manipulation policy when the camera feed gets noisy, blurry, dark, and compressed?",
+        overview:
+          "ACT-YOLO pairs Action Chunking Transformers with YOLOv8 boxes for the cube and target zone in a MuJoCo pick-and-place task. I trained matched baseline and guided policies on the same demonstrations, then ran paired rollouts across four corruption severities with McNemar's test.",
+        highlights: [
+          "Paired baseline vs. ACT-YOLO evaluation on 50 matched scene seeds per corruption level.",
+          "Corruption-matched YOLO training raised cube recall from 0.03 to 0.98 at high severity.",
+          "Largest gain at high corruption: 18% vs. 4% success (p = 0.039); clean-task rates stayed low on both.",
+        ],
+        galleryImages: [
+          {
+            src: "/blog/act-yolo/thumbnail.gif",
+            alt: "Simulated pick-and-place rollouts comparing baseline ACT and ACT-YOLO under visual corruption",
+            emphasize: true,
+          },
+          {
+            src: "/blog/act-yolo/robustness-curve.png",
+            alt: "Success rate vs. visual corruption severity for baseline ACT and ACT-YOLO",
+          },
+        ],
       },
     },
   ],
@@ -437,7 +530,7 @@ export const PROFILE: ProfileData = {
     {
       role: "Founder",
       place: "SoloScale Solutions",
-      organization: "Self-employed · San Francisco Bay Area · On-site",
+      organization: "Self-employed · SF Bay Area · On-site",
       date: "Mar 2023 - Jun 2025",
       logo: {
         src: "/org-logos/soloscale.png",
@@ -480,3 +573,11 @@ export const PROFILE: ProfileData = {
       "teaching ai what's fun",
   },
 };
+
+export function getFeaturedProjects(): Project[] {
+  return PROFILE.projects.filter((project) => project.featured);
+}
+
+export function getAllProjects(): Project[] {
+  return PROFILE.projects;
+}

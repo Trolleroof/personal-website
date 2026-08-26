@@ -3,7 +3,7 @@ import Marquee from '@/components/Marquee';
 import BlogList from '@/components/BlogList';
 
 export const metadata: Metadata = {
-  title: 'Blogs — Nikhil Prabhu',
+  title: 'blogs',
   description: 'Notes, build logs, and reflections from Nikhil Prabhu.',
 };
 

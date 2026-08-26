@@ -9,8 +9,6 @@ clips:
   - src: /blog/act-yolo/thumbnail.gif
     label: YOLO-guided ACT — detections under high visual corruption (severity 3)
 links:
-  - label: X thread
-    href: https://x.com/nikhilaprabhu/status/2072014404955336923
   - label: GitHub
     href: https://github.com/Trolleroof/act-yolo
 ---

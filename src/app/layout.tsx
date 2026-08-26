@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -46,9 +46,19 @@ const personJsonLd = {
   ],
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Nikhil Prabhu",
+  icons: { icon: "/favicon.png" },
+  title: {
+    default: "nikhil prabhu",
+    template: "%s",
+  },
   description: siteDescription,
   alternates: {
     types: {
@@ -56,15 +66,15 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Nikhil Prabhu",
+    title: "nikhil prabhu",
     description: siteDescription,
     url: siteUrl,
-    siteName: "Nikhil Prabhu",
+    siteName: "nikhil prabhu",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Nikhil Prabhu",
+    title: "nikhil prabhu",
     description: siteDescription,
   },
   robots: {

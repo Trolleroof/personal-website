@@ -16,7 +16,7 @@ const Marquee: React.FC = () => {
           </Link>
         </div>
         <nav className="marquee-topbar-nav" aria-label="Site sections">
-          <Link href="/#projects">Projects</Link>
+          <Link href="/projects">Projects</Link>
           <a href="/#experience">Experience</a>
           <Link href="/blog">Blogs</Link>
           <a href="/#contact">Contact</a>

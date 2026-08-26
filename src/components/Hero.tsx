@@ -1,6 +1,7 @@
 'use client';
 
 import { PROFILE } from '@/lib/data';
+import Link from 'next/link';
 import React from 'react';
 import { useResumeModal } from '@/context/ResumeModalContext';
 
@@ -65,6 +66,9 @@ const Hero: React.FC = () => {
           <button type="button" className="hms-btn-trio" onClick={openResume}>
             resume
           </button>
+          <Link href="/blog" className="hms-btn-trio">
+            blogs
+          </Link>
         </div>
       </div>
     </div>

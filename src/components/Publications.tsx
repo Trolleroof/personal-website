@@ -17,11 +17,6 @@ const Publications: React.FC = () => {
                   {pub.title}
                 </a>
               </h3>
-              {pub.isPeerReviewed && (
-                <a href={pub.url} target="_blank" rel="noopener noreferrer" className="pub-badge-link">
-                  peer-reviewed
-                </a>
-              )}
             </div>
             <div className="pub-meta">
               <span className="pub-conference">{pub.conference}</span>

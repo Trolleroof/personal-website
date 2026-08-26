@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 
   return {
-    title: `${post.title} — Nikhil Prabhu`,
+    title: post.title,
     description: post.excerpt,
   };
 }

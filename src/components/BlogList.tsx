@@ -26,6 +26,8 @@ const BlogList: React.FC = () => {
                     width={640}
                     height={336}
                     className="blog-thumb"
+                    sizes="(max-width: 560px) 100vw, 168px"
+                    unoptimized={/\.gif$/i.test(post.thumbnail)}
                   />
                 </div>
               )}

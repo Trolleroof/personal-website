@@ -283,17 +283,6 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
             <div className="proj-detail-body">
               <p id={descriptionId} className="proj-detail-overview">{detail.overview}</p>
 
-              <section className="proj-detail-section" aria-labelledby={`${titleId}-tech-used`}>
-                <h3 id={`${titleId}-tech-used`} className="proj-detail-h">
-                  Tech used
-                </h3>
-                <ul className="proj-detail-tags-inline">
-                  {project.tags.map((t) => (
-                    <li key={t}>{t}</li>
-                  ))}
-                </ul>
-              </section>
-
               <section className="proj-detail-section" aria-labelledby={`${titleId}-hi`}>
                 <h3 id={`${titleId}-hi`} className="proj-detail-h">
                   Highlights

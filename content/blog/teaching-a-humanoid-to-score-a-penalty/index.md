@@ -14,8 +14,6 @@ clips:
   - src: /blog/humanoid-penalty/kick-follow-through.mp4
     label: 3 / Close replay and follow-through
 links:
-  - label: X thread
-    href: https://x.com/nikhilaprabhu/status/2077099481288651133
   - label: GitHub
     href: https://github.com/Trolleroof/egogoal-amd-hackathon
 ---
