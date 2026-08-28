@@ -3,7 +3,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Marquee from '@/components/Marquee';
 import BlogPostContent from '@/components/BlogPostContent';
+import JsonLd from '@/components/JsonLd';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
+import { AUTHOR } from '@/lib/site';
+import { blogPostingSchema, breadcrumbSchema, graph } from '@/lib/structured-data';
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -21,9 +24,26 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     return { title: 'Post not found' };
   }
 
+  const url = `/blog/${post.slug}`;
+
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: url },
+    authors: [{ name: AUTHOR.name, url: '/' }],
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url,
+      type: 'article',
+      publishedTime: new Date(`${post.date}T12:00:00Z`).toISOString(),
+      authors: [AUTHOR.name],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+    },
   };
 }
 
@@ -37,8 +57,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const wordCount = post.content.split(/\s+/).filter(Boolean).length;
+
   return (
     <>
+      <JsonLd
+        json={graph(
+          blogPostingSchema({ ...post, preview: post.excerpt }, wordCount),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Blog', path: '/blog' },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        )}
+      />
       <Marquee />
       <main className="blog-post-wrap">
         <div className="panel">

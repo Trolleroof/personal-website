@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
-
 :root {
   --pink: #c0392b;
   --red-outline: #b83224;
@@ -14,9 +12,10 @@
   --gray-mid: #888;
   --text: #333;
   --border: 1px solid #ccc;
-  --sans: 'Geist', Verdana, system-ui, sans-serif;
-  --mono: 'Geist Mono', ui-monospace, monospace;
-  --display: 'Geist', system-ui, sans-serif;
+  /* Geist is self-hosted by next/font in layout.tsx; these vars come from there. */
+  --sans: var(--font-geist-sans), Verdana, system-ui, sans-serif;
+  --mono: var(--font-geist-mono), ui-monospace, monospace;
+  --display: var(--font-geist-sans), system-ui, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -2601,4 +2600,17 @@ a:hover { color: var(--pink); }
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* Visually hidden, still read by screen readers and crawlers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

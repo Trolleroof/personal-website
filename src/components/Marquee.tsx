@@ -17,9 +17,9 @@ const Marquee: React.FC = () => {
         </div>
         <nav className="marquee-topbar-nav" aria-label="Site sections">
           <Link href="/projects">Projects</Link>
-          <a href="/#experience">Experience</a>
+          <Link href="/#experience">Experience</Link>
           <Link href="/blog">Blogs</Link>
-          <a href="/#contact">Contact</a>
+          <Link href="/#contact">Contact</Link>
           <button type="button" onClick={openResume}>
             Resume
           </button>
