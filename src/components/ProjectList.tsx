@@ -10,6 +10,7 @@ import {
   projectSlug,
   scrollToProjectsSection,
 } from '@/lib/project-slugs';
+import { projectPreview, type ProjectPreview } from '@/lib/project-media';
 import ProjectDetailModal from '@/components/ProjectDetailModal';
 
 type ProjectListProps = {
@@ -18,49 +19,12 @@ type ProjectListProps = {
   showViewAllLink?: boolean;
 };
 
-type ProjectPreview =
-  | { kind: 'image'; src: string; alt: string }
-  | { kind: 'video'; src: string; alt: string };
-
-function youtubeIdFromEmbed(url: string): string | null {
-  const match = url.match(/embed\/([^?&/]+)/);
-  return match?.[1] ?? null;
-}
-
-function projectPreview(project: Project): ProjectPreview | undefined {
-  const detail = project.detail;
-  const gallery = detail?.galleryImages;
-  if (gallery?.length) {
-    const image = gallery.find((entry) => entry.emphasize) ?? gallery[0];
-    return { kind: 'image', src: image.src, alt: image.alt };
-  }
-
-  const embed = detail?.videoEmbedUrl;
-  if (embed) {
-    const id = youtubeIdFromEmbed(embed);
-    if (id) {
-      return {
-        kind: 'image',
-        src: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
-        alt: `${project.name} demo thumbnail`,
-      };
-    }
-  }
-
-  const video = detail?.videoFileUrl;
-  if (video) {
-    return { kind: 'video', src: video, alt: `${project.name} demo` };
-  }
-
-  return undefined;
-}
-
 function ProjectCardMedia({ preview }: { preview: ProjectPreview }) {
   return (
     <div className="project-card-media">
       {preview.kind === 'video' ? (
         <video muted playsInline preload="metadata" aria-label={preview.alt}>
-          <source src={preview.src} type="video/mp4" />
+          <source src={`${preview.src}#t=0.001`} type="video/mp4" />
         </video>
       ) : (
         // eslint-disable-next-line @next/next/no-img-element

@@ -9,6 +9,7 @@
 import { PROFILE, getAllProjects, type Project } from '@/lib/data';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
 import { projectSlug } from '@/lib/project-slugs';
+import { projectPreview } from '@/lib/project-media';
 import { AUTHOR, SITE_URL } from '@/lib/site';
 
 const u = (path: string) => `${SITE_URL}${path}`;
@@ -46,6 +47,16 @@ function renderProject(project: Project): string {
   const award = projectAward(project);
   if (award) lines.push(`- **Award:** ${award}`);
   lines.push(`- **Tech stack:** ${project.tags.join(', ')}`);
+
+  const preview = projectPreview(project);
+  if (preview) {
+    const previewUrl = preview.src.startsWith('http') ? preview.src : u(preview.src);
+    lines.push(
+      `- **Thumbnail:** ${
+        preview.kind === 'video' ? `[Demo video](${previewUrl})` : `[Image](${previewUrl})`
+      }`,
+    );
+  }
   lines.push('');
 
   lines.push(`**One-line:** ${project.desc}`, '');
