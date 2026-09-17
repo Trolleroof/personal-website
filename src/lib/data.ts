@@ -122,6 +122,7 @@ export interface ProfileData {
     headline: string;
     detail: string;
     footRight?: string;
+    href?: string;
   };
 }
 
@@ -568,9 +569,9 @@ export const PROFILE: ProfileData = {
   },
   visitorCount: "042137",
   currentFocus: {
-    headline: "tui [games in your coding terminal]",
-    detail:
-      "teaching ai what's fun",
+    headline: "benchmarking AI on business sense",
+    detail: "i benchmarked frontier models on running a restaurant, check the results ",
+    href: "https://runretroarcade.com/benchmarks",
   },
 };
 

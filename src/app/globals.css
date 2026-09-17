@@ -569,9 +569,14 @@ a:hover { color: var(--pink); }
 
 .project-item-top {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 132px minmax(0, 1fr) auto;
   gap: 6px;
   align-items: start;
+}
+
+.project-item-top > .project-card-media {
+  aspect-ratio: 16 / 10;
+  border: 1px solid #e0d0cc;
 }
 
 .project-item--interactive {
@@ -763,6 +768,20 @@ a:hover { color: var(--pink); }
   height: 100%;
   object-fit: cover;
 }
+
+.cf-headline {
+  display: block;
+  color: var(--pink);
+  text-decoration: none;
+}
+
+.cf-detail-link {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.cf-detail-link:hover,
+.cf-detail-link:focus-visible { color: var(--pink); }
 
 .project-card-body {
   display: flex;
@@ -2199,7 +2218,9 @@ a:hover { color: var(--pink); }
   .skills-grid { grid-template-columns: 1fr; }
 
   /* Projects */
-  .project-item-top { grid-template-columns: 1fr; }
+  .project-item-top { grid-template-columns: 92px minmax(0, 1fr); }
+  .project-item-top > .project-card-media { grid-row: span 2; }
+  .project-item-top > .project-links { grid-column: 1 / -1; }
   .project-links { flex-direction: row; align-items: flex-start; justify-content: flex-start; flex-wrap: wrap; }
   .project-row-hint { display: none; }
   .project-grid { grid-template-columns: 1fr; }

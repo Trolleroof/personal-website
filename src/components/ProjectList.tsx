@@ -64,6 +64,7 @@ function ProjectRow({
   const expandable = Boolean(d);
   const awardLabel = d?.award;
   const slug = expandable ? projectSlug(project.name) : undefined;
+  const preview = projectPreview(project);
   const openFrom = (opener: HTMLElement) => {
     if (expandable) onOpen(project, opener);
   };
@@ -90,6 +91,7 @@ function ProjectRow({
       }}
     >
       <div className="project-item-top">
+        {preview ? <ProjectCardMedia preview={preview} /> : null}
         <div className="project-item-main project-item-main--static">
           <div className="project-item-head">
             <div className="project-name-row">

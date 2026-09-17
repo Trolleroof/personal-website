@@ -1,7 +1,7 @@
 import { PROFILE } from '@/lib/data';
 
 const CurrentFocus: React.FC = () => {
-  const { headline, detail, footRight } = PROFILE.currentFocus;
+  const { headline, detail, footRight, href } = PROFILE.currentFocus;
   return (
     <div className="panel current-focus">
       <div className="panel-header">
@@ -11,7 +11,14 @@ const CurrentFocus: React.FC = () => {
         <div className="cf-info">
           <div className="cf-headline">{headline}</div>
         </div>
-        <div className="cf-detail">{detail}</div>
+        <div className="cf-detail">
+          {detail}
+          {href ? (
+            <a className="cf-detail-link" href={href} target="_blank" rel="noopener noreferrer">
+              here
+            </a>
+          ) : null}
+        </div>
         {footRight ? (
           <div className="cf-foot">
             <span>{footRight}</span>
