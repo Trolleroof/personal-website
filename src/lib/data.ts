@@ -134,7 +134,7 @@ export const PROFILE: ProfileData = {
   handle: "Trolleroof",
   byline: "agents · robotics UIs · systems that ship",
   sidebar: [
-    { label: "Recently", value: "tinkering on robotics-related projects" },
+    { label: "Recently", value: "evals and fine-tuning VLAs/WMs" },
     { label: "Location", value: "SF Bay Area" },
     { label: "Values", value: "Family, Faith, Hard Work" },
   ],

@@ -1,0 +1,111 @@
+\input{preamble.tex}
+\input{resume-spacing.tex}
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Large \scshape Nikhil Prabhu} \\ \vspace{1pt}
+    \small \href{https://nikhilprabhu.tech}{\underline{nikhilprabhu.tech}} $|$
+    \href{mailto:nikhilprabhu06@gmail.com}{\underline{nikhilprabhu06@gmail.com}} $|$
+    \href{https://www.linkedin.com/in/nikprabhu1/}{\underline{linkedin.com/in/nikprabhu1}} $|$
+    \href{https://github.com/Trolleroof}{\underline{github.com/Trolleroof}}
+\end{center}
+\small
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, San Diego (UCSD)}{San Diego, CA}
+      {B.S. in Computer Science $|$ Cumulative GPA: 3.67}{Expected Graduation: June 2028}
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, nosep, topsep=2pt, itemsep=3pt, parsep=0pt]
+  \item \textbf{Languages:} Python, C++, TypeScript, JavaScript, Java
+  \item \textbf{Robot Learning:} world models, V-JEPA, PPO/MAPPO, CEM, behavioral cloning, ACT, MuJoCo
+  \item \textbf{Robotics:} ROS 2, SLAM, visual odometry, GPS-denied nav, YOLOX/YOLOv8, OpenCV
+  \item \textbf{Systems:} FastAPI, PyTorch, Electron, Next.js, Docker, WebSockets, Linux
+\end{itemize}
+\vspace{-4pt}
+
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Part-Time Robot Operator --- Verne Robotics (YC S25)}{San Francisco, CA}
+      {Robot-learning startup}{Jun 2026 -- Jul 2026}
+      \resumeItemListStart
+        \resumeItem{Operated Verne's arms collecting 300+ teleop demonstration episodes per session for policy training.}
+        \resumeItem{Diagnosed transfer-time policy failures and used those traces in later world-model and imitation work.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Undergraduate Research Assistant --- AI for Circuit Invention, UCSD}{San Diego, CA}
+      {Research Assistant (with Prof. Prasad Gudem \& Samvid AI)}{March 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Built an LLM + Cadence generate-simulate-evaluate loop for novel analog topologies vs SOTA benchmarks.}
+        \resumeItem{Parsed Spectre logs, netlists, and metrics into structured supervision; exploring RL over the design space.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Desktop Agent Developer \& Founder --- UCSD Agent Development (Clue2)}{San Diego, CA}
+      {Mentored by Prof. Ramamohan Paturi}{Jan 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Architected a cross-platform Electron + TypeScript agent that processes live meetings and executes tasks across apps.}
+        \resumeItem{Engineered AssemblyAI WebSocket transcription with dual-channel capture, buffering, and fault-tolerant sessions.}
+        \resumeItem{Shipped an LLM workflow engine across Gmail, Calendar, Docs, Sheets, Slack, Notion (7+); 40+ beta users, YC-startup adoption.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Lead Researcher --- Foot Drop Ankle-Foot Orthosis (Georgia Tech mmWave Lab)}{Atlanta, GA}
+      {IEEE ICHCI 2024 Presenter \& Published Author}{May 2024 -- Nov 2024}
+      \resumeItemListStart
+        \resumeItem{Built a 3D-printed EMG-controlled orthosis; custom actuator improved gait precision 23\% (R = 0.968).}
+        \resumeItem{First-author IEEE ICHCI 2024; refined the prototype with Georgia Tech PhD researchers.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Robotics Projects}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {DroneOS --- 1st Overall, Bow Capital $\times$ DS3 $\times$ SIC}{}
+      {GPS-denied swarm autonomy}{June 2026}
+      \resumeItemListStart
+        \resumeItem{YOLOX + Norfair perception, SLAM / visual odometry, 3D Gaussian Splatting maps; MAPPO + BC swarms with no GPS or comms.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {PREVUE --- Pre-execution World-Model Verifier}{}
+      {V-JEPA + Claude planner}{2026}
+      \resumeItemListStart
+        \resumeItem{Imagines $\sim$4s of pick-and-place from camera frames; injected 6\,cm miss 7.3\% $\rightarrow$ 94.7\% after repair; 0/8 vs 6/8 across eight scenes.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {EgoGoal --- Unitree G1 Penalty Kick}{}
+      {Motion retargeting + CEM in MuJoCo}{2026}
+      \resumeItemListStart
+        \resumeItem{Pelvis-local retargeting + CEM: 2.1\,m/s / 3.7\,m dead ball $\rightarrow$ 9.94\,m/s on-target center; corners within 0.01\,m of crossing.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {SODIUM --- Autonomous Care Robot --- 1st Overall, DiamondHacks}{}
+      {ROS 2 + Svelte 5 / Bun}{April 2026}
+      \resumeItemListStart
+        \resumeItem{Wake-word detection, NL routing, medication reminders, crisis alerts; in-home robot UI and real-time caregiver dashboard.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-4pt}
+
+\section{Publications}
+  \resumeItemListStart
+    \resumeItem{\textbf{Real-Time EMG Control for Assistive Devices} --- IEEE ICHCI 2024.}
+    \resumeItem{\textbf{Co-Heritability of Antibiotic Resistance in TB Evolution} --- Bioinformatics \& Biomedical Technology, 2025.}
+  \resumeItemListEnd
+
+\end{document}
