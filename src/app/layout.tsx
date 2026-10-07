@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: { icon: "/favicon.png" },
   title: {
-    default: "nikhil prabhu — agents · robotics UIs · systems that ship",
+    default: "nikhil prabhu — personal website",
     template: "%s — Nikhil Prabhu",
   },
   description: SITE_DESCRIPTION,
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "nikhil prabhu — agents · robotics UIs · systems that ship",
+    title: "nikhil prabhu — personal website",
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: "nikhil prabhu",
@@ -63,8 +63,8 @@ export const metadata: Metadata = {
     locale: "en_US",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "nikhil prabhu — agents · robotics UIs · systems that ship",
+    card: "summary",
+    title: "nikhil prabhu — personal website",
     description: SITE_DESCRIPTION,
   },
   robots: {
