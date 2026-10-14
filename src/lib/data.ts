@@ -219,6 +219,7 @@ export const PROFILE: ProfileData = {
           "Every model checked the allergy ticket. Not every model knew why passing out dishes with allergens was bad, which surprised me. The top three named the risk in 96% of reasons and the bottom three did it 66% of the time.",
           "Saturday Night was the toughest level for all models. 0 of 19 models passed. Models also made up pressure to justify spending: 26% of stove explanations cited demand that had already passed previously.",
           "More thinking did not mean better judgment. GPT-5.6 Sol used about 35,500 tokens per episode and finished 12th. GLM-5.3 Flash used about 5,300 and finished 5th.",
+          "I live-demoed MISE onstage at True Ventures' Scrappy Sessions, sharing the benchmark and human-trace approach with panelists Kevin Rose, Madeline Minshew, and Michael Montano.",
           "A Mercor VP and APEX lead reached out after I published the results, and I presented the benchmarks to Mercor. The next version hopes to add expert-written shifts, an agreement study across humans, metrics, and model judges, and a frozen benchmark pack.",
         ],
         galleryImages: [
