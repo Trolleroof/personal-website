@@ -203,9 +203,56 @@ export const PROFILE: ProfileData = {
   ],
   projects: [
     {
+      name: "MISE benchmark",
+      featured: true,
+      desc: "I made 19 frontier models run a restaurant, built a playable version to collect human traces for post-training, and was invited to present at Scrappy Sessions to Mercor's Code Data team @ Mercor HQ.",
+      tags: ["LLM Evals", "Operational Judgment", "APEX Rubric", "Deterministic Replay"],
+      links: [{ label: "Whitepaper", href: "https://runretroarcade.com/benchmarks" }],
+      detail: {
+        hook: "Same outcome. Very different judgment.",
+        overview:
+          "I built MISE (Manager Intervention under Shift Escalation) to test frontier models and their ability to run a restaurant. Scripted policies would play the chef, supply manager, host, and server. At each decision, the manager sees the current state and legal options, chooses one, and explains why in a single sentence. The full trace is saved and replayable.\n\n I added in different environments that test for different model behaviors or tendencies. For instance, Quiet Tuesday tests whether the model spends money when nothing is wrong. Dinner Rush adds in a broken oven. Saturday Night overwhelms the manager with arrivals, shortages, and bottlenecks at once.\n\n None of the choices that the model makes are labeled as the safe or risky option, so the model has full agency to decide what it needs to do.",
+        highlights: [
+          "I scored runs with two approaches. The first was a deterministic replay that grades Service, Resources, Recovery, and Safety. The second was an LLM-as-a-judge, as GPT-6 Luna then checks each reason against 8 APEX-style criteria using only the state the model saw. Final score was the average of outcome + reasoning.",
+          "The leaderboard: GPT-5.5 leads at 0.890, followed by Claude Opus 5 at 0.887 and GLM-5.3 at 0.883. Grok 4.6 finishes last at 0.766.",
+          "The interesting part is that 18 models land between 85.0 and 85.2 on outcomes. Grading the reasoning traces via the LLM-as-a-judge is what deliberately seperates these models. GPT-5.5 passes 89 of 98 checks, and on the other hand Grok 4.6 passes 72 because of stronger reasoning.",
+          "Every model checked the allergy ticket. Not every model knew why passing out dishes with allergens was bad, which surprised me. The top three named the risk in 96% of reasons and the bottom three did it 66% of the time.",
+          "Saturday Night was the toughest level for all models. 0 of 19 models passed. Models also made up pressure to justify spending: 26% of stove explanations cited demand that had already passed previously.",
+          "More thinking did not mean better judgment. GPT-5.6 Sol used about 35,500 tokens per episode and finished 12th. GLM-5.3 Flash used about 5,300 and finished 5th.",
+          "A Mercor VP and APEX lead reached out after I published the results, and I presented the benchmarks to Mercor. The next version hopes to add expert-written shifts, an agreement study across humans, metrics, and model judges, and a frozen benchmark pack.",
+        ],
+        galleryImages: [
+          {
+            src: "/projects/mise/under-pressure.jpg",
+            alt: "MISE evaluates whether frontier models can run a restaurant under pressure",
+          },
+          {
+            src: "/projects/mise/leaderboard.jpg",
+            alt: "MISE leaderboard: GPT-5.5 first at 0.890, then Claude Opus 5 and GLM-5.3, with rubric, safety, and tokens per episode",
+          },
+          {
+            src: "/projects/mise/key-findings.jpg",
+            alt: "MISE key findings: eighteen models land on the same outcome, and Saturday Night breaks every model",
+          },
+          {
+            src: "/projects/mise/little-plate-shift.jpg",
+            alt: "Little Plate shift view: kitchen stations, the dining room, and tickets for pasta and fish during service",
+          },
+          {
+            src: "/projects/mise/little-plate-allergy.jpg",
+            alt: "Allergy call on table 2, with options to swap and send, check the sauce with Mira, or remove the ticket",
+          },
+          {
+            src: "/projects/mise/tui-presentation.jpg",
+            alt: "Nikhil presenting Tui on stage, with a slide reading Environments for alignment and collection",
+          },
+        ],
+      },
+    },
+    {
       name: "DroneOS",
       featured: true,
-      desc: "End-to-end autonomous drone platform that identifies targets, navigates without GPS, and coordinates swarm behavior without communication — built by team Outcast Virus and awarded 1st Overall at the Bow Capital × DS3 × SIC hackathon at UC San Diego.",
+      desc: "End-to-end autonomous drone platform that identifies targets, navigates without GPS, and coordinates swarm behavior without communication, we won 1st Overall at the Bow Capital × DS3 × SIC hackathon @ UC San Diego.",
       tags: ["Swarm RL", "Behavioral Cloning", "MAPPO", "YOLOX", "Norfair", "SLAM", "Visual Odometry", "3D Gaussian Splatting"],
       links: [
         { label: "Devpost", href: "https://devpost.com/software/outcast-virus" },
@@ -505,6 +552,17 @@ export const PROFILE: ProfileData = {
         alt: "UC San Diego Triton logo",
       },
       desc: "Developing an LLM-based pipeline for automated generation and verification of novel analog circuit topologies. Integrating LLM APIs with Cadence simulation tools and exploring reinforcement learning strategies for circuit design space search.",
+    },
+    {
+      role: "Robot Operations Engineer",
+      place: "Verne Robotics (YC S25)",
+      organization: "San Francisco",
+      date: "Jun 2026 - Jul 2026",
+      logo: {
+        src: "/org-logos/verne.png",
+        alt: "Verne Robotics logo",
+      },
+      desc: "Ran high-volume teleoperation collection for imitation learning (300+ demonstration episodes per session) on Verne's robot arms, QC'd episode quality with the robot-learning team, and diagnosed on-hardware policy failures during robot transfer so recurring failure modes fed the next training round instead of getting rediscovered on the floor.",
     },
     {
       role: "Lead Researcher - IEEE ICHCI Presenter",

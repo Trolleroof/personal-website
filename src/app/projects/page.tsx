@@ -6,7 +6,7 @@ import { getAllProjects } from '@/lib/data';
 import { breadcrumbSchema, graph, projectsPageSchema } from '@/lib/structured-data';
 
 const description =
-  'Award-winning hackathon builds, robotics experiments, and systems projects by Nikhil Prabhu — including DroneOS, SODIUM, NIGEL, Apollo Labs, PREVUE, and EgoGoal.';
+  'Award-winning hackathon builds, robotics experiments, and systems projects by Nikhil Prabhu — including MISE, DroneOS, SODIUM, NIGEL, Apollo Labs, PREVUE, and EgoGoal.';
 
 export const metadata: Metadata = {
   title: 'Projects',
