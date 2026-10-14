@@ -11,14 +11,16 @@ const CurrentFocus: React.FC = () => {
         <div className="cf-info">
           <div className="cf-headline">{headline}</div>
         </div>
-        <div className="cf-detail">
-          {detail}
-          {href ? (
-            <a className="cf-detail-link" href={href} target="_blank" rel="noopener noreferrer">
-              here
-            </a>
-          ) : null}
-        </div>
+        {detail || href ? (
+          <div className="cf-detail">
+            {detail}
+            {href ? (
+              <a className="cf-detail-link" href={href} target="_blank" rel="noopener noreferrer">
+                here
+              </a>
+            ) : null}
+          </div>
+        ) : null}
         {footRight ? (
           <div className="cf-foot">
             <span>{footRight}</span>

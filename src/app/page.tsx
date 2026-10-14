@@ -4,7 +4,6 @@ import Hero from '@/components/Hero';
 import ProfileCard from '@/components/ProfileCard';
 import CurrentFocus from '@/components/CurrentFocus';
 import ProfileQuote from '@/components/ProfileQuote';
-import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import Publications from '@/components/Publications';
@@ -47,7 +46,6 @@ export default function Home() {
           <Projects />
           <Experience />
           <Publications />
-          <Skills />
           <Contact />
         </div>
       </div>

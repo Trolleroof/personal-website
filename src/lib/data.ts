@@ -205,7 +205,7 @@ export const PROFILE: ProfileData = {
     {
       name: "MISE benchmark",
       featured: true,
-      desc: "I made 19 frontier models run a restaurant, built a playable version to collect human traces for post-training, and live-demoed it onstage at True Ventures' Scrappy Sessions @ Mercor HQ.",
+      desc: "I made 19 frontier models run a restaurant, built a playable version to collect human traces for post-training, live-demoed it at True Ventures' Scrappy Sessions, and separately presented it to Mercor's Code Data team at Mercor HQ.",
       tags: ["LLM Evals", "Operational Judgment", "APEX Rubric", "Deterministic Replay"],
       links: [{ label: "Whitepaper", href: "https://runretroarcade.com/benchmarks" }],
       detail: {
@@ -627,9 +627,8 @@ export const PROFILE: ProfileData = {
   },
   visitorCount: "042137",
   currentFocus: {
-    headline: "benchmarking AI on business sense",
-    detail: "i benchmarked frontier models on running a restaurant, check the results ",
-    href: "https://runretroarcade.com/benchmarks",
+    headline: "fine-tuning diffusion models for robot control",
+    detail: "",
   },
 };
 
