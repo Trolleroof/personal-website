@@ -205,7 +205,7 @@ export const PROFILE: ProfileData = {
     {
       name: "MISE benchmark",
       featured: true,
-      desc: "I made 19 frontier models run a restaurant, built a playable version to collect human traces for post-training, and was invited to present at Scrappy Sessions to Mercor's Code Data team @ Mercor HQ.",
+      desc: "I made 19 frontier models run a restaurant, built a playable version to collect human traces for post-training, and live-demoed it onstage at True Ventures' Scrappy Sessions @ Mercor HQ.",
       tags: ["LLM Evals", "Operational Judgment", "APEX Rubric", "Deterministic Replay"],
       links: [{ label: "Whitepaper", href: "https://runretroarcade.com/benchmarks" }],
       detail: {
