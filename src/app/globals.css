@@ -13,9 +13,9 @@
   --text: #333;
   --border: 1px solid #ccc;
   /* IBM Plex is self-hosted by next/font in layout.tsx; these vars come from there. */
-  --sans: var(--font-plex-sans), Verdana, system-ui, sans-serif;
+  --sans: var(--font-cmu-sans), Verdana, system-ui, sans-serif;
   --mono: var(--font-plex-mono), ui-monospace, monospace;
-  --display: var(--font-plex-sans), system-ui, sans-serif;
+  --display: var(--font-cmu-sans), system-ui, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

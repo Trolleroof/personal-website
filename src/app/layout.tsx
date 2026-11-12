@@ -1,15 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "./providers";
 import JsonLd from "@/components/JsonLd";
 import { AUTHOR, SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
 import { graph, personSchema, webSiteSchema } from "@/lib/structured-data";
 
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
+// CMU Sans Serif (Computer Modern, SIL OFL) — Medium is the default weight.
+const cmuSans = localFont({
+  variable: "--font-cmu-sans",
+  src: [
+    { path: "./fonts/cmu-sans-serif-500-roman.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/cmu-sans-serif-500-italic.woff2", weight: "500", style: "italic" },
+    { path: "./fonts/cmu-sans-serif-700-roman.woff2", weight: "700", style: "normal" },
+  ],
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -88,13 +93,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${cmuSans.variable} ${plexMono.variable}`}>
       <head>
         <link rel="llms-txt" href={`${SITE_URL}/llms.txt`} type="text/plain" />
         <link rel="author" href={`${SITE_URL}/llms.txt`} />
         <JsonLd json={graph(personSchema(), webSiteSchema())} />
       </head>
-      <body className={plexSans.className}>
+      <body className={cmuSans.className}>
         <Providers>{children}</Providers>
       </body>
     </html>
