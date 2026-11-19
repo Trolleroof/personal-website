@@ -17,7 +17,7 @@ Coding agents, like Claude, are now able to write robot policies. They can look 
 
 What's missing is that there's no way to verify if the trajectory of a plan will successfully execute, or execute in the most efficient manner. Coding agents cannot visualize future action states as well as determine physical consequences. A grasp six centimeters off passes as a proper plan but will clearly fail during execution.
 
-So I built [PREVUE](https://github.com/Trolleroof/skill-level-world-model, a pre-execution visual understanding engine for robot skills.
+So I built [PREVUE](https://github.com/Trolleroof/skill-level-world-model), a pre-execution visual understanding engine for robot skills.
 
 ## The problem with fluent robot plans
 

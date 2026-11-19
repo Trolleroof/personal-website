@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { manuscriptFonts } from '@/app/fonts';
 import JsonLd from '@/components/JsonLd';
 import HomeView from '@/components/home/HomeView';
 import { getBlogPosts } from '@/lib/blog';
@@ -20,11 +21,18 @@ const profilePageSchema = {
 };
 
 export default function Home() {
-  const posts = getBlogPosts().map((p) => ({ slug: p.slug, title: p.title, date: String(p.date) }));
+  const posts = getBlogPosts().map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    date: p.monthLabel,
+    venue: p.venue,
+  }));
   return (
     <>
       <JsonLd json={graph(profilePageSchema, breadcrumbSchema([{ name: 'Home', path: '/' }]))} />
-      <HomeView posts={posts} />
+      <div className={manuscriptFonts}>
+        <HomeView posts={posts} />
+      </div>
     </>
   );
 }

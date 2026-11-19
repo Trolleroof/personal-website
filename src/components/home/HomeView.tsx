@@ -6,9 +6,10 @@ import Link from 'next/link';
 import { PROFILE } from '@/lib/data';
 import { parseProjectDetailHash, projectDetailHash, projectSlug } from '@/lib/project-slugs';
 import AsciiField from './AsciiField';
+import VisitorCount from './VisitorCount';
 import s from './home.module.css';
 
-type Post = { slug: string; title: string; date: string };
+type Post = { slug: string; title: string; date: string; venue?: string };
 
 const PROJECTS: { name: string; label: string; what: string; detail: string }[] = [
   {
@@ -56,10 +57,11 @@ const PROJECTS: { name: string; label: string; what: string; detail: string }[] 
 
 const UCSD = '/org-logos/ucsd-triton-logo.png';
 const EXPERIENCE = [
-  { logo: UCSD, dates: 'Oct 2026 – now', org: 'ARClab', role: 'Research Assistant · Prof. Yip', line: 'success-guided resets for humanoid PPO in Isaac Lab.' },
-  { logo: '/org-logos/verne.png', dates: 'Jun – Jul 2026', org: 'Verne Robotics', role: 'Robot Operations Engineer · YC S25', line: 'made sure only clean teleop data trained the policy. 300+ episodes, every failure tagged.' },
-  { logo: UCSD, dates: 'Mar – Sep 2026', org: 'RL for Circuit Invention', role: 'Research Assistant · Prof. Gudem', line: 'LLMs proposing circuits, Spectre grading them. made the loop 10x faster.' },
-  { logo: UCSD, dates: 'Sep 2025 – Sep 2026', org: 'Lab for Emerging Intelligence', role: 'Undergraduate Researcher · Prof. Paturi', line: 'desktop agent that sits in your meetings and does the follow-ups. 40+ pilot users.' },
+  { logo: '/org-logos/truss.png', logoW: 128, logoH: 128, dates: 'Nov 2026 – now', org: 'Truss', role: 'Researcher', line: 'frontier model evals. co-authored SoldierPhysio, a heat-illness benchmark for troops.' },
+  { logo: '/org-logos/arclab.jpg', logoW: 200, logoH: 200, dates: 'Oct 2026 – now', org: 'ARClab', role: 'Research Assistant · Prof. Yip', line: 'success-guided resets for humanoid PPO in Isaac Lab.' },
+  { logo: '/org-logos/verne.png', logoW: 800, logoH: 800, dates: 'Jun – Jul 2026', org: 'Verne Robotics', role: 'Robot Operations Engineer · YC S25', line: 'made sure only clean teleop data trained the policy. 300+ episodes, every failure tagged.' },
+  { logo: UCSD, logoW: 4096, logoH: 4096, dates: 'Mar – Sep 2026', org: 'RL for Circuit Invention', role: 'Research Assistant · Prof. Gudem', line: 'LLMs proposing circuits, Spectre grading them. made the loop 10x faster.' },
+  { logo: UCSD, logoW: 4096, logoH: 4096, dates: 'Sep 2025 – Sep 2026', org: 'Lab for Emerging Intelligence', role: 'Undergraduate Researcher · Prof. Paturi', line: 'desktop agent that sits in your meetings and does the follow-ups. 40+ pilot users.' },
 ];
 
 function linksFor(name: string) {
@@ -87,16 +89,21 @@ export default function HomeView({ posts }: { posts: Post[] }) {
   const li = PROFILE.contact.find((c) => c.icon === 'linkedin')?.href;
 
   return (
-    <div className={s.page} data-theme="dark-home">
-      <div className={s.wrap}>
+    <div className={s.page} data-theme="manuscript">
+      <div className={s.book}>
+        <div className={s.spine} aria-hidden="true">nikhil prabhu</div>
+        <div className={s.wrap}>
         <main className={s.main}>
           <header className={s.header}>
             <Image src={PROFILE.avatarUrl} alt="Nikhil Prabhu" width={96} height={96} className={s.avatar} priority />
             <div className={s.intro}>
               <h1 className={s.name}>Nikhil Prabhu</h1>
+              <p className={s.verse}>
+                <span lang="sa">कर्मण्येवाधिकारस्ते</span>
+                <span className={s.gloss}>your part is the work</span>
+              </p>
               <p className={s.bio}>
-                cs @ ucsd. i train robots to do things i don&apos;t want to do, and build evals to check whether
-                models actually can. 10x hackathon winner.
+               Robotics, eval
               </p>
               <nav aria-label="Elsewhere" className={s.links}>
                 {gh && <a href={gh}>github</a>}
@@ -144,7 +151,7 @@ export default function HomeView({ posts }: { posts: Post[] }) {
                 <span className={s.dates}>{e.dates}</span>
                 <div>
                   <div className={s.expHead}>
-                    <Image src={e.logo} alt="" width={20} height={20} className={s.logo} />
+                    <Image src={e.logo} alt="" width={e.logoW} height={e.logoH} className={s.logo} />
                     <span className={s.org}>{e.org}</span>
                     <span className={s.role}>{e.role}</span>
                   </div>
@@ -161,18 +168,21 @@ export default function HomeView({ posts }: { posts: Post[] }) {
             </div>
             {posts.slice(0, 3).map((p) => (
               <Link key={p.slug} href={`/blog/${p.slug}`} className={s.post}>
-                <span>{p.title}</span>
-                <span className={s.dates}>{p.date.slice(0, 4)}</span>
+                <span>
+                  {p.venue && <span className={s.venue}>{p.venue}</span>}
+                  <span>{p.title}</span>
+                </span>
+                <span className={s.dates}>{p.date}</span>
               </Link>
             ))}
           </section>
 
           <footer className={s.footer}>
-            <span>© {new Date().getFullYear()} nikhil prabhu</span>
-            <span>visitors: {PROFILE.visitorCount}</span>
+            <VisitorCount />
           </footer>
         </main>
         <AsciiField className={s.ascii} />
+        </div>
       </div>
     </div>
   );

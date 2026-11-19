@@ -117,7 +117,6 @@ export interface ProfileData {
   publications: Publication[];
   contact: ContactLink[];
   sidebarQuote: SidebarQuoteData;
-  visitorCount: string;
   currentFocus: {
     headline: string;
     detail: string;
@@ -533,6 +532,17 @@ export const PROFILE: ProfileData = {
   ],
   experience: [
     {
+      role: "Researcher",
+      place: "Truss Forum",
+      organization: "Truss",
+      date: "Nov 2026 - Present",
+      logo: {
+        src: "/org-logos/truss.png",
+        alt: "Truss logo",
+      },
+      desc: "Frontier model evaluations. Co-authored SoldierPhysio, a heat-illness benchmark that tests whether models can keep a soldier training or pull them out.",
+    },
+    {
       role: "Desktop Agent Developer - Founder",
       place: "UCSD Agent Development (Clue2)",
       organization: "UC San Diego",
@@ -626,7 +636,6 @@ export const PROFILE: ProfileData = {
     text: "Hard work beats talent when talent fails to work hard.",
     attribution: "Kevin Durant",
   },
-  visitorCount: "042137",
   currentFocus: {
     headline: "fine-tuning diffusion models for robot control",
     detail: "",

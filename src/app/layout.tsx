@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: { icon: "/favicon.png" },
   title: {
-    default: "nikhil prabhu — personal website",
+    default: "Nikhil Prabhu",
     template: "%s — Nikhil Prabhu",
   },
   description: SITE_DESCRIPTION,
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "nikhil prabhu — personal website",
+    title: "nikhil prabhu",
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: "nikhil prabhu",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "nikhil prabhu — personal website",
+    title: "me",
     description: SITE_DESCRIPTION,
   },
   robots: {
