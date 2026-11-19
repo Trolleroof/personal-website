@@ -149,6 +149,7 @@ export function blogPostingSchema(post: BlogPostMeta, wordCount?: number): Json 
     isPartOf: { '@id': `${SITE_URL}/blog#blog` },
     ...(post.thumbnail ? { image: abs(post.thumbnail) } : {}),
     ...(wordCount ? { wordCount } : {}),
+    ...(post.venue ? { publisher: { '@type': 'Organization', name: post.venue } } : {}),
     ...(post.links?.length
       ? { citation: post.links.map((link) => ({ '@type': 'CreativeWork', name: link.label, url: link.href })) }
       : {}),

@@ -19,6 +19,8 @@ export interface BlogPostFrontmatter {
   title: string;
   date: string;
   excerpt: string;
+  /** Where it was published, e.g. "truss". Shown beside the title. */
+  venue?: string;
   thumbnail?: string;
   clips?: BlogClip[];
   links?: BlogLink[];
@@ -28,6 +30,8 @@ export interface BlogPostMeta extends BlogPostFrontmatter {
   slug: string;
   /** Human-readable date for display, e.g. "Aug 12, 2026". */
   dateLabel: string;
+  /** Month and year, e.g. "Aug 2026". */
+  monthLabel: string;
   /** First words of the post body, for index cards. */
   preview: string;
 }
@@ -35,6 +39,7 @@ export interface BlogPostMeta extends BlogPostFrontmatter {
 export interface BlogPost extends BlogPostFrontmatter {
   slug: string;
   dateLabel: string;
+  monthLabel: string;
   content: string;
 }
 
@@ -57,6 +62,18 @@ function formatDateLabel(isoDate: string): string {
   return parsed.toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
+    year: 'numeric',
+  });
+}
+
+function formatMonthLabel(isoDate: string): string {
+  const normalized = normalizeDate(isoDate);
+  const parsed = new Date(`${normalized}T12:00:00`);
+  if (Number.isNaN(parsed.getTime())) {
+    return normalized;
+  }
+  return parsed.toLocaleDateString('en-US', {
+    month: 'short',
     year: 'numeric',
   });
 }
@@ -122,6 +139,8 @@ function readBlogPost(slug: string): BlogPost {
     title,
     date,
     dateLabel: formatDateLabel(date),
+    monthLabel: formatMonthLabel(date),
+    venue: data.venue ? String(data.venue) : undefined,
     excerpt,
     thumbnail: data.thumbnail ? String(data.thumbnail) : undefined,
     clips: Array.isArray(data.clips) ? (data.clips as BlogClip[]) : undefined,

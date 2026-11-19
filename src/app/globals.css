@@ -2654,7 +2654,7 @@ a:hover { color: var(--pink); }
 }
 
 /* Dark homepage: quiet scrollbar */
-html:has([data-theme="dark-home"]) { background: #1a1a1a; scrollbar-color: #3a3a3a #1a1a1a; }
-html:has([data-theme="dark-home"]) ::-webkit-scrollbar-track { background: #1a1a1a; }
-html:has([data-theme="dark-home"]) ::-webkit-scrollbar-thumb { background: #3a3a3a; }
-html:has([data-theme="dark-home"]) body { background: #1a1a1a; animation: none; }
+html:has([data-theme="manuscript"]) { background: #5c4a3a; scrollbar-color: #cbb79f #5c4a3a; }
+html:has([data-theme="manuscript"]) ::-webkit-scrollbar-track { background: #5c4a3a; }
+html:has([data-theme="manuscript"]) ::-webkit-scrollbar-thumb { background: #cbb79f; }
+html:has([data-theme="manuscript"]) body { background: #5c4a3a; animation: none; }

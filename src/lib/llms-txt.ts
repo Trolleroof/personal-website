@@ -244,6 +244,7 @@ function renderBlog(full: boolean): string {
     lines.push(`- **Slug:** \`${meta.slug}\``);
     lines.push(`- **URL:** ${u(`/blog/${meta.slug}`)}`);
     lines.push(`- **Published:** ${meta.dateLabel} (${meta.date})`);
+    if (meta.venue) lines.push(`- **Venue:** ${meta.venue}`);
     lines.push(`- **Author:** ${AUTHOR.name}`);
     lines.push('', `**Summary:** ${meta.excerpt}`, '');
 

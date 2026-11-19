@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import Marquee from '@/components/Marquee';
+import Link from 'next/link';
 import BlogList from '@/components/BlogList';
 import JsonLd from '@/components/JsonLd';
 import { getBlogPosts } from '@/lib/blog';
 import { blogSchema, breadcrumbSchema, graph } from '@/lib/structured-data';
+import s from './blog.module.css';
 
 const description =
   'Build logs and research writeups by Nikhil Prabhu on robot learning, world models, reinforcement learning, and agent systems.';
@@ -24,7 +25,7 @@ export default function BlogPage() {
   const posts = getBlogPosts();
 
   return (
-    <div className="blog-page-shell">
+    <div className={s.page} data-theme="manuscript">
       <JsonLd
         json={graph(
           blogSchema(posts),
@@ -34,15 +35,12 @@ export default function BlogPage() {
           ]),
         )}
       />
-      <Marquee />
-      <main className="blog-page-wrap">
-        <h1 className="sr-only">Blog — build logs and research writeups by Nikhil Prabhu</h1>
-        <div className="panel blog-page-panel">
-          <div className="panel-header">Blogs</div>
-          <div className="panel-body blog-panel-body">
-            <BlogList />
-          </div>
-        </div>
+      <main className={s.main}>
+        <p className={s.back}>
+          <Link href="/">home</Link>
+        </p>
+        <h1 className={s.label}>Writing</h1>
+        <BlogList />
       </main>
     </div>
   );
