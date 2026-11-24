@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { PROFILE } from '@/lib/data';
 import { parseProjectDetailHash, projectDetailHash, projectSlug } from '@/lib/project-slugs';
 import AsciiField from './AsciiField';
+import { useResumeModal } from '@/context/ResumeModalContext';
+import { GitaMarginLeft, GitaMarginRight } from './GitaMargin';
+import HeaderQuotes from './HeaderQuotes';
 import VisitorCount from './VisitorCount';
 import s from './home.module.css';
 
@@ -15,53 +18,63 @@ const PROJECTS: { name: string; label: string; what: string; detail: string }[] 
   {
     name: 'MISE benchmark',
     label: 'MISE',
-    what: 'can 19 frontier models run a restaurant?',
+    what: 'testing whether 19 frontier models can run a restaurant',
     detail:
-      "stateful benchmark w/ deterministic service, cost, recovery and safety metrics + an LLM judge over 171 episodes. top model hit 66.7% pass@1. presented it at Mercor HQ w/ Chirag Mahapatra and at True Ventures' Scrappy Sessions.",
+      "I built a stateful restaurant shift benchmark where models decide when to intervene and explain why, then scored runs on both deterministic shift metrics and an LLM judge across 171 episodes. Most models landed around the same outcome score, so the reasoning traces ended up being what separated them, with the top model hitting 66.7% pass@1. I also presented it at Mercor HQ with Chirag Mahapatra and live-demoed it at True Ventures' Scrappy Sessions.",
   },
   {
     name: 'DroneOS',
     label: 'DroneOS',
     what: '1st overall · Bow Capital × DS3 × SIC',
     detail:
-      'drone swarms that coordinate w/o GPS or comms. BC + MAPPO policies, VO-SLAM on Gaussian splat maps, YOLOX + Norfair to re-id targets through occlusion.',
+      'We wanted to see if a drone swarm could find targets and coordinate without relying on GPS or radio comms. We used YOLOX and Norfair to keep tracking targets after occlusion, VO-SLAM with Gaussian splat maps for localization, and behavioral cloning plus MAPPO for the swarm policies.',
   },
   {
     name: 'SODIUM',
     label: 'SODIUM',
     what: '1st overall · DiamondHacks 2026',
     detail:
-      'voice-first companion for senior care. wake word, med reminders, crisis detection, and a dashboard for caregivers.',
+      'We built a voice-first companion robot for seniors so they would not have to deal with menus or small screens. It listens for a wake word, handles medication reminders and crisis alerts, and logs everything to a caregiver dashboard.',
   },
   {
     name: 'Apollo Labs',
     label: 'Apollo Labs',
     what: '1st overall · OpenClaw hackathon',
     detail:
-      'RL orchestrator that trains PPO roombas, evals 1000+ episodes, and emails you the GIFs. shoutout AgentMail + Nia.',
+      'I built an RL training harness for a 2D Roomba sim that pulls notes from past runs in Nia before training, runs PPO and evaluates 1,000+ episodes, and sends the rollout GIFs and report over AgentMail.',
   },
   {
     name: 'PREVUE',
     label: 'PREVUE',
-    what: 'checking robot actions before they run',
-    detail: 'a world-model verifier that scores candidate actions offline so bad ones never hit the robot.',
+    what: 'checking robot plans with a world model before they run',
+    detail:
+      'Coding agents can write pick-and-place plans, but they have no way to tell if a grasp is a few centimeters off until the arm misses. I trained a small action-conditioned world model head on top of V-JEPA so it can imagine the rollout first and send bad plans back to Claude to fix.',
   },
   {
     name: 'EgoGoal',
     label: 'EgoGoal',
-    what: 'got a G1 to score a penalty',
+    what: 'getting a Unitree G1 to score a penalty kick',
     detail:
-      'first retargeted kick moved the ball 3.7m. goal was 10.5m. pelvis-local retargeting + a differentiable warm start + MuJoCo search got it to both corners.',
+      'My first retargeted kick looked right, but once I added real turf friction the ball only rolled 3.7 meters toward a 10.5 meter goal. Moving to pelvis-local retargeting, a small differentiable warm start, and CEM search in MuJoCo got it hitting both corners.',
   },
 ];
 
 const UCSD = '/org-logos/ucsd-triton-logo.png';
-const EXPERIENCE = [
-  { logo: '/org-logos/truss.png', logoW: 128, logoH: 128, dates: 'Nov 2026 – now', org: 'Truss', role: 'Researcher', line: 'frontier model evals. co-authored SoldierPhysio, a heat-illness benchmark for troops.' },
-  { logo: '/org-logos/arclab.jpg', logoW: 200, logoH: 200, dates: 'Oct 2026 – now', org: 'ARClab', role: 'Research Assistant · Prof. Yip', line: 'success-guided resets for humanoid PPO in Isaac Lab.' },
-  { logo: '/org-logos/verne.png', logoW: 800, logoH: 800, dates: 'Jun – Jul 2026', org: 'Verne Robotics', role: 'Robot Operations Engineer · YC S25', line: 'made sure only clean teleop data trained the policy. 300+ episodes, every failure tagged.' },
-  { logo: UCSD, logoW: 4096, logoH: 4096, dates: 'Mar – Sep 2026', org: 'RL for Circuit Invention', role: 'Research Assistant · Prof. Gudem', line: 'LLMs proposing circuits, Spectre grading them. made the loop 10x faster.' },
-  { logo: UCSD, logoW: 4096, logoH: 4096, dates: 'Sep 2025 – Sep 2026', org: 'Lab for Emerging Intelligence', role: 'Undergraduate Researcher · Prof. Paturi', line: 'desktop agent that sits in your meetings and does the follow-ups. 40+ pilot users.' },
+const EXPERIENCE: {
+  logo: string;
+  logoW: number;
+  logoH: number;
+  logoTone?: 'invert' | 'photo';
+  dates: string;
+  org: string;
+  role: string;
+  line: string;
+}[] = [
+  { logo: '/org-logos/truss.png', logoW: 128, logoH: 128, logoTone: 'invert', dates: 'Nov 2026 – now', org: 'Truss', role: 'Researcher', line: 'Working on frontier model evals. I co-authored SoldierPhysio, a heat-illness benchmark testing whether models know when to keep a soldier training or pull them out.' },
+  { logo: '/org-logos/arclab.jpg', logoW: 200, logoH: 200, logoTone: 'photo', dates: 'Oct 2026 – now', org: 'ARClab', role: 'Research Assistant · Prof. Yip', line: 'Working on success-guided resets for humanoid PPO training in Isaac Lab.' },
+  { logo: '/org-logos/verne.png', logoW: 800, logoH: 800, logoTone: 'invert', dates: 'Jun – Jul 2026', org: 'Verne Robotics', role: 'Robot Operations Engineer · YC S25', line: 'Collected 300+ teleop episodes per session and checked data quality with the learning team, tagging hardware policy failures so the next training run actually fixed them.' },
+  { logo: UCSD, logoW: 4096, logoH: 4096, dates: 'Mar – Sep 2026', org: 'RL for Circuit Invention', role: 'Research Assistant · Prof. Gudem', line: 'Built a loop where LLMs propose analog circuits and Cadence Spectre simulates and grades them, which sped up iteration about 10x.' },
+  { logo: UCSD, logoW: 4096, logoH: 4096, dates: 'Sep 2025 – Sep 2026', org: 'Lab for Emerging Intelligence', role: 'Undergraduate Researcher · Prof. Paturi', line: 'Built an Electron desktop agent that listens in on meetings and handles follow-ups across Gmail, Slack, and Notion, with 40+ pilot users.' },
 ];
 
 function linksFor(name: string) {
@@ -69,6 +82,7 @@ function linksFor(name: string) {
 }
 
 export default function HomeView({ posts }: { posts: Post[] }) {
+  const { openResume } = useResumeModal();
   const [open, setOpen] = useState<string | null>(null);
 
   useEffect(() => {
@@ -89,27 +103,27 @@ export default function HomeView({ posts }: { posts: Post[] }) {
   const li = PROFILE.contact.find((c) => c.icon === 'linkedin')?.href;
 
   return (
-    <div className={s.page} data-theme="manuscript">
-      <div className={s.book}>
-        <div className={s.spine} aria-hidden="true">nikhil prabhu</div>
+    <div className={s.page} data-theme="nocturne">
+      <div className={s.folio}>
+        <GitaMarginLeft />
+        <div className={s.book}>
         <div className={s.wrap}>
         <main className={s.main}>
           <header className={s.header}>
-            <Image src={PROFILE.avatarUrl} alt="Nikhil Prabhu" width={96} height={96} className={s.avatar} priority />
+            <Image src={PROFILE.avatarUrl} alt="Nikhil Prabhu" width={112} height={112} className={s.avatar} priority />
             <div className={s.intro}>
               <h1 className={s.name}>Nikhil Prabhu</h1>
-              <p className={s.verse}>
-                <span lang="sa">कर्मण्येवाधिकारस्ते</span>
-                <span className={s.gloss}>your part is the work</span>
-              </p>
+              <HeaderQuotes />
               <p className={s.bio}>
-               Robotics, eval
+                i pursue research in robot learning, LLM evals, and sometimes a combination of both
               </p>
               <nav aria-label="Elsewhere" className={s.links}>
                 {gh && <a href={gh}>github</a>}
                 {li && <a href={li}>linkedin</a>}
                 {email && <a href={`mailto:${email}`}>email</a>}
-                <a href={PROFILE.resumeUrl}>resume</a>
+                <button type="button" className={s.resumeLink} onClick={openResume}>
+                  resume
+                </button>
               </nav>
             </div>
           </header>
@@ -151,7 +165,21 @@ export default function HomeView({ posts }: { posts: Post[] }) {
                 <span className={s.dates}>{e.dates}</span>
                 <div>
                   <div className={s.expHead}>
-                    <Image src={e.logo} alt="" width={e.logoW} height={e.logoH} className={s.logo} />
+                    <span className={e.logoTone === 'photo' ? `${s.logoFrame} ${s.logoFramePhoto}` : s.logoFrame}>
+                      <Image
+                        src={e.logo}
+                        alt=""
+                        width={e.logoW}
+                        height={e.logoH}
+                        className={
+                          e.logoTone === 'invert'
+                            ? `${s.logo} ${s.logoInvert}`
+                            : e.logoTone === 'photo'
+                              ? `${s.logo} ${s.logoPhoto}`
+                              : s.logo
+                        }
+                      />
+                    </span>
                     <span className={s.org}>{e.org}</span>
                     <span className={s.role}>{e.role}</span>
                   </div>
@@ -183,6 +211,8 @@ export default function HomeView({ posts }: { posts: Post[] }) {
         </main>
         <AsciiField className={s.ascii} />
         </div>
+        </div>
+        <GitaMarginRight />
       </div>
     </div>
   );

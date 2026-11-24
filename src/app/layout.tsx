@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { manuscriptFonts } from "./fonts";
 import { Providers } from "./providers";
 import JsonLd from "@/components/JsonLd";
 import { AUTHOR, SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
@@ -27,6 +28,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#070911",
 };
 
 export const metadata: Metadata = {
@@ -93,7 +95,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cmuSans.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${cmuSans.variable} ${plexMono.variable} ${manuscriptFonts}`}>
       <head>
         <link rel="llms-txt" href={`${SITE_URL}/llms.txt`} type="text/plain" />
         <link rel="author" href={`${SITE_URL}/llms.txt`} />
