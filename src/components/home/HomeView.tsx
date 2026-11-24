@@ -14,13 +14,28 @@ import s from './home.module.css';
 
 type Post = { slug: string; title: string; date: string; venue?: string };
 
-const PROJECTS: { name: string; label: string; what: string; detail: string }[] = [
+const PROJECTS: {
+  name: string;
+  label: string;
+  what: string;
+  detail: string;
+  thumb: { src: string; alt: string };
+  media?: { src: string; alt: string };
+}[] = [
   {
     name: 'MISE benchmark',
     label: 'MISE',
     what: 'testing whether 19 frontier models can run a restaurant',
     detail:
       "I built a stateful restaurant shift benchmark where models decide when to intervene and explain why, then scored runs on both deterministic shift metrics and an LLM judge across 171 episodes. Most models landed around the same outcome score, so the reasoning traces ended up being what separated them, with the top model hitting 66.7% pass@1. I also presented it at Mercor HQ with Chirag Mahapatra and live-demoed it at True Ventures' Scrappy Sessions.",
+    thumb: {
+      src: '/projects/mise/little-plate-shift.jpg',
+      alt: 'MISE Little Plate restaurant shift simulator',
+    },
+    media: {
+      src: '/projects/mise/under-pressure.jpg',
+      alt: 'MISE benchmark evaluating 19 frontier models running a restaurant shift under pressure',
+    },
   },
   {
     name: 'DroneOS',
@@ -28,6 +43,10 @@ const PROJECTS: { name: string; label: string; what: string; detail: string }[] 
     what: '1st overall · Bow Capital × DS3 × SIC',
     detail:
       'We wanted to see if a drone swarm could find targets and coordinate without relying on GPS or radio comms. We used YOLOX and Norfair to keep tracking targets after occlusion, VO-SLAM with Gaussian splat maps for localization, and behavioral cloning plus MAPPO for the swarm policies.',
+    thumb: {
+      src: '/projects/droneos/vslam-dashboard.jpg',
+      alt: 'DroneOS VSLAM trajectory and YOLOX target tracking dashboard',
+    },
   },
   {
     name: 'SODIUM',
@@ -35,6 +54,10 @@ const PROJECTS: { name: string; label: string; what: string; detail: string }[] 
     what: '1st overall · DiamondHacks 2026',
     detail:
       'We built a voice-first companion robot for seniors so they would not have to deal with menus or small screens. It listens for a wake word, handles medication reminders and crisis alerts, and logs everything to a caregiver dashboard.',
+    thumb: {
+      src: '/projects/sodium/BU.jpg',
+      alt: 'SODIUM caregiver dashboard and browser agent session',
+    },
   },
   {
     name: 'Apollo Labs',
@@ -42,6 +65,14 @@ const PROJECTS: { name: string; label: string; what: string; detail: string }[] 
     what: '1st overall · OpenClaw hackathon',
     detail:
       'I built an RL training harness for a 2D Roomba sim that pulls notes from past runs in Nia before training, runs PPO and evaluates 1,000+ episodes, and sends the rollout GIFs and report over AgentMail.',
+    thumb: {
+      src: '/projects/apollo-labs/apollo-labs-runs.png',
+      alt: 'Apollo Labs RL training runs dashboard',
+    },
+    media: {
+      src: '/projects/apollo-labs/apollo-labs-obstacle-success-rollout.gif',
+      alt: 'Apollo Labs PPO obstacle-avoidance rollout GIF',
+    },
   },
   {
     name: 'PREVUE',
@@ -49,6 +80,14 @@ const PROJECTS: { name: string; label: string; what: string; detail: string }[] 
     what: 'checking robot plans with a world model before they run',
     detail:
       'Coding agents can write pick-and-place plans, but they have no way to tell if a grasp is a few centimeters off until the arm misses. I trained a small action-conditioned world model head on top of V-JEPA so it can imagine the rollout first and send bad plans back to Claude to fix.',
+    thumb: {
+      src: '/blog/prevue-world-model-verifier/prevue-preview.jpg',
+      alt: 'PREVUE MuJoCo robot arm and world-model verification trace',
+    },
+    media: {
+      src: '/blog/prevue-world-model-verifier/prevue_demo.gif',
+      alt: 'PREVUE demo comparing unverified grasp failure against world-model verified repair',
+    },
   },
   {
     name: 'EgoGoal',
@@ -56,6 +95,14 @@ const PROJECTS: { name: string; label: string; what: string; detail: string }[] 
     what: 'getting a Unitree G1 to score a penalty kick',
     detail:
       'My first retargeted kick looked right, but once I added real turf friction the ball only rolled 3.7 meters toward a 10.5 meter goal. Moving to pelvis-local retargeting, a small differentiable warm start, and CEM search in MuJoCo got it hitting both corners.',
+    thumb: {
+      src: '/blog/humanoid-penalty/thumbnail.png',
+      alt: 'Unitree G1 humanoid taking a penalty kick in MuJoCo',
+    },
+    media: {
+      src: '/projects/egogoal/kick-follow-through.gif',
+      alt: 'Optimized Unitree G1 penalty kick follow-through in MuJoCo',
+    },
   },
 ];
 
@@ -136,20 +183,35 @@ export default function HomeView({ posts }: { posts: Post[] }) {
             {PROJECTS.map((p) => {
               const slug = projectSlug(p.name);
               const isOpen = open === slug;
+              const detailMedia = p.media ?? p.thumb;
               return (
                 <div key={slug} className={s.row} id={`project-${slug}`}>
                   <button type="button" className={s.rowBtn} aria-expanded={isOpen} onClick={() => toggle(slug)}>
+                    <span className={s.rowThumbFrame} aria-hidden="true">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={p.thumb.src} alt="" className={s.rowThumb} loading="lazy" />
+                    </span>
                     <span className={s.rowName}>{p.label}</span>
                     <span className={s.rowWhat}>{p.what}</span>
                     <span className={isOpen ? s.markOpen : s.mark} aria-hidden="true">{isOpen ? '−' : '+'}</span>
                   </button>
                   {isOpen && (
                     <div className={s.detail}>
+                      <div className={s.detailMediaFrame}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={detailMedia.src}
+                          alt={detailMedia.alt}
+                          className={s.detailMedia}
+                          loading="lazy"
+                        />
+                      </div>
                       <p>{p.detail}</p>
                       <div className={s.detailLinks}>
                         {linksFor(p.name).map((l) => (
                           <a key={l.href} href={l.href}>{l.label.toLowerCase()} ↗</a>
                         ))}
+                        <Link href={`/projects${projectDetailHash(slug)}`}>gallery &amp; notes →</Link>
                       </div>
                     </div>
                   )}

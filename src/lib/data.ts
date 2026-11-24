@@ -270,6 +270,21 @@ export const PROFILE: ProfileData = {
           "Handled GPS-denied localization using a VO-SLAM pipeline paired with geo-referenced 3D Gaussian splat maps.",
         ],
         videoFileUrl: "/projects/droneos/combatos-demo.mp4",
+        galleryImages: [
+          {
+            src: "/projects/droneos/vslam-dashboard.jpg",
+            alt: "DroneOS outdoor stereo VSLAM trajectory, YOLOX multi-object targeting, and live telemetry",
+            emphasize: true,
+          },
+          {
+            src: "/projects/droneos/swarm-sim.jpg",
+            alt: "DroneOS 3D Hunt and Seek swarm reinforcement learning simulation with live reward curves",
+          },
+          {
+            src: "/projects/droneos/indoor-vslam.jpg",
+            alt: "DroneOS indoor GPS-denied stereo VSLAM point cloud and YOLOX live feed",
+          },
+        ],
       },
     },
     {
@@ -355,6 +370,13 @@ export const PROFILE: ProfileData = {
           "Synced cameras, map markers, and UI state through a single WebSocket layer so multiple units stayed on the same picture.",
         ],
         videoEmbedUrl: "https://www.youtube.com/embed/rzGtTom3oS8",
+        galleryImages: [
+          {
+            src: "/projects/nigel/thumbnail.jpg",
+            alt: "NIGEL incident dispatcher console with 3D building schematic and helmet SLAM point cloud",
+            emphasize: true,
+          },
+        ],
       },
     },
     {
@@ -424,6 +446,13 @@ export const PROFILE: ProfileData = {
           "Modeled the Unitree G1 in MuJoCo with 21D observations, locomotion assist, and reach checks for both visible and buried survivors.",
         ],
         videoEmbedUrl: "https://www.youtube.com/embed/QL_UhVSLMKc",
+        galleryImages: [
+          {
+            src: "/projects/battle-angel/thumbnail.jpg",
+            alt: "Battle Angel 3D disaster scene generator and validation console for Unitree G1 rescue rollouts",
+            emphasize: true,
+          },
+        ],
       },
     },
     {
@@ -447,9 +476,13 @@ export const PROFILE: ProfileData = {
         ],
         galleryImages: [
           {
+            src: "/blog/prevue-world-model-verifier/prevue-preview.jpg",
+            alt: "PREVUE world-model verifier catching a flawed grasp in MuJoCo and repairing the plan",
+            emphasize: true,
+          },
+          {
             src: "/blog/prevue-world-model-verifier/prevue_demo.gif",
             alt: "PREVUE demo — unverified failure versus verified repair on the same flawed grasp plan",
-            emphasize: true,
           },
           {
             src: "/blog/prevue-world-model-verifier/demo-sweep-success.svg",
