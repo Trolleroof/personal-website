@@ -501,13 +501,18 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: #0c101d;
-  border: 1px solid rgba(182, 196, 236, 0.16);
+  background: #ffffff;
+  border: 1px solid rgba(182, 196, 236, 0.22);
   overflow: hidden;
+}
+
+.logoFrameTight {
+  padding: 2px;
 }
 
 .logoFramePhoto {
   padding: 0;
+  background: transparent;
 }
 
 .logo {
@@ -517,14 +522,8 @@
   display: block;
 }
 
-.logoInvert {
-  filter: invert(1) brightness(0.9) contrast(1.08);
-  mix-blend-mode: screen;
-}
-
 .logoPhoto {
   object-fit: cover;
-  filter: brightness(0.88) contrast(1.06) saturate(0.85);
 }
 
 .org {
