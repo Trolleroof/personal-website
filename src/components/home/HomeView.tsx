@@ -111,15 +111,15 @@ const EXPERIENCE: {
   logo: string;
   logoW: number;
   logoH: number;
-  logoTone?: 'invert' | 'photo';
+  logoFit?: 'cover' | 'tight';
   dates: string;
   org: string;
   role: string;
   line: string;
 }[] = [
-  { logo: '/org-logos/truss.png', logoW: 128, logoH: 128, logoTone: 'invert', dates: 'Nov 2026 – now', org: 'Truss', role: 'Researcher', line: 'Working on frontier model evals. I co-authored SoldierPhysio, a heat-illness benchmark testing whether models know when to keep a soldier training or pull them out.' },
-  { logo: '/org-logos/arclab.jpg', logoW: 200, logoH: 200, logoTone: 'photo', dates: 'Oct 2026 – now', org: 'ARClab', role: 'Research Assistant · Prof. Yip', line: 'Working on success-guided resets for humanoid PPO training in Isaac Lab.' },
-  { logo: '/org-logos/verne.png', logoW: 800, logoH: 800, logoTone: 'invert', dates: 'Jun – Jul 2026', org: 'Verne Robotics', role: 'Robot Operations Engineer · YC S25', line: 'Collected 300+ teleop episodes per session and checked data quality with the learning team, tagging hardware policy failures so the next training run actually fixed them.' },
+  { logo: '/org-logos/truss.png', logoW: 128, logoH: 128, dates: 'Nov 2026 – now', org: 'Truss', role: 'Researcher', line: 'Working on frontier model evals. I co-authored SoldierPhysio, a heat-illness benchmark testing whether models know when to keep a soldier training or pull them out.' },
+  { logo: '/org-logos/arclab.jpg', logoW: 200, logoH: 200, logoFit: 'cover', dates: 'Oct 2026 – now', org: 'ARClab', role: 'Research Assistant · Prof. Yip', line: 'Working on success-guided resets for humanoid PPO training in Isaac Lab.' },
+  { logo: '/org-logos/verne.png', logoW: 800, logoH: 800, logoFit: 'tight', dates: 'Jun – Jul 2026', org: 'Verne Robotics', role: 'Robot Operations Engineer · YC S25', line: 'Collected 300+ teleop episodes per session and checked data quality with the learning team, tagging hardware policy failures so the next training run actually fixed them.' },
   { logo: UCSD, logoW: 4096, logoH: 4096, dates: 'Mar – Sep 2026', org: 'RL for Circuit Invention', role: 'Research Assistant · Prof. Gudem', line: 'Built a loop where LLMs propose analog circuits and Cadence Spectre simulates and grades them, which sped up iteration about 10x.' },
   { logo: UCSD, logoW: 4096, logoH: 4096, dates: 'Sep 2025 – Sep 2026', org: 'Lab for Emerging Intelligence', role: 'Undergraduate Researcher · Prof. Paturi', line: 'Built an Electron desktop agent that listens in on meetings and handles follow-ups across Gmail, Slack, and Notion, with 40+ pilot users.' },
 ];
@@ -227,19 +227,21 @@ export default function HomeView({ posts }: { posts: Post[] }) {
                 <span className={s.dates}>{e.dates}</span>
                 <div>
                   <div className={s.expHead}>
-                    <span className={e.logoTone === 'photo' ? `${s.logoFrame} ${s.logoFramePhoto}` : s.logoFrame}>
+                    <span
+                      className={
+                        e.logoFit === 'cover'
+                          ? `${s.logoFrame} ${s.logoFramePhoto}`
+                          : e.logoFit === 'tight'
+                            ? `${s.logoFrame} ${s.logoFrameTight}`
+                            : s.logoFrame
+                      }
+                    >
                       <Image
                         src={e.logo}
                         alt=""
                         width={e.logoW}
                         height={e.logoH}
-                        className={
-                          e.logoTone === 'invert'
-                            ? `${s.logo} ${s.logoInvert}`
-                            : e.logoTone === 'photo'
-                              ? `${s.logo} ${s.logoPhoto}`
-                              : s.logo
-                        }
+                        className={e.logoFit === 'cover' ? `${s.logo} ${s.logoPhoto}` : s.logo}
                       />
                     </span>
                     <span className={s.org}>{e.org}</span>
