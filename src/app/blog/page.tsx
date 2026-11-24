@@ -25,7 +25,7 @@ export default function BlogPage() {
   const posts = getBlogPosts();
 
   return (
-    <div className={s.page} data-theme="manuscript">
+    <div className={s.page} data-theme="nocturne">
       <JsonLd
         json={graph(
           blogSchema(posts),
@@ -36,9 +36,13 @@ export default function BlogPage() {
         )}
       />
       <main className={s.main}>
-        <p className={s.back}>
-          <Link href="/">home</Link>
-        </p>
+        <nav className={s.nav} aria-label="Navigation">
+          <Link href="/">← home</Link>
+          <div className={s.navRight}>
+            <Link href="/projects">projects</Link>
+            <Link href="/resume">resume</Link>
+          </div>
+        </nav>
         <h1 className={s.label}>Writing</h1>
         <BlogList />
       </main>

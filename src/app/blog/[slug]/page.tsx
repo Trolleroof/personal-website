@@ -71,11 +71,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           ]),
         )}
       />
-      <main className={`${s.page} ${s.main}`} data-theme="manuscript">
-        <article className={s.article}>
-          <p className={s.back}>
-            <Link href="/blog">writing</Link>
-          </p>
+      <div className={s.page} data-theme="nocturne">
+        <main className={s.main}>
+          <nav className={s.nav} aria-label="Navigation">
+            <Link href="/blog">← writing</Link>
+            <div className={s.navRight}>
+              <Link href="/">home</Link>
+              <Link href="/projects">projects</Link>
+            </div>
+          </nav>
+          <article className={s.article}>
           <header>
             <h1 className={s.title}>{post.title}</h1>
             <p className={s.meta}>
@@ -154,7 +159,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </ul>
           </aside>
         )}
-      </main>
+        </main>
+      </div>
     </>
   );
 }

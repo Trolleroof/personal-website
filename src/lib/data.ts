@@ -131,13 +131,13 @@ export const PROFILE: ProfileData = {
   avatarUrl: "/profile-avatar.png",
   name: "Nikhil Prabhu",
   handle: "Trolleroof",
-  byline: "agents · robotics UIs · systems that ship",
+  byline: "robot learning · LLM evals · systems",
   sidebar: [
     { label: "Recently", value: "evals and fine-tuning VLAs/WMs" },
     { label: "Location", value: "SF Bay Area" },
     { label: "Values", value: "Family, Faith, Hard Work" },
   ],
-  bioIntro: "hey I'm Nikhil. I've always learned by getting obsessed with a problem and sticking with it long enough to build real taste.",
+  bioIntro: "I'm Nikhil. I do research in robot learning, LLM evals, and sometimes both, usually starting from a specific question and building the experiment to see what actually happens.",
   obsessions: [
     { label: "basketball", icon: "basketball" },
     { label: "video games", icon: "gamepad" },
@@ -145,7 +145,7 @@ export const PROFILE: ProfileData = {
     { label: "running a business", icon: "business" },
     { label: "building software", icon: "code" },
   ],
-  bioOutro: "the goal in life is to conquer high peaks that reward iteration, fulfillment, and relentless improvement without brute-forcing in the wrong direction.",
+  bioOutro: "Most of what I learn comes from picking a problem I'm curious about, trying an approach, seeing where it breaks, and iterating until it works.",
   interests: [
     { label: "Basketball", icon: "basketball", value: "Dub Nation first. I love the pace, spacing, and constant reps that make basketball feel like live problem solving." },
     { label: "Video games", icon: "gamepad", value: "I grew up on games that reward mechanics, systems thinking, and getting better one run at a time." },
@@ -204,22 +204,22 @@ export const PROFILE: ProfileData = {
     {
       name: "MISE benchmark",
       featured: true,
-      desc: "I made 19 frontier models run a restaurant, built a playable version to collect human traces for post-training, live-demoed it at True Ventures' Scrappy Sessions, and separately presented it to Mercor's Code Data team at Mercor HQ.",
+      desc: "I wanted to see whether 19 frontier models could actually manage a restaurant shift under pressure. I also built a playable version to collect human traces for post-training, demoed it at True Ventures' Scrappy Sessions, and presented the results to Mercor's Code Data team at Mercor HQ.",
       tags: ["LLM Evals", "Operational Judgment", "APEX Rubric", "Deterministic Replay"],
       links: [{ label: "Whitepaper", href: "https://runretroarcade.com/benchmarks" }],
       detail: {
-        hook: "Same outcome. Very different judgment.",
+        hook: "18 of 19 models landed on almost the exact same outcome score, so the reasoning traces ended up being the interesting part.",
         overview:
-          "I built MISE (Manager Intervention under Shift Escalation) to test frontier models and their ability to run a restaurant. Scripted policies would play the chef, supply manager, host, and server. At each decision, the manager sees the current state and legal options, chooses one, and explains why in a single sentence. The full trace is saved and replayable.\n\n I added in different environments that test for different model behaviors or tendencies. For instance, Quiet Tuesday tests whether the model spends money when nothing is wrong. Dinner Rush adds in a broken oven. Saturday Night overwhelms the manager with arrivals, shortages, and bottlenecks at once.\n\n None of the choices that the model makes are labeled as the safe or risky option, so the model has full agency to decide what it needs to do.",
+          "I built MISE (Manager Intervention under Shift Escalation) to test whether frontier models make reasonable operational calls when running a restaurant. Scripted policies play the chef, supply manager, host, and server, and whenever a decision comes up the manager sees the current state and legal options, picks one, and writes a one-sentence reason. Every run is saved as a replayable trace.\n\nI set up different shifts to test specific failure modes. Quiet Tuesday checks whether a model spends money when nothing is actually wrong. Dinner Rush throws in a broken oven, and Saturday Night stacks arrivals, shortages, and kitchen bottlenecks all at once.\n\nNone of the choices are labeled safe or risky, so the model has to read the state and figure out what to do on its own.",
         highlights: [
-          "I scored runs with two approaches. The first was a deterministic replay that grades Service, Resources, Recovery, and Safety. The second was an LLM-as-a-judge, as GPT-6 Luna then checks each reason against 8 APEX-style criteria using only the state the model saw. Final score was the average of outcome + reasoning.",
-          "The leaderboard: GPT-5.5 leads at 0.890, followed by Claude Opus 5 at 0.887 and GLM-5.3 at 0.883. Grok 4.6 finishes last at 0.766.",
-          "The interesting part is that 18 models land between 85.0 and 85.2 on outcomes. Grading the reasoning traces via the LLM-as-a-judge is what deliberately seperates these models. GPT-5.5 passes 89 of 98 checks, and on the other hand Grok 4.6 passes 72 because of stronger reasoning.",
-          "Every model checked the allergy ticket. Not every model knew why passing out dishes with allergens was bad, which surprised me. The top three named the risk in 96% of reasons and the bottom three did it 66% of the time.",
-          "Saturday Night was the toughest level for all models. 0 of 19 models passed. Models also made up pressure to justify spending: 26% of stove explanations cited demand that had already passed previously.",
-          "More thinking did not mean better judgment. GPT-5.6 Sol used about 35,500 tokens per episode and finished 12th. GLM-5.3 Flash used about 5,300 and finished 5th.",
-          "I live-demoed MISE onstage at True Ventures' Scrappy Sessions, sharing the benchmark and human-trace approach with panelists Kevin Rose, Madeline Minshew, and Michael Montano.",
-          "A Mercor VP and APEX lead reached out after I published the results, and I presented the benchmarks to Mercor. The next version hopes to add expert-written shifts, an agreement study across humans, metrics, and model judges, and a frozen benchmark pack.",
+          "I scored each run two ways. First, a deterministic replay grades Service, Resources, Recovery, and Safety. Then GPT-6 Luna judges each explanation against 8 APEX-style criteria using only the state the model saw, and the final score averages outcome and reasoning.",
+          "GPT-5.5 came in first at 0.890, followed by Claude Opus 5 at 0.887 and GLM-5.3 at 0.883, while Grok 4.6 finished last at 0.766.",
+          "18 of the 19 models landed between 85.0 and 85.2 on raw outcomes, so grading the reasoning traces is what actually separated them. GPT-5.5 passed 89 of 98 reasoning checks, while Grok 4.6 passed 72.",
+          "Every model caught the allergy ticket, but not every model explained why sending out an allergen dish was dangerous, which surprised me. The top three models named the risk in 96% of reasons, compared with 66% for the bottom three.",
+          "Saturday Night broke every model, with 0 of 19 passing. Models also invented urgency to justify spending: 26% of stove explanations cited demand that had already passed.",
+          "More thinking tokens did not help. GPT-5.6 Sol spent about 35,500 tokens per episode and finished 12th, while GLM-5.3 Flash used around 5,300 and came in 5th.",
+          "I live-demoed MISE onstage at True Ventures' Scrappy Sessions for panelists Kevin Rose, Madeline Minshew, and Michael Montano.",
+          "After I published the results, a Mercor VP and APEX lead reached out and invited me to present the benchmark at Mercor HQ. Next I want to add expert-written shifts, measure agreement across humans, metrics, and model judges, and freeze a benchmark pack.",
         ],
         galleryImages: [
           {
@@ -252,7 +252,7 @@ export const PROFILE: ProfileData = {
     {
       name: "DroneOS",
       featured: true,
-      desc: "End-to-end autonomous drone platform that identifies targets, navigates without GPS, and coordinates swarm behavior without communication, we won 1st Overall at the Bow Capital × DS3 × SIC hackathon @ UC San Diego.",
+      desc: "We built a drone stack that tracks targets, navigates without GPS, and coordinates swarm behavior without radio comms. It won 1st Overall at the Bow Capital × DS3 × SIC hackathon at UC San Diego.",
       tags: ["Swarm RL", "Behavioral Cloning", "MAPPO", "YOLOX", "Norfair", "SLAM", "Visual Odometry", "3D Gaussian Splatting"],
       links: [
         { label: "Devpost", href: "https://devpost.com/software/outcast-virus" },
@@ -260,14 +260,14 @@ export const PROFILE: ProfileData = {
       ],
       detail: {
         award: "1st Overall @ Bow Capital × DS3 × SIC Hackathon",
-        hook: "An operating system for drones to run in swarms autonomously on edge devices — no WiFi, no GPS, no comms.",
+        hook: "Running autonomous drone swarms on the edge when GPS and radio links are unavailable or jammed.",
         overview:
-          "DroneOS is an end-to-end autonomous drone platform that can identify targets, navigate without GPS, and coordinate swarm behavior without explicit communication. For perception, we run real-time multi-object detection with YOLOX and track identities over time with Norfair so targets can be re-acquired even after leaving the frame. For onboard autonomy, the stack couples a SLAM pipeline (visual odometry + mapping) with a geo-referenced 3D reconstruction using Gaussian Splatting. For swarm behavior, we trained policies using behavioral cloning + MAPPO so drones can move together and complete tasks without having to rely on GPS or communications that could get jammed.",
+          "We wanted to see how much of a drone swarm stack we could get working when GPS and radio communication are cut off. For perception, we ran YOLOX for real-time detection and paired it with Norfair tracking so the system could keep the same target ID even after something left the frame or got occluded. For navigation, we combined visual odometry and SLAM with a geo-referenced 3D Gaussian splat map so the drone could localize onboard. For swarm coordination, we trained policies with behavioral cloning and MAPPO so multiple drones could split up and finish tasks without talking to each other.",
         highlights: [
-          "RL Swarms: behavioral cloning + MAPPO to learn coordination and task completion without communication.",
-          "YOLOX + Norfair tracking: real-time detection + multi-object tracking that re-identifies targets after occlusion/out-of-frame.",
-          "Friend-or-Foe classification: on-device labeling of detected entities as friendly or hostile.",
-          "Autonomous localization + mapping: GPS-denied pose tracking via SLAM with geo-referenced 3D maps via Gaussian Splatting.",
+          "Trained swarm policies with behavioral cloning and MAPPO so drones could coordinate tasks without explicit communication.",
+          "Paired YOLOX detection with Norfair multi-object tracking to re-identify targets after occlusion or leaving the frame.",
+          "Added on-device friend-or-foe labeling on top of the detected targets.",
+          "Handled GPS-denied localization using a VO-SLAM pipeline paired with geo-referenced 3D Gaussian splat maps.",
         ],
         videoFileUrl: "/projects/droneos/combatos-demo.mp4",
       },
@@ -275,19 +275,19 @@ export const PROFILE: ProfileData = {
     {
       name: "SODIUM",
       featured: true,
-      desc: "Voice-first AI companion for senior care: an autonomous robot with natural speech interaction, wake-word detection, medication reminders, crisis detection, and a caregiver monitoring dashboard. Frontend built with Svelte 5 and Bun runtime for a lightweight, responsive experience.",
+      desc: "We built a voice-first companion robot for senior care that handles wake-word detection, medication reminders, and crisis alerts, paired with a Svelte 5 and Bun dashboard for caregivers.",
       tags: ["ROS 2", "Bun", "TypeScript", "Python", "Embedded Systems"],
       links: [{ label: "GitHub", href: "https://github.com/TheOutcastVirus/diamondhacks-2026" }],
       detail: {
         award: "1st Overall @ DiamondHacks 2026",
-        hook: "Elderly care through voice — a robot that understands, remembers, and helps without complex interfaces.",
+        hook: "A senior care robot built around voice so users do not have to navigate small screens or menus.",
         overview:
-          "SODIUM is an AI-powered voice-first assistant designed for aging in place: a lightweight system that listens for wake words, understands natural speech, handles everyday tasks, and reports to caregivers. The frontend runs on Svelte 5 with Bun runtime, keeping the system responsive and efficient. The bot component detects wake words and routes requests through a natural language processor, while the caregiver dashboard provides real-time visibility into the senior's interactions, medication reminders, and any detected distress signals.",
+          "We built SODIUM around a pretty simple observation: most assistive tools expect older adults to tap through menus, which is usually where people stop using them. So we made the robot voice-first. A lightweight Python service listens for a wake word, parses spoken requests, and triggers medication reminders or distress alerts. On the other side, a single Svelte 5 app running on Bun serves both the robot's local screen and the caregiver dashboard so family members can see what was asked, what reminders went off, and whether anything looked like a crisis.",
         highlights: [
-          "Seniors use voice instead of menus; caregivers see what was said and what the system tried to do.",
-          "Wake-word detection plus a lightweight Python bot keeps replies fast without a heavy backend.",
-          "One Svelte 5 + Bun app powers both the in-home robot screen and the caregiver dashboard.",
-          "Medication reminders, daily prompts, and crisis alerts share one interface.",
+          "Seniors interact through voice instead of nested menus, while caregivers can check a live log of requests and actions.",
+          "Used wake-word detection with a lightweight Python bot so spoken replies stayed quick without a heavy backend.",
+          "Built both the on-robot display and the caregiver dashboard inside one Svelte 5 and Bun app.",
+          "Put medication reminders, daily check-ins, and distress alerts in the same caregiver view.",
         ],
         videoFileUrl: "/projects/sodium/SODIUMmp4.mp4",
         galleryImages: [
@@ -301,19 +301,19 @@ export const PROFILE: ProfileData = {
     {
       name: "Apollo Labs",
       featured: true,
-      desc: "RL training orchestrator for a 2D Roomba cleaning sim that automates the full workflow: FastAPI trains PPO agents, evaluates them, generates GIFs, and delivers results through email (AgentMail), memory (Nia), and MCP tools for autonomous agent-driven optimization.",
+      desc: "An RL training harness for a 2D Roomba cleaning sim. FastAPI pulls notes from past runs in Nia, trains and evaluates PPO agents, renders rollout GIFs, and sends the report over AgentMail and MCP tools.",
       tags: ["FastAPI", "Next.js", "PPO", "AgentMail", "MCP", "Python"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/openclaw-hackathon" }],
       detail: {
         award: "1st Overall @ OpenClaw Hackathon Eragon x Nozomio x AgentMail",
-        hook: "Make RL runs feel observable: less 'black box,' more 'flight recorder.'",
+        hook: "Trying to make RL training runs easier to inspect and iterate on, both for humans and for coding agents.",
         overview:
-          "End-to-end lab for a 2D navigation sim: FastAPI orchestrates the complete ML workflow—querying narrative memory (Nia) *before* training to incorporate prior lessons, training PPO agents against a random baseline, generating metrics and rollout GIFs, and producing a canonical RunReport that serves as the single source of truth. The same report flows to email (AgentMail), Slack, memory storage, and the Next.js dashboard. MCP tools enable external agents to drive the entire workflow autonomously.",
+          "When you run a lot of RL experiments, it is easy to lose track of what you already tried and why a run failed. I built Apollo Labs around a 2D Roomba navigation sim so every training run follows one repeatable loop. FastAPI checks narrative memory in Nia before starting a run to pull in lessons from earlier attempts, trains a PPO policy against a random baseline, evaluates it, renders rollout GIFs, and writes everything into a single RunReport object. That same report feeds the Next.js dashboard, AgentMail emails, Slack, and memory storage, and MCP tools let an external agent kick off runs and inspect the results directly.",
         highlights: [
-          "Reads past lessons from Nia before training, then saves a summary after each run for the next one.",
-          "One RunReport object feeds the dashboard, email, memory, and agent tools—no duplicate state.",
-          "Each run stores configs, models, metrics, rollout GIFs, and logs in a versioned folder.",
-          "MCP tools let agents start runs, compare results, and suggest what to train next.",
+          "Queries Nia for notes from earlier runs before training starts, then writes back a summary once the run finishes.",
+          "Everything reads from one RunReport object across the dashboard, email reports, memory, and agent tools so state does not drift.",
+          "Saves configs, checkpoints, metrics, rollout GIFs, and logs together in a versioned folder per run.",
+          "Exposes MCP tools so external agents can start runs, compare metrics, and decide what to change next.",
         ],
         galleryImages: [
           {
@@ -341,25 +341,25 @@ export const PROFILE: ProfileData = {
     },
     {
       name: "NIGEL",
-      desc: "Navigation, Incident Guidance, and Emergency Localization & Control — a mission-control interface for the Future Interfaces hackathon. Think air traffic control for firefighters: helmet VSLAM point clouds, multi-unit video feeds, radio transcripts, and tactical mapping in one dispatcher dashboard.",
+      desc: "We built a dispatcher console for firefighters at the transpose/compiled-5 hackathon. It pulls helmet VSLAM point clouds, body-cam feeds, and live radio transcripts into one floor-plan view so dispatchers can track units inside a building.",
       tags: ["Next.js", "Three.js", "ROS 2", "WebSockets", "C++", "SLAM"],
       links: [{ label: "GitHub", href: "https://github.com/Trolleroof/NIGEL-hackathon" }],
       detail: {
         award: "1st Overall @ transpose/compiled-5 UCSD Hackathon",
-        hook: "Air traffic control, but for firefighters on a floor plan: multiple video feeds, a growing 3D map from the helmet rig, and a radio panel that drives what you see on the map.",
+        hook: "Live helmet SLAM maps, body-cam feeds, and radio transcripts in one view for incident dispatchers.",
         overview:
-          "Our team built this for the Transpose VC × compiled-5 hackathon series at UC San Diego. We shipped a dispatcher-facing web console that turns helmet rigs and incoming body-cam feeds into live VSLAM-style mapping, plus an agent layer that helps interpret radio traffic and surface events and hazards inside one unified command center. The stack is a Next.js frontend with ROS 2 packages for Odin hardware integration, SLAM cloud accumulation, and WebSockets that stream mapping and camera data to the UI in real time. The radio/event agent runs on Cerebras for low-latency inference.",
+          "We built NIGEL for the Transpose VC × compiled-5 hackathon at UC San Diego. The idea was to give a fire dispatcher something closer to air traffic control on a floor plan: live video feeds from units inside, a growing 3D point cloud built from Odin helmet rigs, and a radio panel that pulls out hazards and updates the map. We used ROS 2 packages to read depth and accumulate SLAM point clouds from the helmets, streamed camera and map updates over WebSockets into a Next.js and Three.js console, and ran the radio parsing agent on Cerebras so transcript updates stayed fast.",
         highlights: [
-          "Dispatcher and firefighter views in one Next.js app: live video tiles, a Three.js point-cloud map, floor-plan search, and radio transcripts.",
-          "ROS 2 reads depth and point clouds from Odin helmets and streams SLAM maps to the browser over WebSockets.",
-          "One WebSocket API syncs cameras, maps, and UI so multiple units share the same tactical picture.",
+          "Combined live video tiles, a Three.js point-cloud map, floor-plan search, and radio transcripts inside one Next.js console.",
+          "Wrote ROS 2 nodes to ingest depth and point clouds from Odin helmets and stream the growing SLAM map over WebSockets.",
+          "Synced cameras, map markers, and UI state through a single WebSocket layer so multiple units stayed on the same picture.",
         ],
         videoEmbedUrl: "https://www.youtube.com/embed/rzGtTom3oS8",
       },
     },
     {
       name: "Crucible Compute",
-      desc: "Deploy GPUs with natural language and find cost arbitrage across cloud providers. A control plane that routes inference workloads across local Docker, Kubernetes, Vultr, Vast, and llama.cpp while automatically finding the cheapest, fastest hardware matches for your models.",
+      desc: "A GPU routing tool where you describe the model you want to run and it checks pricing and speed across local Docker, Kubernetes, RunPod, Lambda, CoreWeave, Vultr, and Vast before asking for approval to deploy.",
       tags: ["Python", "SQLite", "Docker", "llama.cpp", "MCP"],
       links: [
         { label: "Live demo", href: "https://ayxkkrd7.insforge.site/" },
@@ -367,14 +367,14 @@ export const PROFILE: ProfileData = {
       ],
       detail: {
         award: "5th Place @ Nozomio Hackathon",
-        hook: "Just describe what you want to run, and Crucible finds the best GPU deal and deploys it, no infrastructure knowledge required.",
+        hook: "Describe the workload you want to run, compare hardware options across providers, and approve spend before anything spins up.",
         overview:
-          "A GPU workload routing platform that turns natural language into optimized deployments: describe your model and workload, and Crucible searches across NVIDIA, AMD, TPU, Intel Gaudi, and Apple Silicon capacity to find the cheapest, fastest placement. The system normalizes hardware inventory across local Docker, Kubernetes clusters, and cloud providers (RunPod, Lambda Cloud, CoreWeave, Vultr, Vast), benchmarks candidate placements in real time, and routes inference through a unified OpenAI-compatible gateway. Built on Python with SQLite state management, it includes explicit spend approval gates before launching paid GPU instances and produces canonical deployment records for reproducibility and cost auditing.",
+          "I wanted a simpler way to compare and launch inference jobs without manually checking five GPU clouds every time. With Crucible, you describe the model and workload in plain English, and it scans available capacity across local Docker, Kubernetes, RunPod, Lambda Cloud, CoreWeave, Vultr, and Vast (covering NVIDIA, AMD, TPU, Intel Gaudi, and Apple Silicon). It benchmarks candidate options, shows the cost and speed tradeoff, waits for an explicit spend approval before launching paid instances, and then routes inference through an OpenAI-compatible gateway backed by Python and SQLite.",
         highlights: [
-          "Live GPU catalog across RunPod, Lambda, CoreWeave, Vast, and Vultr to pick the cheapest viable option.",
-          "Benchmarks drive placement—each plan shows cost, speed, and why that hardware was chosen.",
-          "Describe the job in plain English; paid GPU launches wait for your approval.",
-          "Every deployment logs config, runs, metrics, and cost in versioned records.",
+          "Pulls a live GPU catalog across RunPod, Lambda, CoreWeave, Vast, and Vultr to find the cheapest option that fits the job.",
+          "Shows benchmark numbers, cost, and speed for each candidate placement instead of picking a provider blindly.",
+          "Requires explicit approval before spinning up paid GPU instances.",
+          "Logs configs, runs, metrics, and spend in SQLite so deployments are easy to audit later.",
         ],
         galleryImages: [
           {
@@ -410,18 +410,18 @@ export const PROFILE: ProfileData = {
     },
     {
       name: "Battle Angel",
-      desc: "Rescue mission control for simulated disaster response. PPO training on eight MuJoCo simulation environments, Gemini environment generation, and a language-driven console with live rollouts and GIF replay.",
+      desc: "We trained a Unitree G1 humanoid with PPO across eight MuJoCo disaster scenes, added a scene generator that turns text descriptions into new layouts, and wired up a console where Gemini picks triage targets in unseen environments.",
       tags: ["Next.js", "FastAPI", "MuJoCo", "PPO", "Gemini", "Three.js"],
       links: [{ label: "GitHub", href: "https://github.com/aravindkrishna2008/disaster-rescue" }],
       detail: {
-        hook: "Train in simulation, spin up new disaster scenes from language, then watch a PPO policy navigate environments it has never seen.",
+        hook: "Train a humanoid policy across eight MuJoCo disaster scenes, generate new layouts from text, and test it on environments it has not seen before.",
         overview:
-          "Battle Angel trains a Unitree G1 humanoid to reach survivors across simulated disaster environments. The Training Gym runs vectorized PPO on eight MuJoCo scenes, from earthquake corridors to buried-rubble triage. The Scene Generator turns plain-language disaster descriptions into new layouts with a Three.js preview. The Interactive Console is where you can see the policy perform in an unknown environment. You are able to set triage priorities in natural language, Gemini picks the target, and a trained policy executes a rollout in an unseen environment with live telemetry and GIF replay.",
+          "We built Battle Angel to test training a Unitree G1 humanoid to reach survivors in simulated disaster scenes and then dropping the policy into new layouts. The training gym runs vectorized PPO across eight MuJoCo environments, ranging from earthquake corridors to buried-rubble triage. From there, the scene generator takes a plain-English disaster description and turns it into a new layout with a Three.js preview. In the console, you can type triage priorities, Gemini selects which target to go after first, and the trained policy runs a rollout in the unseen scene with live telemetry and GIF replay.",
         highlights: [
-          "Training Gym: vectorized PPO on eight MuJoCo disaster scenes with parallel runs, learning curves, and rollout GIFs.",
-          "Scene Generator: plain-language descriptions become new disaster layouts with instant Three.js preview.",
-          "Interactive Console: natural-language triage drives a trained policy through environments it has never trained on, with live reach outcomes and GIF replay.",
-          "Unitree G1 humanoid in MuJoCo: 21D observations, locomotion assist, and reach-based success across visible and buried survivor scenarios.",
+          "Ran vectorized PPO across eight MuJoCo disaster scenes with live learning curves and rollout GIFs.",
+          "Built a scene generator that converts text descriptions into new disaster layouts with a Three.js preview.",
+          "Wired natural-language triage through Gemini so a trained policy can run rollouts in layouts it never trained on.",
+          "Modeled the Unitree G1 in MuJoCo with 21D observations, locomotion assist, and reach checks for both visible and buried survivors.",
         ],
         videoEmbedUrl: "https://www.youtube.com/embed/QL_UhVSLMKc",
       },
@@ -429,21 +429,21 @@ export const PROFILE: ProfileData = {
     {
       name: "PREVUE",
       featured: true,
-      desc: "A pre-execution world model verifier for robot skills. Claude proposes a pick-and-place plan, a learned action-conditioned world model imagines the outcome from camera frames, and a verifier predicts failure so the plan gets repaired before the arm ever moves.",
+      desc: "I wanted to know if a small world model could catch bad LLM robot plans before they ran. Claude writes a pick-and-place plan, an action-conditioned model imagines the rollout from camera frames, and bad grasps get sent back for repair before MuJoCo executes them.",
       tags: ["V-JEPA", "World Models", "MuJoCo", "PyTorch", "Claude", "Robot Planning"],
       links: [
         { label: "Blog post", href: "/blog/prevue-world-model-verifier" },
         { label: "GitHub", href: "https://github.com/Trolleroof/skill-level-world-model" },
       ],
       detail: {
-        hook: "Coding agents can write fluent robot plans, but nothing tells them a grasp is six centimeters off until the arm has already missed.",
+        hook: "Coding agents can write robot plans, but nothing tells them a grasp is six centimeters off until the arm has already missed.",
         overview:
-          "PREVUE adds a checkpoint between the plan and the robot. A task in plain English becomes a structured pick-and-place trace from Claude, and a learned action-conditioned world model imagines roughly four seconds of motion from an observation window plus that action trace. An outcome head predicts whether the block lifts, whether it lands in the target zone, and whether the skill succeeds, along with an uncertainty score. If the imagined rollout looks bad, Claude gets the metrics and the likely failure back and repairs the waypoints; only an approved plan runs in MuJoCo. The model is a small head trained on 5,000 generated episodes on top of a frozen V-JEPA visual encoder.",
+          "I built PREVUE as a check between an LLM planner and the robot. You give Claude a pick-and-place task in plain English, it outputs a structured action trace, and a learned action-conditioned world model imagines about four seconds of motion from the camera observation window and that trace. An outcome head predicts whether the block lifts, lands on the target pad, and succeeds overall, along with an uncertainty score. If the predicted rollout looks bad, Claude gets the numbers and likely failure mode back and adjusts the waypoints before anything runs in MuJoCo. The verifier is a small head trained on 5,000 generated episodes on top of a frozen V-JEPA visual encoder.",
         highlights: [
-          "Injected a deliberate six-centimeter grasp miss: the verifier scored the plan at 7.3% success, Claude re-aimed at the observed block centre, and the repaired plan scored 94.7% and landed 2.3 cm from the pad.",
-          "Across eight scenes with the same injected miss, unverified execution recovered 0/8 while world-model verification caught the bad plan 8/8 and succeeded 6/8.",
-          "A geometry-only checker with oracle block positions edged it 7/8 — a useful upper bound for the vision-only approach.",
-          "Out-of-distribution asks (block-on-block instead of block-on-pad) are the clear weak spot, since the training corpus only covers the green pad.",
+          "When I injected a deliberate 6 cm grasp miss, the verifier gave the plan a 7.3% success probability. Claude re-aimed at the observed block center, and the repaired plan scored 94.7% and landed 2.3 cm from the pad.",
+          "Across eight scenes with the same injected miss, unverified execution recovered 0/8 times, while the world-model verifier caught the bad plan 8/8 times and succeeded 6/8.",
+          "A geometry-only checker with oracle block positions hit 7/8, which gave a clean upper bound for the vision-only setup.",
+          "Out-of-distribution asks like stacking block-on-block instead of placing on the green pad are still a clear weak spot, since the training data only covered the pad.",
         ],
         galleryImages: [
           {
@@ -465,21 +465,21 @@ export const PROFILE: ProfileData = {
     {
       name: "EgoGoal",
       featured: true,
-      desc: "Teaching a Unitree G1 humanoid to score a penalty kick in MuJoCo. Human penalty-kick motion is retargeted through a pelvis-local frame, then a differentiable proxy warm-starts a CEM search that turns a 3.7 m dribble into accurate shots to both corners.",
+      desc: "I tried getting a Unitree G1 humanoid to score a penalty kick in MuJoCo. Pure motion retargeting only dribbled the ball 3.7 m once I turned on real turf friction, so I added a differentiable warm start and CEM search to get it hitting both corners.",
       tags: ["MuJoCo", "PyTorch", "Motion Retargeting", "CEM", "Unitree G1", "Humanoids"],
       links: [
         { label: "Blog post", href: "/blog/teaching-a-humanoid-to-score-a-penalty" },
         { label: "GitHub", href: "https://github.com/Trolleroof/egogoal-amd-hackathon" },
       ],
       detail: {
-        hook: "Copied human motion looked like a kick and behaved like a nudge — with real turf friction the ball stopped 3.7 meters short of a 10.5 meter goal.",
+        hook: "The first retargeted motion looked like a kick, but once I gave the pitch real friction the ball stopped 3.7 meters short of a 10.5 meter goal.",
         overview:
-          "Starting from SoccerKicks clips and their per-frame 3D HMMR joint annotations, I built a pelvis-local coordinate frame per frame so limb vectors are measured relative to the person's own orientation rather than the camera, then clamped every joint to the G1's range. Retargeting produced kick-shaped motion but no foot speed or force transfer, so optimization split in two: a small PyTorch proxy runs gradients to guess backswing and strike timing in about 400 Adam steps, and Cross-Entropy Method search in the full simulator (48 candidates × 12 rounds) tunes hip, knee, and ankle targets around contact, plant-leg bracing, playback speed, and pelvis yaw. MuJoCo physics always cast the deciding vote, and all 29 joints blend back to a neutral stand after contact so the G1 stays upright.",
+          "I started with SoccerKicks clips and their per-frame 3D HMMR joint annotations, then built a pelvis-local coordinate frame on every frame so limb angles were measured relative to the player's own body instead of the camera and clamped to the G1's joint limits. That gave me kick-shaped motion, but almost no foot speed or force transfer. So I split the optimization in two: a small PyTorch proxy runs about 400 Adam steps to guess a reasonable backswing and strike timing, and then CEM search in MuJoCo (48 candidates across 12 rounds) tunes hip, knee, and ankle targets around contact, plant-leg bracing, playback speed, and pelvis yaw. MuJoCo physics always decides what actually scores, and all 29 joints blend back to a neutral stance after contact so the robot stays standing.",
         highlights: [
-          "Untuned retargeted motion: 2.1 m/s, ball dead at 3.7 m. Optimized center shot: 9.94 m/s, crossing essentially dead on target.",
-          "Left- and right-corner shots reached 7.32 m/s and 5.92 m/s, each crossing 0.01 m from their target.",
-          "Pelvis-local retargeting removes camera angle from the pose data and keeps joints inside the G1's limits.",
-          "Interactive demo: place the keeper anywhere across the goal mouth and a tiny supervised net maps that to lane, power, tempo, and yaw — the replay is the actual verification rollout.",
+          "The untuned retargeted motion hit 2.1 m/s and stopped at 3.7 m; the optimized center shot reached 9.94 m/s and crossed right on target.",
+          "Left- and right-corner shots hit 7.32 m/s and 5.92 m/s, both crossing within 0.01 m of their target.",
+          "Using a pelvis-local frame removed camera angle bias from the source poses and kept every joint inside the G1's hardware limits.",
+          "In the interactive demo, you can place the keeper anywhere across the goal and a small supervised net maps that position to lane, power, tempo, and yaw, playing back the actual verified MuJoCo rollout.",
         ],
         videoFileUrl: "/blog/humanoid-penalty/behind-goal.mp4",
         galleryImages: [
@@ -501,20 +501,20 @@ export const PROFILE: ProfileData = {
     },
     {
       name: "ACT-YOLO",
-      desc: "Object-centric imitation policy that augments ACT with YOLOv8 detections for pick-and-place under visual corruption.",
+      desc: "A mini experiment testing whether feeding YOLOv8 object bounding boxes into an ACT imitation policy helps it recover when camera frames get corrupted.",
       tags: ["Robotics", "Imitation Learning", "Computer Vision"],
       links: [
         { label: "Blog post", href: "/blog/act-yolo-object-centric-robot-policies" },
         { label: "GitHub", href: "https://github.com/Trolleroof/act-yolo" },
       ],
       detail: {
-        hook: "Does explicit object location help a manipulation policy when the camera feed gets noisy, blurry, dark, and compressed?",
+        hook: "If a robot's camera feed gets noisy, blurry, or dark, does giving the policy explicit object boxes help it recover?",
         overview:
-          "ACT-YOLO pairs Action Chunking Transformers with YOLOv8 boxes for the cube and target zone in a MuJoCo pick-and-place task. I trained matched baseline and guided policies on the same demonstrations, then ran paired rollouts across four corruption severities with McNemar's test.",
+          "I wanted to see what happens when an imitation policy starts getting bad camera inputs, and whether giving it the object's location helps or just adds another point of failure. I trained two matched ACT policies on the same MuJoCo pick-and-place demonstrations, changing only whether one received YOLOv8 bounding boxes for the cube and target zone, then ran paired rollouts across four corruption severities and compared them with McNemar's test. The first detector fell apart on corrupted images, so I retrained YOLO on corrupted data and added bounding-box jitter.",
         highlights: [
-          "Paired baseline vs. ACT-YOLO evaluation on 50 matched scene seeds per corruption level.",
-          "Corruption-matched YOLO training raised cube recall from 0.03 to 0.98 at high severity.",
-          "Largest gain at high corruption: 18% vs. 4% success (p = 0.039); clean-task rates stayed low on both.",
+          "Evaluated baseline ACT against ACT-YOLO on 50 matched scene seeds at each corruption level.",
+          "Retraining YOLO on corrupted images lifted cube recall from 0.03 to 0.98 at the highest severity.",
+          "At the highest corruption level, ACT-YOLO hit 18% success compared with 4% for the baseline (p = 0.039), though overall success stayed low on both.",
         ],
         galleryImages: [
           {
@@ -540,7 +540,7 @@ export const PROFILE: ProfileData = {
         src: "/org-logos/truss.png",
         alt: "Truss logo",
       },
-      desc: "Frontier model evaluations. Co-authored SoldierPhysio, a heat-illness benchmark that tests whether models can keep a soldier training or pull them out.",
+      desc: "Working on frontier model evaluations. I co-authored SoldierPhysio, a heat-illness benchmark that tests whether models know when to keep a soldier training or pull them out.",
     },
     {
       role: "Desktop Agent Developer - Founder",
@@ -551,7 +551,7 @@ export const PROFILE: ProfileData = {
         src: "/org-logos/triton-removebg-preview.png",
         alt: "UC San Diego Triton logo",
       },
-      desc: "Architected a cross-platform Electron + TypeScript desktop agent that processes live meetings and executes tasks across user apps. Built real-time transcription, natural-language workflow automation across Gmail, Calendar, Docs, Sheets, Slack, and Notion, and scaled the beta to 40+ users with early adoption from YC startups.",
+      desc: "Built an Electron and TypeScript desktop agent that transcribes live meetings and runs follow-up tasks across Gmail, Calendar, Docs, Sheets, Slack, and Notion. We grew the beta to 40+ users, including early testers at YC startups.",
     },
     {
       role: "Research Assistant",
@@ -562,7 +562,7 @@ export const PROFILE: ProfileData = {
         src: "/org-logos/triton-removebg-preview.png",
         alt: "UC San Diego Triton logo",
       },
-      desc: "Developing an LLM-based pipeline for automated generation and verification of novel analog circuit topologies. Integrating LLM APIs with Cadence simulation tools and exploring reinforcement learning strategies for circuit design space search.",
+      desc: "Built a pipeline where LLMs propose analog circuit topologies and Cadence Spectre simulates and verifies them. I also worked on using reinforcement learning to search the circuit design space more efficiently.",
     },
     {
       role: "Robot Operations Engineer",
@@ -573,7 +573,7 @@ export const PROFILE: ProfileData = {
         src: "/org-logos/verne.png",
         alt: "Verne Robotics logo",
       },
-      desc: "Ran high-volume teleoperation collection for imitation learning (300+ demonstration episodes per session) on Verne's robot arms, QC'd episode quality with the robot-learning team, and diagnosed on-hardware policy failures during robot transfer so recurring failure modes fed the next training round instead of getting rediscovered on the floor.",
+      desc: "Collected 300+ teleop demonstration episodes per session on Verne's robot arms and checked episode quality with the robot-learning team. I also tracked down on-hardware policy failures during deployment so recurring issues went back into the next training round.",
     },
     {
       role: "Lead Researcher - IEEE ICHCI Presenter",
@@ -584,7 +584,7 @@ export const PROFILE: ProfileData = {
         src: "/org-logos/georgia-tech.png",
         alt: "Georgia Tech logo",
       },
-      desc: "Conducted research at Georgia Tech's mmWave Antennas Laboratory on a 3D-printed ankle-foot orthosis controlled through electromyography signals. Built a custom motor actuator system, improved gait response precision by 23%, and presented the work at IEEE ICHCI 2024.",
+      desc: "Worked in Georgia Tech's mmWave Antennas Lab on a 3D-printed ankle-foot orthosis driven by EMG signals. I built a custom motor actuator setup that improved gait response precision by 23%, and presented the work at IEEE ICHCI 2024.",
     },
     {
       role: "Lead Researcher",
@@ -595,7 +595,7 @@ export const PROFILE: ProfileData = {
         src: "/org-logos/stanford-block-s.png",
         alt: "Stanford University logo",
       },
-      desc: "Led BCI device research at Stanford's Lee-Messer Lab to help motor-impaired students communicate through neural signals. Benchmarked P300 EEG models and built a React Native assistive-learning frontend piloted with 12 patient users.",
+      desc: "Worked in Stanford's Lee-Messer Lab on a BCI setup to help motor-impaired students communicate with neural signals. I benchmarked P300 EEG models and built a React Native frontend that we piloted with 12 patients.",
     },
     {
       role: "Founder",
@@ -606,7 +606,7 @@ export const PROFILE: ProfileData = {
         src: "/org-logos/soloscale.png",
         alt: "SoloScale Solutions logo",
       },
-      desc: "Founded a consulting agency that helped small, local businesses implement AI automations and technology to increase inbound leads, handle customer service, and automate mundane tasks. Served 10+ businesses and nonprofits over the course of the business - learned a ton.",
+      desc: "Ran a small consulting shop helping local businesses and nonprofits set up AI automations for inbound leads, customer support, and repetitive admin work. Worked with 10+ organizations and learned a lot about what people actually use.",
     },
   ],
   publications: [

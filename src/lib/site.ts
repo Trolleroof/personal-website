@@ -24,7 +24,7 @@ export const AUTHOR = {
 export const SITE_NAME = AUTHOR.name;
 
 export const SITE_DESCRIPTION =
-  'Personal portfolio of Nikhil Prabhu — agents, robotics UIs, and systems that ship. CS @ UC San Diego.';
+  'Nikhil Prabhu — research and projects in robot learning, LLM evals, and agent systems. CS at UC San Diego.';
 
 /** Every profile URL crawlers should treat as the same entity. */
 export const SAME_AS = [AUTHOR.github, AUTHOR.linkedin, AUTHOR.x] as const;

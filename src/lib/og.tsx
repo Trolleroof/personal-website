@@ -5,8 +5,9 @@ import { AUTHOR, SITE_URL } from '@/lib/site';
 export const OG_SIZE = { width: 1200, height: 630 } as const;
 export const OG_CONTENT_TYPE = 'image/png';
 
-const PINK = '#c0392b';
-const BLUE = '#336699';
+const INK = '#eef2ff';
+const ACCENT = '#c8d5ff';
+const MUTED = '#93a1cc';
 
 type OgCardOptions = {
   /** Small uppercase label in the panel's title bar, e.g. "Blog". */
@@ -19,7 +20,7 @@ type OgCardOptions = {
 };
 
 /**
- * Renders the site's social card: a MySpace-style panel matching the live theme.
+ * Renders the site's social card in the nocturnal indigo & silver-mist aesthetic.
  * Satori supports flexbox only, so every container declares `display: flex`.
  */
 export function renderOgCard({ eyebrow, title, subtitle, footer }: OgCardOptions) {
@@ -32,7 +33,7 @@ export function renderOgCard({ eyebrow, title, subtitle, footer }: OgCardOptions
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #b0a8a4, #c1b6b1, #aaa2a0)',
+          background: '#070911',
           padding: 48,
         }}
       >
@@ -42,22 +43,21 @@ export function renderOgCard({ eyebrow, title, subtitle, footer }: OgCardOptions
             flexDirection: 'column',
             width: '100%',
             height: '100%',
-            background: '#f8f6f5',
-            border: '2px solid #8b1a10',
-            boxShadow: '8px 8px 0 rgba(0,0,0,0.25)',
+            background: '#0b0e19',
+            border: '1px solid rgba(182, 196, 236, 0.16)',
           }}
         >
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              background: 'linear-gradient(to bottom, #d04030, #8b1a10)',
-              color: '#fff',
-              fontSize: 30,
-              fontWeight: 700,
-              letterSpacing: 4,
+              borderBottom: '1px solid rgba(196, 210, 255, 0.16)',
+              color: ACCENT,
+              fontSize: 26,
+              fontWeight: 500,
+              letterSpacing: 6,
               textTransform: 'uppercase',
-              padding: '16px 32px',
+              padding: '20px 44px',
             }}
           >
             {eyebrow}
@@ -69,17 +69,17 @@ export function renderOgCard({ eyebrow, title, subtitle, footer }: OgCardOptions
               flexDirection: 'column',
               flex: 1,
               justifyContent: 'center',
-              padding: '48px 56px',
+              padding: '44px 56px',
             }}
           >
             <div
               style={{
                 display: 'flex',
-                fontSize: title.length > 48 ? 62 : 78,
-                fontWeight: 800,
-                color: BLUE,
+                fontSize: title.length > 48 ? 58 : 74,
+                fontWeight: 600,
+                color: INK,
                 lineHeight: 1.15,
-                letterSpacing: -2,
+                letterSpacing: -1,
               }}
             >
               {title}
@@ -89,9 +89,9 @@ export function renderOgCard({ eyebrow, title, subtitle, footer }: OgCardOptions
               <div
                 style={{
                   display: 'flex',
-                  marginTop: 28,
-                  fontSize: 32,
-                  color: '#555',
+                  marginTop: 26,
+                  fontSize: 30,
+                  color: '#c9d3f0',
                   lineHeight: 1.4,
                 }}
               >
@@ -105,15 +105,15 @@ export function renderOgCard({ eyebrow, title, subtitle, footer }: OgCardOptions
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              borderTop: '1px solid #e0dbd8',
+              borderTop: '1px solid rgba(196, 210, 255, 0.16)',
               padding: '22px 56px',
-              fontSize: 28,
+              fontSize: 26,
             }}
           >
-            <div style={{ display: 'flex', color: PINK, fontWeight: 700 }}>
+            <div style={{ display: 'flex', color: ACCENT, fontWeight: 500 }}>
               {footer ?? AUTHOR.name}
             </div>
-            <div style={{ display: 'flex', color: '#888' }}>
+            <div style={{ display: 'flex', color: MUTED }}>
               {SITE_URL.replace(/^https?:\/\//, '')}
             </div>
           </div>
